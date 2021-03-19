@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diskapp - Import</title>
+</head>
+
+<body>
+    <header>
+        <h1>Diskapp</h1>
+    </header>
+    <aside>
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/disks">Disques</a>
+            <a href="/artists">Artistes</a>
+            <a href="/labels">Labels</a>
+            <a href="" class="btn btn-success">Ajouter un disque</a>
+            <a href="" class="btn btn-info">Gérer les données annexes</a>
+        </nav>
+    </aside>
+        <div>
+            <section>
+                <p>Ce module accepte les fichiers .csv</p>
+                <p>Choisissez le type de données à importer pour en savoir plus.</p>
+                <form>
+                    <label for="import">Données à importer :</label>
+                    <select name="import">
+                        <option value="disks">Disques</option>
+                        <option value="artists">Artistes</option>
+                        <option value="labels">Labels</option>
+                    </select>
+                    <p>****Message en fonction du type de données***</p>
+                    <input type="file" accept="multiform/data">
+                    <input type="submit" value="OK">
+               </form>
+            <section>
+                
+            </section>
+        </div>
+    </main>
+</body>
+</html>

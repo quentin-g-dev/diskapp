@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diskapp - Disks</title>
+</head>
+
+<body>
+    <header>
+        <h1>Diskapp</h1>
+    </header>
+    <aside>
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/artists">Artistes</a>
+            <a href="/labels">Labels</a>
+            <a href="" class="btn btn-success">Ajouter un disque</a>
+            <a href="" class="btn btn-info">Gérer les données annexes</a>
+            <a href="/import" class="btn btn-info">Import massif</a>
+        </nav>
+    </aside>
+        <div>
+            <section>
+                <!--Options-->
+            </section>
+            <section>
+                <!--Colonnes-->
+            </section>
+                <!--Items-->
+                {% for disk in disks %}
+                <div>
+                    <input type="checkbox" name="{{ disk.uuid }}" id="{{ disk.uuid }}">
+                    <span>{{ disk.name }}</span>
+                    <span>{{ disk.artist }}</span>
+                    <span>{{ disk.label }}</span>
+                    <span>{{ disk.published }}</span>
+                    <span>{{ disk.genre }}</span>
+                    <span>{{ disk.registered }}</span>
+                    <span>{{ disk.stock }}</span>
+                </div>
+                {% else %}
+                <div><i>Nothing to show...</i></div>
+                {% endfor %}
+            <section>
+                
+            </section>
+        </div>
+    </main>
+</body>
+</html>

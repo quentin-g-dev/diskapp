@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diskapp - Home</title>
+</head>
+
+<body>
+    <header>
+        <h1>Diskapp</h1>
+    </header>
+    <aside>
+        <nav>
+            <a href="/disks">Disques</a>
+            <a href="/artists">Artistes</a>
+            <a href="/labels">Labels</a>
+            <a href="" class="btn btn-success">Ajouter un disque</a>
+            <a href="" class="btn btn-info">Gérer les données annexes</a>
+            <a href="/import" class="btn btn-info">Import massif</a>
+        </nav>
+    </aside>
+    <main>
+        <h2>Données actuelles</h2>
+        <div>
+            <section>
+                <h3>Registre</h3>
+                <ul>
+                    <li>{{ total_references }} références dans le registre</li>
+                    <li>Style le plus référencé : {{ most_referenced_genre }} ( {{ most_referenced_genre_total }} références)</li>
+                    <li>Interprète le plus référencé : {{ most_referenced_artist }} ({{ most_referenced_artist_total }} références)</li>
+                    <li>Dernier disque référencé : <a href="">{{ last_referenced_name }} - {{ last_referenced_artist }}</a> ({{ last_referenced_registered }})</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Stock</h3>
+                <ul>
+                    <li>{{ total_stock }} disques en stock</li>
+                    <li>Stock maximum : {{ max_stocked_disk_stock }} exemplaires de {{ max_stocked_disk_name }} - {{ max_stocked_disk_artist }}</li>
+                    <li>{{ total_out_of_stock }} références en rupture de stock</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
