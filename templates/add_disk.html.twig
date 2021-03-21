@@ -1,0 +1,9 @@
+{% extends "diskapp.html.twig" %}
+
+{% block custom_styles %}{% endblock %}
+
+{% block main %}
+{{ render(controller('App\\Controller\\DiskController::add')) }}
+{% endblock %}
+
+{% block custom_scripts %}{% endblock %}

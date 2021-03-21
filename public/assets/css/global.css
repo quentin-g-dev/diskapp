@@ -1,0 +1,52 @@
+
+.text-darkBlueGrey{
+    color: #2E3244 !important;
+}
+
+.bg-darkBlueGrey{
+    background-color: #2E3244 !important;
+}
+
+.text-lightGrey{
+    color: #C5C6C6 !important;
+}
+
+.bg-lightGrey{
+    background-color: #C5C6C6 !important;
+}
+
+.text-salmon{
+    color: rgba(241,137,92,0.5) !important; 
+}
+
+.bg-salmon{
+    background-color: rgba(241,137,92,0.5) !important; 
+}
+
+.text-mediumBlueGrey{
+    color: #516079 !important;
+}
+
+.bg-mediumBlueGrey{
+    background-color: #516079 !important;
+}
+
+h1, span.h1 {
+    height:5rem;
+}
+
+aside  {
+    min-height:calc(99vh - 5.4rem);
+}
+
+span.h1, aside {
+    width:300px !important;
+}
+
+h1, .h1bar, main {
+    min-width:calc(100vw - 300px) !important;
+}
+
+aside a {
+    font-size:1.3rem !important;
+}

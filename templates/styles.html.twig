@@ -4,7 +4,7 @@
 
 {% block main %}
  <div>
-    <small>{{ labels|length }} labels référencés</small>
+    <small>{{ styles|length }} genres référencés</small>
 
     <section>
         <!--Options-->
@@ -24,10 +24,10 @@
         </thead>
         <tbody>
             <!--Items-->
-            {% for label in labels %}
+            {% for style in styles %}
                 <tr>
-                    <td class="align-middle"><input  type="checkbox" name="{{ label.id }}" id="{{ label.id }}"></td>
-                    <td class="align-middle"><a href="/labels/{{ label.id }}">{{ label.name }}</a></td>
+                    <td class="align-middle"><input  type="checkbox" name="{{ style.id }}" id="{{ style.id }}"></td>
+                    <td class="align-middle"><a href="/styles/{{ style.id }}">{{ style.name }}</a></td>
                 </tr>
             {% else %}
                 <tr>

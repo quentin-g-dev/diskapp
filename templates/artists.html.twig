@@ -1,49 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diskapp - Artists</title>
-</head>
+{% extends "diskapp.html.twig" %}
 
-<body>
-    <header>
-        <h1>Diskapp</h1>
-    </header>
-    <aside>
-        <nav>
-            <a href="/">Accueil</a>
-            <a href="/disks">Disques</a>
-            <a href="/labels">Labels</a>
-            <a href="" class="btn btn-success">Ajouter un disque</a>
-            <a href="" class="btn btn-info">Gérer les données annexes</a>
-            <a href="/import" class="btn btn-info">Import massif</a>
-        </nav>
-    </aside>
-        <div>
-            <section>
-                <!--Options-->
-            </section>
-            <section>
-                <!--Colonnes-->
-            </section>
-                <!--Items-->
-                {% for artist in artists %}
-                <div>
-                    <input type="checkbox" name="{{ artist.uuid }}" id="{{ artist.uuid }}">
-                    <span>{{ artist.name }}</span>
-                    <span>{{ artist.name }}</span>
-                    <span>{{ artist.country }}</span>
-                    <span>{{ artist.registered }}</span>
-                </div>
-                {% else %}
-                <div><i>Nothing to show...</i></div>
-                {% endfor %}
-            <section>
-                
-            </section>
-        </div>
-    </main>
-</body>
-</html>
+{% block custom_styles %}{% endblock %}
+
+{% block main %}
+ <div>
+    <small>{{ artists|length }} artistes référencés</small>
+
+    <section>
+        <!--Options-->
+    </section>
+    <section>
+        <!--Colonnes-->
+    </section>
+
+    <table class="table table-striped table-hover  w-100">
+        <thead>
+            <tr>
+                <th scope="col" class="align-bottom">
+                    <input  type="checkbox" name="selectAll" id="selectAll">
+                </th>
+                <th class="align-middle" scope="col">Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Items-->
+            {% for artist in artists %}
+                <tr>
+                    <td class="align-middle"><input  type="checkbox" name="{{ artist.id }}" id="{{ artist.id }}"></td>
+                    <td class="align-middle"><a href="/artists/{{ artist.id }}">{{ artist.name }}</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2"><i>Nothing to show...</i></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}{% endblock %}

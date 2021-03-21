@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>{% block title %}Diskapp{% endblock %}</title>
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% block custom_styles %}{% endblock %}
+
+</head>
+
+<body>
+
+    <header class="d-flex">
+        <span class="h1 p-3 mb-3 d-flex justify-content-center align-items-center bg-mediumBlueGrey text-white">DISKAPP</span>
+        <div class="m-0 p-0">
+            <h1 class="text-mediumBlueGrey p-3 pl-4 m-0  d-flex  align-items-center">{{ h1 }}</h1>
+            <div class="p-2 h1bar bg-mediumBlueGrey"></div>
+        </div>
+    </header>
+
+    <div class="d-flex m-0">
+        <aside class="bg-mediumBlueGrey m-0 p-3">
+            <nav class="mr-3 mt-2 d-flex flex-column align-items-center h-100">
+                <a class="mb-4 text-lightGrey" href="/">Accueil</a>
+                <a class="mb-4 text-lightGrey" href="/disks">Disques</a>
+                <a class="mb-4 text-lightGrey" href="/artists">Artistes</a>
+                <a class="mb-4 text-lightGrey" href="/labels">Labels</a>
+                <a class="mb-4 text-lightGrey" href="/styles">Genres</a>
+                <a href="/disks/add" class="btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey">Ajouter un disque</a>
+                <a href="/artists/add" class="btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey">Ajouter un artiste</a>
+                <a href="/labels/add" class="btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey">Ajouter un label</a>
+                <a href="/styles/add" class="btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey">Ajouter un genre</a>
+                <a href="/import" class="btn font-weight-bold mb-4 border bg-darkBlueGrey border-light text-lightGrey">Import massif</a>
+            </nav>
+        </aside>
+
+        <main class="p-4">
+            {% block main %}{% endblock %}
+        </main>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {% block custom_scripts %}{% endblock %}
+</body>
+</html>
+
+
