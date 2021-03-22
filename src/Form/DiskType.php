@@ -21,7 +21,7 @@ class DiskType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('artist', TextType::class)
-            ->add('production',NumberType::class)
+            ->add('production',NumberType::class, ["empty_data" => 13])
             ->add('published', DateType::class)
             ->add('style', NumberType::class)
             ->add('stock', NumberType::class)

@@ -30,6 +30,7 @@ class Disk
     private $name;
 
     /**
+     * @ORM\Column(type="integer")
 
      * @Assert\PositiveOrZero
      * @Assert\Type(
@@ -40,7 +41,7 @@ class Disk
     private $artist;
 
     /**
-     * @var Collection
+     *@ORM\Column(type="integer")
 
      * @Assert\PositiveOrZero
      * @Assert\Type(
@@ -57,7 +58,7 @@ class Disk
     private $published;
 
     /**
-     * @var Collection
+     * @ORM\Column(type="integer")
 
      * @Assert\PositiveOrZero
      * @Assert\Type(
@@ -98,9 +99,7 @@ class Disk
 
     public function __construct()
     {
-        $this->artist = new ArrayCollection();
-        $this->style = new ArrayCollection();
-        $this->production = new ArrayCollection();
+
     }
     
 
