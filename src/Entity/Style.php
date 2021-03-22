@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\StyleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * @ORM\Entity(repositoryClass=StyleRepository::class)
@@ -21,6 +24,10 @@ class Style
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    public function __construct () {
+        $this->disks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

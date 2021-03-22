@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\DiskRepository;
 use App\Repository\ArtistRepository;
-use App\Repository\LabelRepository;
+use App\Repository\ProductionRepository;
 use App\Repository\StyleRepository;
 use App\Controller\DiskController;
 use Symfony\Component\HttpFoundation\Request;

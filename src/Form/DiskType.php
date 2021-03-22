@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use App\Form\ArtistType;
 
 class DiskType extends AbstractType
 {
@@ -19,12 +20,11 @@ class DiskType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('artists', CollectionType::class)
+            ->add('artist', TextType::class)
             ->add('production',NumberType::class)
             ->add('published', DateType::class)
             ->add('style', NumberType::class)
             ->add('stock', NumberType::class)
-            ->add('registered', DateType::class)
             ->add('img', FileType::class)
             ->add('barcode', TextType::class)
             ->add('save', SubmitType::class)

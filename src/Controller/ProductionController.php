@@ -9,37 +9,37 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-use App\Repository\LabelRepository;
+use App\Repository\ProductionRepository;
 
-use App\Entity\Label;
+use App\Entity\Production;
 
-use App\Form\LabelType;
+use App\Form\ProductionType;
 
 
-class LabelController extends AbstractController
+class ProductionController extends AbstractController
 {
    /**
-     * @Route("/labels")
+     * @Route("/productions")
      */
-    public function labels(LabelRepository $labelRepository) : Response
+    public function labels(ProductionRepository $labelRepository) : Response
     {
-        $requestedLabels = $labelRepository->findAll();
+        $requestedProductions = $labelRepository->findAll();
         return $this->render(
             'labels.html.twig', [
-                'h1' => 'Labels',
-                'labels' => $requestedLabels
+                'h1' => 'Productions',
+                'labels' => $requestedProductions
             ]
         );
     }
     
     /**
-    * @Route("/labels/add")
+    * @Route("/productions/add")
     */
     public function add():  Response
     {
-        $label = new Label();
+        $label = new Production();
 
-        $form = $this->createForm(LabelType::class, $label);
+        $form = $this->createForm(ProductionType::class, $label);
 
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un label',
@@ -48,18 +48,18 @@ class LabelController extends AbstractController
     }
 
     /**
-     * @Route("/label/create", name="create_label")
+     * @Route("/production/create", name="create_label")
      */
-    public function createLabel(ValidatorInterface $validator): Response
+    public function createProduction(ValidatorInterface $validator): Response
     {
         // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createLabel(EntityManagerInterface $entityManager)
+        // or you can add an argument to the action: createProduction(EntityManagerInterface $entityManager)
         $entityManager = $this->getDoctrine()->getManager();
 
-        $label = new Label();
-        $label->setName('LabelName');
+        $label = new Production();
+        $label->setName('ProductionName');
        
-        // tell Doctrine you want to (eventually) save the Label (no queries yet)
+        // tell Doctrine you want to (eventually) save the Production (no queries yet)
         $entityManager->persist($label);
 
         // actually executes the queries (i.e. the INSERT query)

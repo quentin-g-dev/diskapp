@@ -34,13 +34,24 @@ class DiskController extends AbstractController
     /**
     * @Route("/disks/add")
     */
-    public function add():  Response
+    public function add(Request $request):  Response
     {
         // creates a disk object and initializes registration date
         $disk = new Disk();
         $disk->setRegistered(new \DateTime());
 
         $form = $this->createForm(DiskType::class, $disk);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            $disk = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($disk);
+            $entityManager->flush();
+
+            return $this->redirect('/disks');
+        }
 
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un disque',
@@ -61,8 +72,6 @@ class DiskController extends AbstractController
         ]);
     }
 
-
-
     public function allDisks(): Array
     {
         return $diskRepository->findAll();
@@ -79,7 +88,7 @@ class DiskController extends AbstractController
 
         $disk = new Disk();
         $disk->setName('DiskName');
-        $disk->setArtists([1,23]);
+        $disk->setArtist('1');
         $disk->setProduction(5);
         $disk->setPublished(new \DateTime('02-03-2014'));
         $disk->setImg('./assets/img/diskapp_cd.png');

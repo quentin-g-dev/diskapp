@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Label;
+use App\Entity\Production;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Label|null find($id, $lockMode = null, $lockVersion = null)
- * @method Label|null findOneBy(array $criteria, array $orderBy = null)
- * @method Label[]    findAll()
- * @method Label[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Production|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Production|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Production[]    findAll()
+ * @method Production[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LabelRepository extends ServiceEntityRepository
+class ProductionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Label::class);
+        parent::__construct($registry, Production::class);
     }
 
     // /**
-    //  * @return Label[] Returns an array of Label objects
+    //  * @return Production[] Returns an array of Production objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class LabelRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Label
+    public function findOneBySomeField($value): ?Production
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

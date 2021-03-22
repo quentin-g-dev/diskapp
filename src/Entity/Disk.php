@@ -2,8 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\Style;
+use App\Entity\Artist;
+use App\Entity\Production;
 use App\Repository\DiskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -25,14 +30,19 @@ class Disk
     private $name;
 
     /**
-     * @ORM\Column(type="simple_array")
-     * @Assert\Type("array")
+
+     * @Assert\PositiveOrZero
+     * @Assert\Type(
+     *     type="integer",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )     
      */
-    private $artists = [];
+    private $artist;
 
     /**
-     * @ORM\Column(type="integer")
-    * @Assert\PositiveOrZero
+     * @var Collection
+
+     * @Assert\PositiveOrZero
      * @Assert\Type(
      *     type="integer",
      *     message="The value {{ value }} is not a valid {{ type }}."
@@ -47,7 +57,8 @@ class Disk
     private $published;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var Collection
+
      * @Assert\PositiveOrZero
      * @Assert\Type(
      *     type="integer",
@@ -84,6 +95,13 @@ class Disk
      */
     private $barcode;
 
+
+    public function __construct()
+    {
+        $this->artist = new ArrayCollection();
+        $this->style = new ArrayCollection();
+        $this->production = new ArrayCollection();
+    }
     
 
     public function getId(): ?int
@@ -102,14 +120,14 @@ class Disk
         return $this;
     }
 
-    public function getArtists(): ?array
+    public function getArtist(): ?int
     {
-        return $this->artists;
+        return $this->artist;
     }
 
-    public function setArtists(array $artists): self
+    public function setArtist(int $artist): self
     {
-        $this->artists = $artists;
+        $this->artist = $artist;
         return $this;
     }
 

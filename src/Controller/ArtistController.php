@@ -36,14 +36,25 @@ class ArtistController extends AbstractController
     /**
     * @Route("/artists/add")
     */
-    public function add():  Response
+    public function add(Request $request,ValidatorInterface $validator):  Response
     {
         $artist = new Artist();
 
         $form = $this->createForm(ArtistType::class, $artist);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            $artist = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($artist);
+            $entityManager->flush();
+
+            return $this->redirect('/artists');
+        }
         return $this->render('form.html.twig', [
-            'h1'=>'Ajouter un artist',
+            'h1'=>'Ajouter un artiste',
             'form' => $form->createView(),
         ]);
     }
@@ -53,6 +64,7 @@ class ArtistController extends AbstractController
      */
     public function createArtist(ValidatorInterface $validator): Response
     {
+        
         // you can fetch the EntityManager via $this->getDoctrine()
         // or you can add an argument to the action: createArtist(EntityManagerInterface $entityManager)
         $entityManager = $this->getDoctrine()->getManager();

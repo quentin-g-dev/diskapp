@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\LabelRepository;
+use App\Repository\ProductionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=LabelRepository::class)
+ * @ORM\Entity(repositoryClass=ProductionRepository::class)
  */
-class Label
+class Production
 {
     /**
      * @ORM\Id
@@ -21,6 +23,12 @@ class Label
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    
+
+    public function __construct () {
+        $this->disks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
