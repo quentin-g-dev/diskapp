@@ -5,42 +5,51 @@ use App\Entity\Disk;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-
-
 use App\Repository\DiskRepository;
+
+use App\Form\DiskType;
 
 
 class DiskController extends AbstractController
 {
 
-    public function add(Request $request): Response
+    /**
+    * @Route("/disks")
+    */
+    public function disks(DiskRepository $diskRepository) : Response
     {
-        // creates a disk object and initializes some data for this example
+        $requestedDisks = $diskRepository->findAll();
+        return $this->render(
+            'disks.html.twig', [
+                'h1' => 'Disques',
+                'disks' => $requestedDisks
+            ]
+        );
+    }
+
+    /**
+    * @Route("/disks/add")
+    */
+    public function add():  Response
+    {
+        // creates a disk object and initializes registration date
         $disk = new Disk();
+        $disk->setRegistered(new \DateTime());
 
-        $form = $this->createFormBuilder($disk)
-            ->add('disk', TextType::class)
-            ->add('published', DateType::class)
-            ->add('save', SubmitType::class, ['label' => 'Create Disk'])
-            ->getForm();
+        $form = $this->createForm(DiskType::class, $disk);
 
-            return $form;
-        }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Disk::class,
+        return $this->render('form.html.twig', [
+            'h1'=>'Ajouter un disque',
+            'form' => $form->createView(),
         ]);
     }
+    
+    
+
 
     /**
      * @Route("/disk", name="disk")

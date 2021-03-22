@@ -67,9 +67,11 @@ class Disk
     private $stock;
 
     /**
-     * @Assert\Date
      * @ORM\Column(type="date")
+     * @Assert\Date
+     * @var string A "d-m-Y" formatted value
      */
+    
     private $registered;
 
     /**

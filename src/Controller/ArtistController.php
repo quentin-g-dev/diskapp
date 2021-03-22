@@ -9,63 +9,69 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-use App\Repository\DiskRepository;
+use App\Repository\ArtistRepository;
 
-use App\Entity\Disk;
+use App\Entity\Artist;
+use App\Form\ArtistType;
+
 
 class ArtistController extends AbstractController
 {
 
     
-    /**
-     * @Route("/disk", name="disk")
+   /**
+     * @Route("/artists")
      */
-    public function index(): Response
+    public function artists(ArtistRepository $artistRepository) : Response
     {
-        return $this->render('disk/index.html.twig', [
-            'controller_name' => 'DiskController',
+        $requestedArtists = $artistRepository->findAll();
+        return $this->render(
+            'artists.html.twig', [
+                'h1' => 'Artistes',
+                'artists' => $requestedArtists
+            ]
+        );
+    }
+
+    /**
+    * @Route("/artists/add")
+    */
+    public function add():  Response
+    {
+        $artist = new Artist();
+
+        $form = $this->createForm(ArtistType::class, $artist);
+
+        return $this->render('form.html.twig', [
+            'h1'=>'Ajouter un artist',
+            'form' => $form->createView(),
         ]);
     }
 
-
-
-    public function allDisks(): Array
-    {
-        return $diskRepository->findAll();
-    }
-
     /**
-     * @Route("/disk/create", name="create_disk")
+     * @Route("/artist/create", name="create_artist")
      */
-    public function createDisk(ValidatorInterface $validator): Response
+    public function createArtist(ValidatorInterface $validator): Response
     {
         // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createDisk(EntityManagerInterface $entityManager)
+        // or you can add an argument to the action: createArtist(EntityManagerInterface $entityManager)
         $entityManager = $this->getDoctrine()->getManager();
 
-        $disk = new Disk();
-        $disk->setName('DiskName');
-        $disk->setArtists([1,23]);
-        $disk->setProduction(5);
-        $disk->setPublished(new \DateTime('02-03-2014'));
-        $disk->setImg('./assets/img/diskapp_cd.png');
-        $disk->setStyle(7);
-        $disk->setStock(5);
-        $disk->setRegistered(new \DateTime());
-        $disk->setBarcode('testBarcode');
-
-        // tell Doctrine you want to (eventually) save the Disk (no queries yet)
-        $entityManager->persist($disk);
+        $artist = new Artist();
+        $artist->setName('ArtistName');
+       
+        // tell Doctrine you want to (eventually) save the Artist (no queries yet)
+        $entityManager->persist($artist);
 
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
         // Basic validator errors handling
-        $errors = $validator->validate($disk);
+        $errors = $validator->validate($artist);
         if (count($errors) > 0) {
             return new Response((string) $errors, 400);
         }
 
-        return new Response('Saved new disk with id '.$disk->getId());
+        return new Response('Saved new artist with id '.$artist->getId());
     }
 }

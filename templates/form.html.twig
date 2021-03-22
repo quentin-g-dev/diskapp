@@ -1,9 +1,11 @@
 {% extends "diskapp.html.twig" %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block custom_styles %}{% endblock %}
 
 {% block main %}
-{{ render(controller('App\\Controller\\DiskController::add')) }}
+{{ form(form) }}
 {% endblock %}
 
 {% block custom_scripts %}{% endblock %}
