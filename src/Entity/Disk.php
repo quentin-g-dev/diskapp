@@ -7,8 +7,7 @@ use App\Entity\Artist;
 use App\Entity\Production;
 use App\Repository\DiskRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Annotations;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,41 +29,31 @@ class Disk
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
-
-     * @Assert\PositiveOrZero
-     * @Assert\Type(
-     *     type="integer",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )     
+     * @ORM\ManyToOne(targetEntity="App\Entity\Artist", inversedBy="disks")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="artist", referencedColumnName="id", onDelete="CASCADE")
+     * })   
      */
     private $artist;
 
     /**
-     *@ORM\Column(type="integer")
-
-     * @Assert\PositiveOrZero
-     * @Assert\Type(
-     *     type="integer",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )     
+     * @ORM\ManyToOne(targetEntity="App\Entity\Production", inversedBy="disks")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="production", referencedColumnName="id", onDelete="CASCADE")
+     * })   
      */
     private $production;
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\Date
      */
     private $published;
 
     /**
-     * @ORM\Column(type="integer")
-
-     * @Assert\PositiveOrZero
-     * @Assert\Type(
-     *     type="integer",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )
+     * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="disks")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="style", referencedColumnName="id", onDelete="CASCADE")
+     * })   
      */
     private $style;
 
@@ -80,10 +69,8 @@ class Disk
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\Date
      * @var string A "d-m-Y" formatted value
      */
-    
     private $registered;
 
     /**
@@ -101,7 +88,6 @@ class Disk
     {
 
     }
-    
 
     public function getId(): ?int
     {
@@ -119,23 +105,23 @@ class Disk
         return $this;
     }
 
-    public function getArtist(): ?int
+    public function getArtist(): ?Artist
     {
         return $this->artist;
     }
 
-    public function setArtist(int $artist): self
+    public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
         return $this;
     }
 
-    public function getProduction(): ?int
+    public function getProduction(): ?Production
     {
         return $this->production;
     }
 
-    public function setProduction(int $production): self
+    public function setProduction(?Production $production): self
     {
         $this->production = $production;
         return $this;
@@ -152,15 +138,14 @@ class Disk
         return $this;
     }
 
-    public function getStyle(): ?int
+    public function getStyle(): ?Style
     {
         return $this->style;
     }
 
-    public function setStyle(int $style): self
+    public function setStyle(?Style $style): self
     {
         $this->style = $style;
-
         return $this;
     }
 
@@ -172,7 +157,6 @@ class Disk
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
-
         return $this;
     }
 
@@ -184,7 +168,6 @@ class Disk
     public function setRegistered(\DateTimeInterface $registered): self
     {
         $this->registered = $registered;
-
         return $this;
     }
 

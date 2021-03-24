@@ -10,6 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Repository\DiskRepository;
+use App\Repository\ArtistRepository;
+use App\Repository\ProductionRepository;
+use App\Repository\StyleRepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use App\Form\DiskType;
 
@@ -20,38 +24,83 @@ class DiskController extends AbstractController
     /**
     * @Route("/disks")
     */
-    public function disks(DiskRepository $diskRepository) : Response
+    public function disks(DiskRepository $diskRepository, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository) : Response
     {
         $requestedDisks = $diskRepository->findAll();
-        return $this->render(
+        foreach ($requestedDisks as $disk) : 
+            $artistId = $disk->getArtist();
+            $artist = $artistRepository->find($artistId);
+            $artist->setName($artist->getName());
+            $disk->setArtist($artist);
+            $productionId = $disk->getProduction()->getId();
+            $production = $productionRepository->find($productionId);
+            $production->setName($production->getName());
+            $disk->setProduction($production);
+            $styleId = $disk->getStyle()->getId();
+            $style = $styleRepository->find($styleId);
+            $style->setName($style->getName());
+            $disk->setStyle($style);
+        endforeach;
+        /* return $this->render(
+            'debug.html.twig', [                
+                'h1' => 'Debug',
+
+                'debug' => $requestedDisks
+            ]
+        );*/
+      return $this->render(
             'disks.html.twig', [
                 'h1' => 'Disques',
                 'disks' => $requestedDisks
             ]
-        );
+        ); 
     }
 
     /**
     * @Route("/disks/add")
     */
-    public function add(Request $request):  Response
+    public function add(Request $request, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository):  Response
     {
         // creates a disk object and initializes registration date
         $disk = new Disk();
-        $disk->setRegistered(new \DateTime());
+        $disk->setRegistered(new \DateTime('now'));
 
         $form = $this->createForm(DiskType::class, $disk);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            $disk = $form->getData();
+            
+            $artistId = $form->getData()->getArtist()->getId();
+            $artist = $artistRepository->find($artistId);
+            $disk->setArtist($artist);
+            $productionId = $form->getData()->getProduction()->getId();
+            $production = $productionRepository->find($productionId);
+            $disk->setProduction($production);
+            $styleId = $form->getData()->getStyle()->getId();
+            $style = $styleRepository->find($styleId);
+            $disk->setStyle($style);
+            $file = $form['img']->getData();
+            $extension = $file->getExtension();
+            $directory = './public/assets/img/upload/';
+            $fileName = $disk->getName().'_'.$disk->getId().'_'.$disk->getArtist()->getName().'.'.$extension;
 
+            $file->move($directory, $fileName);
+            $disk->setImg($directory.DIRECTORY_SEPARATOR.$fileName);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($disk);
+            $entityManager->persist($artist);
+            $entityManager->persist($production);
+            $entityManager->persist($style);
             $entityManager->flush();
 
+            //$disk = $form->getData();
+            return $this->render('debug.html.twig', [
+                'h1'=>'DEBUG',
+                'debug' => $disk,
+            ]);
+
+/*
             return $this->redirect('/disks');
-        }
+        */}
 
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un disque',

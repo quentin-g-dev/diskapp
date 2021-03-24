@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\Disk;
 
 use App\Repository\ArtistRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -25,7 +25,13 @@ class Artist
      */
     private $name;
 
-  
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Disk", mappedBy="artist")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="disks", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $disks;
 
     public function __construct () {
         $this->disks = new ArrayCollection();
@@ -44,7 +50,14 @@ class Artist
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
+    }
+
+    /**
+     * @return Collection|Disk[]
+     */
+    public function getDisks() : Collection
+    {
+        return $this->disks;
     }
 }

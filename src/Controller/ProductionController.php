@@ -35,16 +35,27 @@ class ProductionController extends AbstractController
     /**
     * @Route("/productions/add")
     */
-    public function add():  Response
+    public function add(Request $request,ValidatorInterface $validator):  Response
     {
-        $label = new Production();
+        $production = new Production();
 
-        $form = $this->createForm(ProductionType::class, $label);
+        $form = $this->createForm(ProductionType::class, $production);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            $production = $form->getData();
 
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($production);
+            $entityManager->flush();
+
+            return $this->redirect('/productions');
+        }
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un label',
             'form' => $form->createView(),
         ]);
+          
     }
 
     /**

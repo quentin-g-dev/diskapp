@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StyleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -25,9 +26,20 @@ class Style
      */
     private $name;
 
+
+
+ /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Disk", mappedBy="style")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="disks", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $disks;
+
     public function __construct () {
         $this->disks = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -42,7 +54,7 @@ class Style
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
+
 }

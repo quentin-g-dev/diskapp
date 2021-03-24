@@ -20,11 +20,12 @@
                 <th class="align-middle" scope="col">Cover</th>
                 <th class="align-middle" scope="col">Nom</th>
                 <th class="align-middle" scope="col">Artiste(s)</th>
-                <th class="align-middle" scope="col">Production</th>
+                <th class="align-middle" scope="col">Label</th>
                 <th class="align-middle" scope="col">Sorti le</th>
+                <th class="align-middle" scope="col">Style</th>
                 <th class="align-middle" scope="col">Stock</th>
-                <th class="align-middle" scope="col">Enregistré le</th>
                 <th class="align-middle" scope="col">Code barre</th>
+                <th class="align-middle" scope="col">Enregistré le</th>
             </tr>
         </thead>
         <tbody>
@@ -34,17 +35,17 @@
                     <td class="align-middle"><input  type="checkbox" name="{{ disk.id }}" id="{{ disk.id }}"></td>
                     <td class="align-middle"><a href="/disks/{{ disk.id }}"><img src="{{ disk.img }}" alt="" height="75px"></a></td>
                     <td class="align-middle"><a href="/disks/{{ disk.id }}">{{ disk.name }}</a></td>
-                    <td class="align-middle"><a href="/artists/{{ disk.artist }}">{{ disk.artist }}</a></td>
-                    <td class="align-middle">{#<a href="/productions/{{ disk.production }}" >{{ disk.production }}</a>#}</td>
+                    <td class="align-middle"><a href="/artists/{{ disk.artist.id }}">{{ disk.artist.name }}</a></td>
+                    <td class="align-middle"><a href="/productions/{{ disk.production.id }}">{{ disk.production.name }}</a></td>
                     <td class="align-middle">{{ disk.published|date('d-m-Y') }}</td>
-                    <td class="align-middle"><a href="/styles/{{ disk.style}}" ></td>
-                    <td class="align-middle">{{ disk.registered|date('d-m-Y') }}</td>
+                    <td class="align-middle"><a href="/styles/{{ disk.style.id }}">{{ disk.style.name }}</a></td>
                     <td class="align-middle">{{ disk.stock }}</td>
-                    <td class="align-middle">{{ disk.barcode }}</td>
+                    <td class="align-middle">{{ disk.barcode }}</td>           
+                    <td class="align-middle">{{ disk.registered|date('d-m-Y') }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2"><i>Nothing to show...</i></td>
+                    <td colspan="10"><i>Nothing to show...</i></td>
                 </tr>
             {% endfor %}
         </tbody>

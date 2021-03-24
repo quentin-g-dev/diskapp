@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProductionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -24,7 +25,13 @@ class Production
      */
     private $name;
 
-    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Disk", mappedBy="production")
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="disks", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $disks;
 
     public function __construct () {
         $this->disks = new ArrayCollection();
@@ -45,5 +52,13 @@ class Production
         $this->name = $name;
 
         return $this;
+    }
+    
+    /**
+     * @return Collection|Disk[]
+     */
+    public function getDisks() : Collection
+    {
+        return $this->disks;
     }
 }

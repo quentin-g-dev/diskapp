@@ -34,16 +34,27 @@ class StyleController extends AbstractController
     /**
     * @Route("/styles/add")
     */
-    public function add():  Response
+    public function add(Request $request,ValidatorInterface $validator):  Response
     {
         $style = new Style();
 
         $form = $this->createForm(StyleType::class, $style);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            $style = $form->getData();
 
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($style);
+            $entityManager->flush();
+
+            return $this->redirect('/styles');
+        }
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un genre',
             'form' => $form->createView(),
         ]);
+       
     }
 
     /**
