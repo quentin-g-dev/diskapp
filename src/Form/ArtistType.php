@@ -6,6 +6,8 @@ use App\Entity\Artist;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 
 class ArtistType extends AbstractType
@@ -14,6 +16,8 @@ class ArtistType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('save',SubmitType::class)
+
         ;
     }
 

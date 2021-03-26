@@ -46,6 +46,7 @@ class Disk
 
     /**
      * @ORM\Column(type="date")
+     * @var string A "m-Y" formatted value
      */
     private $published;
 

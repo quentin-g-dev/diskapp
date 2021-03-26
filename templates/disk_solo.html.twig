@@ -1,0 +1,38 @@
+{% extends "diskapp.html.twig" %}
+
+{% block custom_styles %}{% endblock %}
+
+{% block main %}
+ <div>
+    <h2 class="ml-3">{{ disk.name }}</h2>
+    <h3 class="ml-3">{{ disk.artist.name }}</h3>
+    <section class="d-flex">
+        <img src="{{ disk.img }}" alt="cover" height="200px" class="mx-3">
+        <div class="mx-3 d-flex flex-column">
+            <span>Nom :</span>
+            <span>Artiste :</span>
+            <span>Label :</span>
+            <span>Date de sortie :</span>
+            <span>Style :</span>
+            <span>En stock :</span>
+            <span>Code barre :</span>
+            <span>Enregistré le:</span>
+
+        </div>
+        <div class="mx-3 d-flex flex-column">
+            <span class="text-right">{{ disk.name }}</span>
+            <span class="text-right"><a href="/artists/{{ disk.artist.id }} ">{{ disk.artist.name }}</a></span>
+            <span class="text-right"><a href="/productions/{{ disk.production.id }}">{{ disk.production.name }}</a></span>
+            <span class="text-right">{{ disk.published|date('d-m-Y') }}</span>
+            <span class="text-right"><a href="/styles/{{ disk.style.id }}">{{ disk.style.name }}</a></span>
+            <span class="text-right">{{ disk.stock }}</span>
+            <span class="text-right">{{ disk.barcode }}</span>
+            <span class="text-right">{{ disk.registered|date('d-m-Y') }}</span>
+
+        </div>
+        
+    </section>
+    
+{% endblock %}
+
+{% block custom_scripts %}{% endblock %}

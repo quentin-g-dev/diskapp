@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+use App\Repository\DiskRepository;
 use App\Repository\StyleRepository;
 use App\Entity\Style;
 use App\Form\StyleType;
@@ -37,50 +38,54 @@ class StyleController extends AbstractController
     public function add(Request $request,ValidatorInterface $validator):  Response
     {
         $style = new Style();
-
         $form = $this->createForm(StyleType::class, $style);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
             $style = $form->getData();
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($style);
             $entityManager->flush();
-
             return $this->redirect('/styles');
         }
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un genre',
             'form' => $form->createView(),
+            'form_script'=>''
         ]);
-       
+    }
+
+   /**
+     * @Route("/styles/set/{id}", methods={"GET", "POST"})
+     */
+    public function setStyle(Style $style, Request $request): Response
+    {    
+        $form = $this->createForm(StyleType::class, $style);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $style = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($style);
+            $entityManager->flush();
+            return $this->redirect('/styles');
+        }
+        return $this->render('form.html.twig', [
+            'h1'=>'Modifcation d\'un genre',
+            'form' => $form->createView(),
+            'form_script' => '',
+        ]);
     }
 
     /**
-     * @Route("/style/create", name="create_style")
-     */
-    public function createStyle(ValidatorInterface $validator): Response
+     * @Route("/styles/{id}", methods={"GET"})
+    */
+    public function style(Style $style,  DiskRepository $diskRepository) : Response
     {
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createStyle(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $style = new Style();
-        $style->setName('StyleName');
-       
-        // tell Doctrine you want to (eventually) save the Style (no queries yet)
-        $entityManager->persist($style);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        // Basic validator errors handling
-        $errors = $validator->validate($style);
-        if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
-        }
-
-        return new Response('Saved new style with id '.$style->getId());
+        return $this->render('style_solo.html.twig', [
+            'h1' => 'Genre : '.$style->getName(),
+            'style' => $style,
+            'disks' => $style->getDisks(),
+            'script' => '/assets/js/styles.js'
+        ]);
     }
 }

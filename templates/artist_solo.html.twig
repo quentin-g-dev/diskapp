@@ -1,0 +1,45 @@
+{% extends "diskapp.html.twig" %}
+
+{% block custom_styles %}{% endblock %}
+
+{% block main %}
+ <div>
+    <h2 class="ml-3">{{ artist.name }}</h2>
+    <a href="/artists/set/{{ artist.id }}" class="btn btn-info text-white ml-3">Modifier</a>
+    <button  class="btn btn-danger text-white ml-3" onclick="deleteArtist({{ artist.id }}); setTimeout(function(){ window.location.href='/artists'; }, 50);">Supprimer</button>   
+    <br>
+    <h3 class="ml-3">Disques :</h3>
+    <table class="table table-striped table-hover  w-100" id="disksTable">
+        <thead>
+            <tr>
+                <th class="align-middle text-center" scope="col">Cover</th>
+                <th class="align-middle text-center" scope="col">Nom</th>
+                <th class="align-middle text-center" scope="col">Label</th>
+                <th class="align-middle text-center" scope="col">Sorti le</th>
+                <th class="align-middle text-center" scope="col">Style</th>
+                <th class="align-middle text-center" scope="col">Stock</th>
+                <th class="align-middle text-center" scope="col">Code barre</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for disk in disks %}
+            <tr>
+                <td class="align-middle text-center"><img src="{{ disk.img }}" alt="Cover" height="75px"></td>
+                <td class="align-middle text-center"><a href="/disks/{{ disk.id }}">{{ disk.name }}</a></td>
+                <td class="align-middle text-center"><a href="/productions/{{ disk.production.id }}">{{ disk.production.name }}</a></td>
+                <td class="align-middle text-center">{{ disk.published|date("d-m-Y") }}</td>
+                <td class="align-middle text-center"><a href="/styles/{{ disk.style.id }}">{{ disk.style.name }}</a></td>
+                <td class="align-middle text-center">{{ disk.stock }}</td>
+                <td class="align-middle text-center">{{ disk.barcode }}</td>
+
+
+            </tr>
+        
+    {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
+    
+{% block custom_scripts %}<script src="{{ script }}"></script>{% endblock %}

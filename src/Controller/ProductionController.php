@@ -8,13 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Request;
-
 use App\Repository\ProductionRepository;
-
 use App\Entity\Production;
-
 use App\Form\ProductionType;
-
+use App\Repository\DiskRepository;
 
 class ProductionController extends AbstractController
 {
@@ -25,7 +22,7 @@ class ProductionController extends AbstractController
     {
         $requestedProductions = $labelRepository->findAll();
         return $this->render(
-            'labels.html.twig', [
+            'productions.html.twig', [
                 'h1' => 'Productions',
                 'labels' => $requestedProductions
             ]
@@ -38,50 +35,54 @@ class ProductionController extends AbstractController
     public function add(Request $request,ValidatorInterface $validator):  Response
     {
         $production = new Production();
-
         $form = $this->createForm(ProductionType::class, $production);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
             $production = $form->getData();
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($production);
             $entityManager->flush();
-
             return $this->redirect('/productions');
         }
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un label',
             'form' => $form->createView(),
+            'form_script'=>'',
         ]);
-          
     }
 
     /**
-     * @Route("/production/create", name="create_label")
-     */
-    public function createProduction(ValidatorInterface $validator): Response
+     * @Route("/productions/{id}", methods={"GET"})
+    */
+    public function production(Production $production,  DiskRepository $diskRepository) : Response
     {
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createProduction(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
+        return $this->render('production_solo.html.twig', [
+            'h1' => 'Label : '.$production->getName(),
+            'production' => $production,
+            'disks' => $production->getDisks(),
+            'script' => '/assets/js/productions.js'
+        ]);
+    }
 
-        $label = new Production();
-        $label->setName('ProductionName');
-       
-        // tell Doctrine you want to (eventually) save the Production (no queries yet)
-        $entityManager->persist($label);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        // Basic validator errors handling
-        $errors = $validator->validate($label);
-        if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+    /**
+     * @Route("/productions/set/{id}", methods={"GET", "POST"})
+     */
+    public function setProduction(Production $production, Request $request): Response
+    {    
+        $form = $this->createForm(ProductionType::class, $production);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $production = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($production);
+            $entityManager->flush();
+            return $this->redirect('/productions');
         }
-
-        return new Response('Saved new label with id '.$label->getId());
+        return $this->render('form.html.twig', [
+            'h1'=>'Modification du label',
+            'form' => $form->createView(),
+            'form_script' => '',
+        ]);
     }
 }

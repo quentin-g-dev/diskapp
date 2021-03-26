@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Repository\ArtistRepository;
+use App\Repository\DiskRepository;
 
 use App\Entity\Artist;
 use App\Form\ArtistType;
@@ -44,9 +45,7 @@ class ArtistController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
             $artist = $form->getData();
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($artist);
             $entityManager->flush();
@@ -56,34 +55,43 @@ class ArtistController extends AbstractController
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un artiste',
             'form' => $form->createView(),
+            'form_script' => '',
         ]);
     }
 
     /**
-     * @Route("/artist/create", name="create_artist")
-     */
-    public function createArtist(ValidatorInterface $validator): Response
+     * @Route("/artists/{id}", methods={"GET"})
+    */
+    public function artist(Artist $artist,  DiskRepository $diskRepository) : Response
     {
-        
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createArtist(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
+        return $this->render('artist_solo.html.twig', [
+            'h1' => 'Artiste : '.$artist->getName(),
+            'artist' => $artist,
+            'disks' => $artist->getDisks(),
+            'script' => '/assets/js/artists.js'
 
-        $artist = new Artist();
-        $artist->setName('ArtistName');
-       
-        // tell Doctrine you want to (eventually) save the Artist (no queries yet)
-        $entityManager->persist($artist);
+        ]);
+    }
 
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+    /**
+     * @Route("/artists/set/{id}", methods={"GET", "POST"})
+     */
+    public function setArtist(Artist $artist, Request $request): Response
+    {    
+        $form = $this->createForm(ArtistType::class, $artist);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $artist = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($artist);
+            $entityManager->flush();
 
-        // Basic validator errors handling
-        $errors = $validator->validate($artist);
-        if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+            return $this->redirect('/artists');
         }
-
-        return new Response('Saved new artist with id '.$artist->getId());
+        return $this->render('form.html.twig', [
+            'h1'=>'Modification d\'un artiste',
+            'form' => $form->createView(),
+            'form_script' => '',
+        ]);
     }
 }

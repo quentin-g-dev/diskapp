@@ -56,5 +56,13 @@ class Style
         $this->name = $name;
         return $this;
     }
+    
+    /**
+     * @return Collection|Disk[]
+     */
+    public function getDisks() : Collection
+    {
+        return $this->disks;
+    }
 
 }

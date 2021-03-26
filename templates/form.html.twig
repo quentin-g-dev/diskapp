@@ -2,12 +2,13 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% block custom_styles %}{% endblock %}
+{% block custom_styles %}
+{% endblock %}
 
 {% block main %}
-{{ form(form) }}
-
+    {{ form(form) }}
 {% endblock %}
 
 {% block custom_scripts %}
+    <script src="{{ form_script }}"></script>
 {% endblock %}

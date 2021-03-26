@@ -7,8 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 use App\Repository\DiskRepository;
 use App\Repository\ArtistRepository;
 use App\Repository\ProductionRepository;
@@ -28,26 +27,17 @@ class DiskController extends AbstractController
     {
         $requestedDisks = $diskRepository->findAll();
         foreach ($requestedDisks as $disk) : 
-            $artistId = $disk->getArtist();
-            $artist = $artistRepository->find($artistId);
+            $artist = $artistRepository->find($disk->getArtist());
             $artist->setName($artist->getName());
             $disk->setArtist($artist);
-            $productionId = $disk->getProduction()->getId();
-            $production = $productionRepository->find($productionId);
+            $production = $productionRepository->find($disk->getProduction()->getId());
             $production->setName($production->getName());
             $disk->setProduction($production);
-            $styleId = $disk->getStyle()->getId();
-            $style = $styleRepository->find($styleId);
+            $style = $styleRepository->find($disk->getStyle()->getId());
             $style->setName($style->getName());
             $disk->setStyle($style);
         endforeach;
-        /* return $this->render(
-            'debug.html.twig', [                
-                'h1' => 'Debug',
-
-                'debug' => $requestedDisks
-            ]
-        );*/
+        /* return $this->render('debug.html.twig', ['h1' => 'Debug', 'debug' => $requestedDisks] );*/ // Debug line
       return $this->render(
             'disks.html.twig', [
                 'h1' => 'Disques',
@@ -61,103 +51,118 @@ class DiskController extends AbstractController
     */
     public function add(Request $request, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository):  Response
     {
-        // creates a disk object and initializes registration date
         $disk = new Disk();
         $disk->setRegistered(new \DateTime('now'));
-
         $form = $this->createForm(DiskType::class, $disk);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            $artistId = $form->getData()->getArtist()->getId();
-            $artist = $artistRepository->find($artistId);
-            $disk->setArtist($artist);
-            $productionId = $form->getData()->getProduction()->getId();
-            $production = $productionRepository->find($productionId);
+            if ($form['artist']=== '0') :
+                $disk->setArtist($artistRepository->find(23));
+            else :
+                $artist = $artistRepository->find($form->getData()->getArtist()->getId());
+                $disk->setArtist($artist);
+            endif;
+            $production = $productionRepository->find($form->getData()->getProduction()->getId());
             $disk->setProduction($production);
-            $styleId = $form->getData()->getStyle()->getId();
-            $style = $styleRepository->find($styleId);
+            $disk->setPublished($form['published']->getData());
+            $style = $styleRepository->find($form->getData()->getStyle()->getId());
             $disk->setStyle($style);
-            $file = $form['img']->getData();
-            $extension = $file->getExtension();
-            $directory = './public/assets/img/upload/';
-            $fileName = $disk->getName().'_'.$disk->getId().'_'.$disk->getArtist()->getName().'.'.$extension;
-
-            $file->move($directory, $fileName);
-            $disk->setImg($directory.DIRECTORY_SEPARATOR.$fileName);
+            if (is_null($form['img']->getData())) :
+                $disk->setImg('/assets/img/diskapp_cd.png');
+            else :
+                $file = $form['img']->getData();
+                if($file->guessExtension() === 'jpg' || $file->guessExtension() === 'jpeg' || $file->guessExtension() == 'png') :
+                    $directory = '.'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload';
+                    $fileName = $disk->getName().'_'.$disk->getId().'_'.preg_replace('/s/', '', $disk->getArtist()->getName()).'.'.$file->getExtension();
+                    $file->move($directory, $fileName);
+                    $disk->setImg('/assets/img/upload/'.$fileName.DIRECTORY_SEPARATOR.$file->getExtension());
+                else : 
+                    $disk->setImg('/assets/img/diskapp_cd.png');
+                endif;
+            endif;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($disk);
             $entityManager->persist($artist);
             $entityManager->persist($production);
             $entityManager->persist($style);
             $entityManager->flush();
-
-            //$disk = $form->getData();
-            return $this->render('debug.html.twig', [
-                'h1'=>'DEBUG',
-                'debug' => $disk,
-            ]);
-
-/*
+            
+            /* return $this->render('debug.html.twig', ['h1'=>'DEBUG', 'debug' => $disk ]);*/ // Debug line
             return $this->redirect('/disks');
-        */}
+        }
 
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un disque',
             'form' => $form->createView(),
+            'form_script'=>'/assets/js/new_disk_form.js'
         ]);
     }
-    
-    
-
 
     /**
-     * @Route("/disk", name="disk")
-     */
-    public function index(): Response
+     * @Route("/disks/{id}", methods={"GET"})
+    */
+    public function disk(Disk $disk, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository) : Response
     {
-        return $this->render('disk/index.html.twig', [
+        $artist = $artistRepository->find($disk->getArtist());
+        $artist->setName($artist->getName());
+        $disk->setArtist($artist);
+        $production = $productionRepository->find($disk->getProduction()->getId());
+        $production->setName($production->getName());
+        $disk->setProduction($production);
+        $style = $styleRepository->find($disk->getStyle()->getId());
+        $style->setName($style->getName());
+        $disk->setStyle($style);
+        return $this->render('disk_solo.html.twig', [
+            'h1' => $disk->getName().' - '.$disk->getArtist()->getName(),
             'controller_name' => 'DiskController',
+            'disk' => $disk
         ]);
     }
 
-    public function allDisks(): Array
-    {
-        return $diskRepository->findAll();
-    }
-
     /**
-     * @Route("/disk/create", name="create_disk")
+     * @Route("/disks/set/{id}", methods={"GET", "POST"})
      */
-    public function createDisk(ValidatorInterface $validator): Response
-    {
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createDisk(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $disk = new Disk();
-        $disk->setName('DiskName');
-        $disk->setArtist('1');
-        $disk->setProduction(5);
-        $disk->setPublished(new \DateTime('02-03-2014'));
-        $disk->setImg('./assets/img/diskapp_cd.png');
-        $disk->setStyle(7);
-        $disk->setStock(5);
-        $disk->setRegistered(new \DateTime());
-        $disk->setBarcode('testBarcode');
-
-        // tell Doctrine you want to (eventually) save the Disk (no queries yet)
-        $entityManager->persist($disk);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        // Basic validator errors handling
-        $errors = $validator->validate($disk);
-        if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+    public function setDisk(Disk $disk, Request $request,  ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository): Response
+    {    
+        $form = $this->createForm(DiskType::class, $disk);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $artist = $artistRepository->find($form->getData()->getArtist()->getId());
+            $disk->setArtist($artist);
+            $production = $productionRepository->find($form->getData()->getProduction()->getId());
+            $disk->setProduction($production);
+            $style = $styleRepository->find($form->getData()->getStyle()->getId());
+            $disk->setStyle($style);
+            $file = $form['img']->getData();
+            $directory = '.'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload';
+            $fileName = $disk->getName().'_'.$disk->getId().'_'.preg_replace('/s/', '', $disk->getArtist()->getName()).'.'.$file->guessExtension();
+            $file->move($directory, $fileName);
+            $disk->setImg('/assets/img/upload/'.$fileName.DIRECTORY_SEPARATOR.$file->getExtension());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($disk);
+            $entityManager->persist($artist);
+            $entityManager->persist($production);
+            $entityManager->persist($style);
+            $entityManager->flush();
+            
+            /* return $this->render('debug.html.twig', ['h1'=>'DEBUG', 'debug' => $disk ]);*/ // Debug line
+            return $this->redirect('/disks');
         }
 
-        return new Response('Saved new disk with id '.$disk->getId());
+        return $this->render('form.html.twig', [
+            'h1'=>'Modification d\'un disque',
+            'form' => $form->createView(),
+            'form_script'=>'/assets/js/new_disk_form.js'
+        ]);
+
+
+
+        $disk->setName('New product name!');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('product_show', [
+            'id' => $product->getId()
+        ]);
     }
+
 }
