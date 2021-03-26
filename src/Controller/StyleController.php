@@ -35,18 +35,21 @@ class StyleController extends AbstractController
     /**
     * @Route("/styles/add")
     */
-    public function add(Request $request,ValidatorInterface $validator):  Response
+    public function add(Request $request,ValidatorInterface $validator, StyleRepository $styleRepository):  Response
     {
         $style = new Style();
         $form = $this->createForm(StyleType::class, $style);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
             $style = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($style);
-            $entityManager->flush();
-            return $this->redirect('/styles');
+            if ($styleRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($style);
+                $entityManager->flush();
+                return $this->redirect('/styles');
+            else :
+                return $this->redirect("/styles/".$styleRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
+            endif;
         }
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un genre',

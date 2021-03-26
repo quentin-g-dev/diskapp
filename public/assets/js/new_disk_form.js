@@ -15,15 +15,15 @@ function newArtist() {
         $.ajax({
             type: "POST",
             url: "/ajax_add_one_artist",
-            data: {newArtist: prompted }
+            data: {newArtist: (prompted) }
         })
         .done(function(data){
             if (typeof data.status != "undefined" && data.status != "undefined") {
                 if (data.status == "Created") {
-                    alert("L'artiste "+prompted+" a bien été créé ");
+                    alert("L'artiste "+(prompted)+" a bien été créé ");
                     $("#disk_artist").load(location.href+" #disk_artist>*",function(){addArtistOptions();document.querySelector('#disk_artist option[value="'+data.message+'"]').selected = true; });
                 } else if (data.status == "Known"){
-                    alert("L'artiste "+prompted+" existe déjà ");
+                    alert("L'artiste "+(prompted)+" existe déjà ");
                     $("#disk_artist").load(location.href+" #disk_artist>*", function(){addArtistOptions();document.querySelector('#disk_artist option[value="'+data.message+'"]').selected = true; });      
                 }
             }
@@ -48,15 +48,15 @@ function newProduction() {
         $.ajax({
             type: "POST",
             url: "/ajax_add_one_production",
-            data: {newProduction: prompted }
+            data: {newProduction: (prompted) }
         })
         .done(function(data){
             if (typeof data.status != "undefined" && data.status != "undefined") {
                 if (data.status == "Created") {
-                    alert("Le label "+prompted+" a bien été créé ");
+                    alert("Le label "+(prompted)+" a bien été créé ");
                     $("#disk_production").load(location.href+" #disk_production>*",function(){addProductionOptions();document.querySelector('#disk_production option[value="'+data.message+'"]').selected = true; });
                 } else if (data.status == "Known"){
-                    alert("Le label "+prompted+" existe déjà ");
+                    alert("Le label "+(prompted)+" existe déjà ");
                     $("#disk_production").load(location.href+" #disk_production>*",function(){addProductionOptions();document.querySelector('#disk_production option[value="'+data.message+'"]').selected = true; }); 
                 }
             }
@@ -82,15 +82,15 @@ function newStyle() {
         $.ajax({
             type: "POST",
             url: "/ajax_add_one_style",
-            data: {newStyle: prompted }
+            data: {newStyle: (prompted) }
         })
         .done(function(data){
             if (typeof data.status != "undefined" && data.status != "undefined") {
                 if (data.status == "Created") {
-                    alert("Le style "+prompted+" a bien été créé ");
+                    alert("Le style "+(prompted)+" a bien été créé ");
                     $("#disk_style").load(location.href+" #disk_style>*",function(){addStyleOptions();document.querySelector('#disk_style option[value="'+data.message+'"]').selected = true; }); 
                 } else if (data.status == "Known"){
-                    alert("Le style "+prompted+" existe déjà ");
+                    alert("Le style "+(prompted)+" existe déjà ");
                     $("#disk_style").load(location.href+" #disk_style>*",function(){addStyleOptions();document.querySelector('#disk_style option[value="'+data.message+'"]').selected = true; });    
                 }
             }

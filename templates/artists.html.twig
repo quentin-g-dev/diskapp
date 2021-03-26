@@ -8,7 +8,7 @@
 
     <section>
         <div class="p-3 d-flex justify-content-center">
-            <button class="m-2 btn btn-danger text-white disabled" onclick="deleteSelectedArtists();">Supprimer la sélection</button>
+            <button class="m-2 btn btn-danger text-white disabled" onclick="deleteSelectedArtists();" id="deleteSelected">Supprimer la sélection</button>
             <a href="/artists/add" class="m-2 btn btn-success text-white">Ajouter un artiste</a>
         </div>
     </section>
@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <th scope="col" class="align-bottom">
-                    <input  type="checkbox" name="selectAll" id="selectAll">
+                    <input  type="checkbox" name="selectAll" id="selectAll" onclick="toggleGroupSelect(this.checked);enableGroupDelete();">
                 </th>
                 <th class="align-middle" scope="col">Nom</th>
                 <th class="align-middle" scope="col"></th>
@@ -27,11 +27,11 @@
             <!--Items-->
             {% for artist in artists %}
                 <tr>
-                    <td class="align-middle"><input  type="checkbox" name="{{ artist.id }}" id="{{ artist.id }}"></td>
+                    <td class="align-middle"><input  type="checkbox" name="{{ artist.id }}" id="{{ artist.id }}" onclick="enableGroupDelete();"></td>
                     <td class="align-middle"><a href="/artists/{{ artist.id }}">{{ artist.name }}</a></td>
                     <td class="align-middle text-center">
                         <a href="/artists/set/{{ artist.id }}" class="btn btn-info text-white">Modifier</a>
-                        <button  class="btn btn-danger text-white" onclick="deleteArtist({{ artist.id }});">Supprimer</button>
+                        <button  class="btn btn-danger text-white" onclick="if(confirm('Attention : confirmer ?')) {deleteArtist({{ artist.id }})}">Supprimer</button>
                     </td>
                 </tr>
             {% else %}

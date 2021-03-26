@@ -26,8 +26,6 @@ class Style
      */
     private $name;
 
-
-
  /**
      * @ORM\OneToMany(targetEntity="App\Entity\Disk", mappedBy="style")
      * @ORM\JoinColumns({

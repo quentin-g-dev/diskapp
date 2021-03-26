@@ -3,25 +3,61 @@
 {% block custom_styles %}{% endblock %}
 
 {% block main %}
-    <h2>Données actuelles</h2>
     <div>
-        <section>
-            <h3>Registre</h3>
-            <ul>
-                <li>{{ total_references }} références dans le registre</li>
-                <li>Style le plus référencé : {{ most_referenced_genre }} ( {{ most_referenced_genre_total }} références)</li>
-                <li>Interprète le plus référencé : {{ most_referenced_artist }} ({{ most_referenced_artist_total }} références)</li>
-                <li>Dernier disque référencé : <a href="">{{ last_referenced_name }} - {{ last_referenced_artist }}</a> ({{ last_referenced_registered }})</li>
-            </ul>
+        <section class="d-flex">
+            <div class="p-2">
+                <h2 class="ml-1">Registre</h2>
+                <table class="table table-striped table-hover mt-4 table-responsive w-100" id="sumUpTable">
+                    <tbody>
+                        <tr>
+                            <td colspan ="2" class="align-middle">
+                                <a href="/disks">{{ total_disks }} disques</a> - <a href="/artists/">{{ total_artists }} artistes</a> - <a href="/productions/">{{ total_productions }} labels</a> - <a href="/styles/">{{ total_styles }} genres</a>
+                            </td>                                
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><u>Artiste le plus référencé</u></td>
+                            <td class="align-middle">
+                                <a href="/styles/{{ most_referenced_artist_id }}">{{ most_referenced_artist_name }}</a> ( {{ most_referenced_artist_total }} références)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><u>Label le plus référencé</u></td>
+                            <td class="align-middle">
+                                <a href="/productions/{{ most_referenced_production_id }}">{{ most_referenced_production_name }}</a> ( {{ most_referenced_production_total }} références)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><u>Genre le plus référencé</u></td>
+                            <td class="align-middle">
+                                <a href="/styles/{{ most_referenced_style_id }}">{{ most_referenced_style_name }}</a> ( {{ most_referenced_style_total }} références)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-2">
+                <h2 class="ml-1">Stock</h2>
+                <table class="table table-striped table-hover mt-4 w-100">
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">Total</td>
+                            <td class="align-middle">
+                                {{ stock }} disques en stock
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">{{ out_stock|length }} disques en rupture de stock</td>
+                            <td class="align-middle">
+                                {% for diskId, diskName in out_stock %}
+                                    <a href="/disks/{{ diskId }}">{{ diskName }}</a> |&nbsp;
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
-        <section>
-            <h3>Stock</h3>
-            <ul>
-                <li>{{ total_stock }} disques en stock</li>
-                <li>Stock maximum : {{ max_stocked_disk_stock }} exemplaires de {{ max_stocked_disk_name }} - {{ max_stocked_disk_artist }}</li>
-                <li>{{ total_out_of_stock }} références en rupture de stock</li>
-            </ul>
-        </section>
+      
     </div>
 {% endblock %}
 

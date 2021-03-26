@@ -1,5 +1,4 @@
 function deleteDisk(id) {
-    if(!confirm("Suppression imminente : confirmer ?")) {return;}
     $.ajax({
         type: "POST",
         url: "/ajax_delete_one_disk",
@@ -8,8 +7,8 @@ function deleteDisk(id) {
     .done(function(data){
         if (typeof data.status != "undefined" && data.status != "undefined") {
             if (data.status == "Deleted") {
-                $("#disksTable").load(location.href+" #disksTable>*");
-            } else if (data.status == "Error"){
+                setTimeout(function(){ window.location.href='/disks'; }, 50);
+                    } else if (data.status == "Error"){
                 alert("La suppression a échoué : "+data.message);
             }
         }
@@ -17,5 +16,11 @@ function deleteDisk(id) {
 }
 
 function deleteSelectedDisks() {
-
+    if(!confirm("Suppression imminente : confirmer ?")) {return;}
+    for (checkbox of document.querySelectorAll('tbody input[type="checkbox"]')){
+        if(checkbox.checked == true) {
+            deleteDisk(checkbox.id);
+        }
+    }
 }
+

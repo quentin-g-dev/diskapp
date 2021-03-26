@@ -36,7 +36,15 @@ class DiskType extends AbstractType
                     'placeholder' => 'Nom du disque',
                 ]
             ])
+            ->add('img', FileType::class, [
+                'label' => 'Image (.JPEG, .JPG, .PNG)',
+                'required'=>false,
+                'empty_data'=>null,
+                'attr' => [
+                ]
+            ])
             ->add('artist', EntityType::class, [
+                'label' => 'Artiste',
                 'class' => Artist::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -46,19 +54,8 @@ class DiskType extends AbstractType
                     return $artist->getName();
                 }
             ])  
-            ->add('published', DateType::class, [
-                'label' => 'Date de sortie',
-                'input_format' => 'dd-MM-yyyy',
-                'widget' => 'single_text',
-            ])
-            ->add('img', FileType::class, [
-                'label' => 'Image (.JPEG, .JPG, .PNG)',
-                'required'=>false,
-                'empty_data'=>null,
-                'attr' => [
-                ]
-            ])
             ->add('production', EntityType::class, [
+                'label' => 'Label',
                 'class' => Production::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -69,6 +66,7 @@ class DiskType extends AbstractType
                 }
             ])            
             ->add('style', EntityType::class, [
+                'label' => 'Genre',
                 'class' => Style::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
@@ -78,14 +76,25 @@ class DiskType extends AbstractType
                     return $style->getName();
                 }
             ])
-            ->add('barcode', TextType::class, ['attr'=>['value'=>'N/A']])
+            ->add('published', DateType::class, [
+                'label' => 'Date de sortie',
+                'input_format' => 'dd-MM-yyyy',
+                'widget' => 'single_text',
+            ])
+            ->add('barcode', TextType::class, [
+                'label' => 'Code barre / UUID',
+                'attr'=>['value'=>'N/A']
+            ])
             ->add('stock', NumberType::class, [
                 'label'=>'Exemplaires en stock',
                 'attr' => [
                     'value'=>0, 
                 ]
             ])
-            ->add('save', SubmitType::class);
+            ->add('save', SubmitType::class, [
+                'label' => 'Enregistrer',
+                'attr'=>['class'=>'btn btn-success']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -37,7 +37,7 @@ class ArtistController extends AbstractController
     /**
     * @Route("/artists/add")
     */
-    public function add(Request $request,ValidatorInterface $validator):  Response
+    public function add(Request $request,ValidatorInterface $validator, ArtistRepository $artistRepository):  Response
     {
         $artist = new Artist();
 
@@ -46,11 +46,17 @@ class ArtistController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $artist = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($artist);
-            $entityManager->flush();
 
-            return $this->redirect('/artists');
+            if ($artistRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($artist);
+                $entityManager->flush();
+                return $this->redirect('/artists');
+            else :
+                return $this->redirect("/artists/".$artistRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
+
+            endif;
         }
         return $this->render('form.html.twig', [
             'h1'=>'Ajouter un artiste',

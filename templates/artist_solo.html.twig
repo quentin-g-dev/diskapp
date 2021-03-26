@@ -31,15 +31,11 @@
                 <td class="align-middle text-center"><a href="/styles/{{ disk.style.id }}">{{ disk.style.name }}</a></td>
                 <td class="align-middle text-center">{{ disk.stock }}</td>
                 <td class="align-middle text-center">{{ disk.barcode }}</td>
-
-
             </tr>
-        
     {% endfor %}
         </tbody>
     </table>
 
-    
 {% endblock %}
     
 {% block custom_scripts %}<script src="{{ script }}"></script>{% endblock %}

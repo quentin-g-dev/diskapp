@@ -8,7 +8,7 @@
 
    <section>
         <div class="p-3 d-flex justify-content-center">
-            <button class="m-2 btn btn-danger text-white disabled" onclick="deleteSelectedStyles();">Supprimer la sélection</button>
+            <button class="m-2 btn btn-danger text-white disabled" onclick="deleteSelectedStyles();"  id="deleteSelected">Supprimer la sélection</button>
             <a href="/styles/add" class="m-2 btn btn-success text-white">Ajouter un genre</a>
         </div>
     </section>
@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <th scope="col" class="align-bottom">
-                    <input  type="checkbox" name="selectAll" id="selectAll">
+                    <input  type="checkbox" name="selectAll" id="selectAll" onclick="toggleGroupSelect(this.checked);enableGroupDelete();">
                 </th>
                 <th class="align-middle" scope="col">Nom</th>
                 <th class="align-middle" scope="col"></th>
@@ -27,7 +27,7 @@
             <!--Items-->
             {% for style in styles %}
                 <tr>
-                    <td class="align-middle"><input  type="checkbox" name="{{ style.id }}" id="{{ style.id }}"></td>
+                    <td class="align-middle"><input  type="checkbox" name="{{ style.id }}" id="{{ style.id }}" onclick="enableGroupDelete();"></td>
                     <td class="align-middle"><a href="/styles/{{ style.id }}">{{ style.name }}</a></td>
                     <td class="align-middle text-center">
                         <a href="/styles/set/{{ style.id }}" class="btn btn-info text-white">Modifier</a>

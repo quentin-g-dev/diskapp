@@ -42,7 +42,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $artistName = htmlentities($request->request->get('newArtist'));
+            $artistName = htmlspecialchars($request->request->get('newArtist'), ENT_COMPAT, 'ISO-8859-15', false);
             // Returning an error if user submitted a blank or blank spaced string
             if (trim($artistName) === '') :
                 return new JsonResponse([
@@ -68,7 +68,7 @@ class AjaxController extends AbstractController
                 ], 200);
             endif;
         endif;
-        // In case something went wrong
+        // In case something goes wrong
         return new JsonResponse([
             'status' => 'Error',
             'message' => 'Error'
@@ -89,7 +89,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $id = htmlentities($request->request->get('artist'));
+            $id = htmlspecialchars($request->request->get('artist'));
             // Checking if the artist name is already known
             if ($artist = $artistRepository->find($id)) :
                 if($disks = $diskRepository->findBy(['artist'=> $id])) :
@@ -133,7 +133,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $productionName = htmlentities($request->request->get('newProduction'));
+            $productionName = htmlspecialchars($request->request->get('newProduction'));
             // Returning an error if user submitted a blank or blank spaced string
             if (trim($productionName) === '') :
                 return new JsonResponse([
@@ -180,7 +180,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $id = htmlentities($request->request->get('production'));
+            $id = htmlspecialchars($request->request->get('production'));
             if ($production = $productionRepository->find($id)) :
                 if($disks = $diskRepository->findBy(['production'=> $id])) :
                     $noProduction = $productionRepository->find(6);
@@ -224,7 +224,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $styleName = htmlentities($request->request->get('newStyle'));
+            $styleName = htmlspecialchars($request->request->get('newStyle'));
             // Returning an error if user submitted a blank or blank spaced string
             if (trim($styleName) === '') :
                 return new JsonResponse([
@@ -271,7 +271,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $id = htmlentities($request->request->get('style'));
+            $id = htmlspecialchars($request->request->get('style'));
             if ($style = $styleRepository->find($id)) :
                 if($disks = $diskRepository->findBy(['style'=> $id])) :
                     $noStyle = $styleRepository->find(8);
@@ -316,7 +316,7 @@ class AjaxController extends AbstractController
         endif;
         if(isset($request->request)) :
             // Getting data from ajax
-            $id = htmlentities($request->request->get('disk'));
+            $id = htmlspecialchars($request->request->get('disk'));
             if ($disk = $diskRepository->find($id)) :
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->remove($disk);
