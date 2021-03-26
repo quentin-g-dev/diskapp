@@ -18,6 +18,8 @@ class ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
+        'eee1afd8f38c52a8d46f7c5bbb92afdd' => __DIR__ . '/..' . '/deployer/deployer/src/Support/helpers.php',
+        '135133ad0ca20ef21cc262b30da9a000' => __DIR__ . '/..' . '/deployer/deployer/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -146,6 +148,10 @@ class ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed
             'Doctrine\\Common\\' => 16,
             'Doctrine\\Bundle\\MigrationsBundle\\' => 33,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
+            'Deployer\\Component\\Version\\' => 27,
+            'Deployer\\Component\\PharUpdate\\' => 30,
+            'Deployer\\Component\\PHPUnit\\' => 27,
+            'Deployer\\' => 9,
         ),
         'A' => 
         array (
@@ -555,6 +561,22 @@ class ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-bundle',
         ),
+        'Deployer\\Component\\Version\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/deployer/phar-update/src/Version',
+        ),
+        'Deployer\\Component\\PharUpdate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/deployer/phar-update/src',
+        ),
+        'Deployer\\Component\\PHPUnit\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/deployer/phar-update/src/PHPUnit',
+        ),
+        'Deployer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/deployer/deployer/src',
+        ),
         'App\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
@@ -562,6 +584,16 @@ class ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Pimple' => 
+            array (
+                0 => __DIR__ . '/..' . '/pimple/pimple/src',
+            ),
         ),
     );
 
@@ -584,6 +616,7 @@ class ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit3eb2be0bf7da54896c05d240b9e3e0ed::$classMap;
 
         }, null, ClassLoader::class);

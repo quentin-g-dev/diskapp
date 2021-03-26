@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'a8ff806bfa6c0d7de238ea6e511db962a4b4f788',
+    'reference' => '04bb76fe25f0159ab0a56fd38de646b2fad8f801',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'a8ff806bfa6c0d7de238ea6e511db962a4b4f788',
+      'reference' => '04bb76fe25f0159ab0a56fd38de646b2fad8f801',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -28,6 +28,33 @@
       array (
       ),
       'reference' => '7413f0b55a051e89485c5cb9f765fe24bb02a7b6',
+    ),
+    'deployer/deployer' => 
+    array (
+      'pretty_version' => 'v6.8.0',
+      'version' => '6.8.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4e243a64ed61e779fbb31c5a74e258a8e52fdaff',
+    ),
+    'deployer/dist' => 
+    array (
+      'pretty_version' => 'v6.8.0',
+      'version' => '6.8.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '857158fa5466d5135ce87f07fe67779b6b6a13d2',
+    ),
+    'deployer/phar-update' => 
+    array (
+      'pretty_version' => 'v2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9ad07422f2cd43a1382ee8e134bdcd3a374848e3',
     ),
     'doctrine/annotations' => 
     array (
@@ -288,6 +315,15 @@
       array (
       ),
       'reference' => '6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0',
+    ),
+    'pimple/pimple' => 
+    array (
+      'pretty_version' => 'v3.4.0',
+      'version' => '3.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '86406047271859ffc13424a048541f4531f53601',
     ),
     'psr/cache' => 
     array (
