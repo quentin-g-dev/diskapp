@@ -1,5 +1,5 @@
 <h1>Diskapp</h1>
-Cette application réalisée avec Symfony 4.4 permet de créer et gérer un registre de disques, d'artistes, de labels et de genres musicaux.<br>
+Cette application réalisée avec Symfony 4.4 permet de gérer un registre de disques, d'artistes, de labels et de genres musicaux.<br>
 
 <h2>Installation sur un serveur Apache</h2>
 
