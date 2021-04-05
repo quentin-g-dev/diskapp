@@ -71,6 +71,6 @@ class __TwigTemplate_ed3754509782c01160f25a8efe61f0915f28b3f9964801a224e8f4bc225
     <?php if (strlen(\$value) > 0): ?> value=\"<?php echo \$view->escape(\$value) ?>\"<?php endif ?>
     <?php if (\$checked): ?> checked=\"checked\"<?php endif ?>
 />
-", "@Framework/Form/checkbox_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/checkbox_widget.html.php");
+", "@Framework/Form/checkbox_widget.html.php", "/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/Resources/views/Form/checkbox_widget.html.php");
     }
 }

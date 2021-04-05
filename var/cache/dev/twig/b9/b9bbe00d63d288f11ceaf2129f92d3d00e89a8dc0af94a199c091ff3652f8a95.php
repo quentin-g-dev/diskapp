@@ -63,6 +63,6 @@ class __TwigTemplate_bf8bc4edac74d12e652c6d7de333d1a022534727ad7432f5c440087dba4
     public function getSourceContext()
     {
         return new Source("<?php echo \$view['form']->block(\$form, 'form_widget_simple', ['type' => \$type ?? 'color']);
-", "@Framework/Form/color_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/color_widget.html.php");
+", "@Framework/Form/color_widget.html.php", "/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/Resources/views/Form/color_widget.html.php");
     }
 }

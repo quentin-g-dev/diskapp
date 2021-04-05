@@ -83,6 +83,6 @@ class __TwigTemplate_5d9cae675eff54a10f7847882437fd9c2ebfa3e42575280b2dc45d4805b
 <?xml version=\"1.0\" encoding=\"{{ _charset }}\" ?>
 
 <error code=\"{{ status_code }}\" message=\"{{ status_text }}\" />
-", "@Twig/Exception/error.xml.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/Exception/error.xml.twig");
+", "@Twig/Exception/error.xml.twig", "/var/www/html/diskapp_1.0/vendor/symfony/twig-bundle/Resources/views/Exception/error.xml.twig");
     }
 }

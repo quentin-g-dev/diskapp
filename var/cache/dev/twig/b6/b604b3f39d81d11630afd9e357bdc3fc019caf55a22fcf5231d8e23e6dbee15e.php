@@ -250,6 +250,6 @@ class __TwigTemplate_c99480c590cfd9b8c78c7d169bb99289119120f97e8069ccf4c99f58379
 {% endblock %}
 
 {% block custom_scripts %}<script src=\"{{ script }}\"></script>{% endblock %}
-", "style_solo.html.twig", "/var/www/html/diskapp/templates/style_solo.html.twig");
+", "style_solo.html.twig", "/var/www/html/diskapp_1.0/templates/style_solo.html.twig");
     }
 }

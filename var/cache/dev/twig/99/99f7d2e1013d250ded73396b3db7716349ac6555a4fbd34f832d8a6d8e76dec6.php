@@ -253,6 +253,6 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
 
 {% block custom_scripts %}
 <script src=\"assets/js/productions.js\"></script>
-{% endblock %}", "productions.html.twig", "/var/www/html/diskapp/templates/productions.html.twig");
+{% endblock %}", "productions.html.twig", "/var/www/html/diskapp_1.0/templates/productions.html.twig");
     }
 }

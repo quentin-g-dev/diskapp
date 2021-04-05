@@ -15,13 +15,10 @@ use App\Repository\DiskRepository;
 use App\Entity\Artist;
 use App\Form\ArtistType;
 
-
 class ArtistController extends AbstractController
 {
-
-    
-   /**
-     * @Route("/artists")
+    /**
+     * @Route("/artists", name="artists")
      */
     public function artists(ArtistRepository $artistRepository) : Response
     {
@@ -35,18 +32,15 @@ class ArtistController extends AbstractController
     }
 
     /**
-    * @Route("/artists/add")
+    * @Route("/artists/add", name="add_artist")
     */
     public function add(Request $request,ValidatorInterface $validator, ArtistRepository $artistRepository):  Response
     {
         $artist = new Artist();
-
         $form = $this->createForm(ArtistType::class, $artist);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $artist = $form->getData();
-
             if ($artistRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
 
                 $entityManager = $this->getDoctrine()->getManager();
@@ -66,7 +60,7 @@ class ArtistController extends AbstractController
     }
 
     /**
-     * @Route("/artists/{id}", methods={"GET"})
+     * @Route("/artists/{id}", methods={"GET"}, name="artist")
     */
     public function artist(Artist $artist,  DiskRepository $diskRepository) : Response
     {
@@ -80,7 +74,7 @@ class ArtistController extends AbstractController
     }
 
     /**
-     * @Route("/artists/set/{id}", methods={"GET", "POST"})
+     * @Route("/artists/set/{id}", methods={"GET", "POST"}, name="set_artist")
      */
     public function setArtist(Artist $artist, Request $request): Response
     {    
@@ -91,7 +85,6 @@ class ArtistController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($artist);
             $entityManager->flush();
-
             return $this->redirect('/artists');
         }
         return $this->render('form.html.twig', [

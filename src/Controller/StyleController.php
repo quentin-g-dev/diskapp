@@ -19,7 +19,7 @@ class StyleController extends AbstractController
 {
 
    /**
-     * @Route("/styles")
+     * @Route("/styles", name="styles")
      */
     public function styles(StyleRepository $styleRepository) : Response
     {
@@ -33,7 +33,7 @@ class StyleController extends AbstractController
     }
  
     /**
-    * @Route("/styles/add")
+    * @Route("/styles/add", name="add_style")
     */
     public function add(Request $request,ValidatorInterface $validator, StyleRepository $styleRepository):  Response
     {
@@ -59,7 +59,7 @@ class StyleController extends AbstractController
     }
 
    /**
-     * @Route("/styles/set/{id}", methods={"GET", "POST"})
+     * @Route("/styles/set/{id}", methods={"GET", "POST"}, name="set_style")
      */
     public function setStyle(Style $style, Request $request): Response
     {    
@@ -80,7 +80,7 @@ class StyleController extends AbstractController
     }
 
     /**
-     * @Route("/styles/{id}", methods={"GET"})
+     * @Route("/styles/{id}", methods={"GET"}, name="style")
     */
     public function style(Style $style,  DiskRepository $diskRepository) : Response
     {

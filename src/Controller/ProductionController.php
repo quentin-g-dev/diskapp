@@ -16,7 +16,7 @@ use App\Repository\DiskRepository;
 class ProductionController extends AbstractController
 {
    /**
-     * @Route("/productions")
+     * @Route("/productions", name="productions")
      */
     public function labels(ProductionRepository $labelRepository) : Response
     {
@@ -30,7 +30,7 @@ class ProductionController extends AbstractController
     }
     
     /**
-    * @Route("/productions/add")
+    * @Route("/productions/add", name="add_production")
     */
     public function add(Request $request,ValidatorInterface $validator, ProductionRepository $productionRepository):  Response
     {
@@ -56,7 +56,7 @@ class ProductionController extends AbstractController
     }
 
     /**
-     * @Route("/productions/{id}", methods={"GET"})
+     * @Route("/productions/{id}", methods={"GET"}, name="production")
     */
     public function production(Production $production,  DiskRepository $diskRepository) : Response
     {
@@ -69,7 +69,7 @@ class ProductionController extends AbstractController
     }
 
     /**
-     * @Route("/productions/set/{id}", methods={"GET", "POST"})
+     * @Route("/productions/set/{id}", methods={"GET", "POST"}, name="set_production")
      */
     public function setProduction(Production $production, Request $request): Response
     {    

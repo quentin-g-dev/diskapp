@@ -141,6 +141,6 @@ class __TwigTemplate_0c6c64c183c6099b927720da2a85fd28472951a0aeeab367622891bcc65
 {% endblock %}
 
 {% block custom_scripts %}{% endblock %}
-", "debug.html.twig", "/var/www/html/diskapp/templates/debug.html.twig");
+", "debug.html.twig", "/var/www/html/diskapp_1.0/templates/debug.html.twig");
     }
 }

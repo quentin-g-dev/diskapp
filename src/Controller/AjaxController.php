@@ -10,21 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ArtistRepository;
 use App\Controller\ArtistController;
 use App\Entity\Artist;
-
 use App\Repository\ProductionRepository;
 use App\Controller\ProductionController;
 use App\Entity\Production;
-
 use App\Repository\StyleRepository;
 use App\Controller\StyleController;
 use App\Entity\Style;
-
 use App\Repository\DiskRepository;
 use App\Controller\DiskController;
 use App\Entity\Disk;
-
-
-
 
 class AjaxController extends AbstractController
 {

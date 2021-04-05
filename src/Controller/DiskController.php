@@ -16,12 +16,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use App\Form\DiskType;
 
-
 class DiskController extends AbstractController
 {
-
     /**
-    * @Route("/disks")
+    * @Route("/disks", name="disks")
     */
     public function disks(DiskRepository $diskRepository, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository) : Response
     {
@@ -47,7 +45,7 @@ class DiskController extends AbstractController
     }
 
     /**
-    * @Route("/disks/add")
+    * @Route("/disks/add", name="add_disk")
     */
     public function add(Request $request, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository):  Response
     {
@@ -99,7 +97,7 @@ class DiskController extends AbstractController
     }
 
     /**
-     * @Route("/disks/{id}", methods={"GET"})
+     * @Route("/disks/{id}", methods={"GET"}, name="disk")
     */
     public function disk(Disk $disk, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository) : Response
     {
@@ -120,7 +118,7 @@ class DiskController extends AbstractController
     }
 
     /**
-     * @Route("/disks/set/{id}", methods={"GET", "POST"})
+     * @Route("/disks/set/{id}", methods={"GET", "POST"}, name="set_disk")
      */
     public function setDisk(Disk $disk, Request $request,  ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository): Response
     {    
@@ -155,14 +153,10 @@ class DiskController extends AbstractController
             'form_script'=>'/assets/js/new_disk_form.js'
         ]);
 
-
-
         $disk->setName('New product name!');
         $entityManager->flush();
-
         return $this->redirectToRoute('product_show', [
             'id' => $product->getId()
         ]);
     }
-
 }

@@ -86,7 +86,17 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 
         // line 6
         echo "    <div>
-        <section class=\"d-flex\">
+        ";
+        // line 7
+        if ((1 === twig_compare(twig_length_filter($this->env, (isset($context["message"]) || array_key_exists("message", $context) ? $context["message"] : (function () { throw new RuntimeError('Variable "message" does not exist.', 7, $this->source); })())), 0))) {
+            // line 8
+            echo "        <div class=\"bg-danger text-white p-4 font-weight-bold h4 text-center\">";
+            echo twig_escape_filter($this->env, (isset($context["message"]) || array_key_exists("message", $context) ? $context["message"] : (function () { throw new RuntimeError('Variable "message" does not exist.', 8, $this->source); })()), "html", null, true);
+            echo "</div>
+        ";
+        }
+        // line 10
+        echo "        <section class=\"d-flex\">
             <div class=\"p-2\">
                 <h2 class=\"ml-1\">Registre</h2>
                 <table class=\"table table-striped table-hover mt-4 table-responsive w-100\" id=\"sumUpTable\">
@@ -94,27 +104,27 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                         <tr>
                             <td colspan =\"2\" class=\"align-middle\">
                                 <a href=\"/disks\">";
-        // line 14
-        echo twig_escape_filter($this->env, (isset($context["total_disks"]) || array_key_exists("total_disks", $context) ? $context["total_disks"] : (function () { throw new RuntimeError('Variable "total_disks" does not exist.', 14, $this->source); })()), "html", null, true);
+        // line 17
+        echo twig_escape_filter($this->env, (isset($context["total_disks"]) || array_key_exists("total_disks", $context) ? $context["total_disks"] : (function () { throw new RuntimeError('Variable "total_disks" does not exist.', 17, $this->source); })()), "html", null, true);
         echo " disques</a> - <a href=\"/artists/\">";
-        echo twig_escape_filter($this->env, (isset($context["total_artists"]) || array_key_exists("total_artists", $context) ? $context["total_artists"] : (function () { throw new RuntimeError('Variable "total_artists" does not exist.', 14, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["total_artists"]) || array_key_exists("total_artists", $context) ? $context["total_artists"] : (function () { throw new RuntimeError('Variable "total_artists" does not exist.', 17, $this->source); })()), "html", null, true);
         echo " artistes</a> - <a href=\"/productions/\">";
-        echo twig_escape_filter($this->env, (isset($context["total_productions"]) || array_key_exists("total_productions", $context) ? $context["total_productions"] : (function () { throw new RuntimeError('Variable "total_productions" does not exist.', 14, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["total_productions"]) || array_key_exists("total_productions", $context) ? $context["total_productions"] : (function () { throw new RuntimeError('Variable "total_productions" does not exist.', 17, $this->source); })()), "html", null, true);
         echo " labels</a> - <a href=\"/styles/\">";
-        echo twig_escape_filter($this->env, (isset($context["total_styles"]) || array_key_exists("total_styles", $context) ? $context["total_styles"] : (function () { throw new RuntimeError('Variable "total_styles" does not exist.', 14, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["total_styles"]) || array_key_exists("total_styles", $context) ? $context["total_styles"] : (function () { throw new RuntimeError('Variable "total_styles" does not exist.', 17, $this->source); })()), "html", null, true);
         echo " genres</a>
                             </td>                                
                         </tr>
                         <tr>
                             <td class=\"align-middle\"><u>Artiste le plus référencé</u></td>
                             <td class=\"align-middle\">
-                                <a href=\"/styles/";
-        // line 20
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_artist_id"]) || array_key_exists("most_referenced_artist_id", $context) ? $context["most_referenced_artist_id"] : (function () { throw new RuntimeError('Variable "most_referenced_artist_id" does not exist.', 20, $this->source); })()), "html", null, true);
+                                <a href=\"/artists/";
+        // line 23
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_artist_id"]) || array_key_exists("most_referenced_artist_id", $context) ? $context["most_referenced_artist_id"] : (function () { throw new RuntimeError('Variable "most_referenced_artist_id" does not exist.', 23, $this->source); })()), "html", null, true);
         echo "\">";
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_artist_name"]) || array_key_exists("most_referenced_artist_name", $context) ? $context["most_referenced_artist_name"] : (function () { throw new RuntimeError('Variable "most_referenced_artist_name" does not exist.', 20, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_artist_name"]) || array_key_exists("most_referenced_artist_name", $context) ? $context["most_referenced_artist_name"] : (function () { throw new RuntimeError('Variable "most_referenced_artist_name" does not exist.', 23, $this->source); })()), "html", null, true);
         echo "</a> ( ";
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_artist_total"]) || array_key_exists("most_referenced_artist_total", $context) ? $context["most_referenced_artist_total"] : (function () { throw new RuntimeError('Variable "most_referenced_artist_total" does not exist.', 20, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_artist_total"]) || array_key_exists("most_referenced_artist_total", $context) ? $context["most_referenced_artist_total"] : (function () { throw new RuntimeError('Variable "most_referenced_artist_total" does not exist.', 23, $this->source); })()), "html", null, true);
         echo " références)
                             </td>
                         </tr>
@@ -122,12 +132,12 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                             <td class=\"align-middle\"><u>Label le plus référencé</u></td>
                             <td class=\"align-middle\">
                                 <a href=\"/productions/";
-        // line 26
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_production_id"]) || array_key_exists("most_referenced_production_id", $context) ? $context["most_referenced_production_id"] : (function () { throw new RuntimeError('Variable "most_referenced_production_id" does not exist.', 26, $this->source); })()), "html", null, true);
+        // line 29
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_production_id"]) || array_key_exists("most_referenced_production_id", $context) ? $context["most_referenced_production_id"] : (function () { throw new RuntimeError('Variable "most_referenced_production_id" does not exist.', 29, $this->source); })()), "html", null, true);
         echo "\">";
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_production_name"]) || array_key_exists("most_referenced_production_name", $context) ? $context["most_referenced_production_name"] : (function () { throw new RuntimeError('Variable "most_referenced_production_name" does not exist.', 26, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_production_name"]) || array_key_exists("most_referenced_production_name", $context) ? $context["most_referenced_production_name"] : (function () { throw new RuntimeError('Variable "most_referenced_production_name" does not exist.', 29, $this->source); })()), "html", null, true);
         echo "</a> ( ";
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_production_total"]) || array_key_exists("most_referenced_production_total", $context) ? $context["most_referenced_production_total"] : (function () { throw new RuntimeError('Variable "most_referenced_production_total" does not exist.', 26, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_production_total"]) || array_key_exists("most_referenced_production_total", $context) ? $context["most_referenced_production_total"] : (function () { throw new RuntimeError('Variable "most_referenced_production_total" does not exist.', 29, $this->source); })()), "html", null, true);
         echo " références)
                             </td>
                         </tr>
@@ -135,12 +145,12 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                             <td class=\"align-middle\"><u>Genre le plus référencé</u></td>
                             <td class=\"align-middle\">
                                 <a href=\"/styles/";
-        // line 32
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_style_id"]) || array_key_exists("most_referenced_style_id", $context) ? $context["most_referenced_style_id"] : (function () { throw new RuntimeError('Variable "most_referenced_style_id" does not exist.', 32, $this->source); })()), "html", null, true);
+        // line 35
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_style_id"]) || array_key_exists("most_referenced_style_id", $context) ? $context["most_referenced_style_id"] : (function () { throw new RuntimeError('Variable "most_referenced_style_id" does not exist.', 35, $this->source); })()), "html", null, true);
         echo "\">";
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_style_name"]) || array_key_exists("most_referenced_style_name", $context) ? $context["most_referenced_style_name"] : (function () { throw new RuntimeError('Variable "most_referenced_style_name" does not exist.', 32, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_style_name"]) || array_key_exists("most_referenced_style_name", $context) ? $context["most_referenced_style_name"] : (function () { throw new RuntimeError('Variable "most_referenced_style_name" does not exist.', 35, $this->source); })()), "html", null, true);
         echo "</a> ( ";
-        echo twig_escape_filter($this->env, (isset($context["most_referenced_style_total"]) || array_key_exists("most_referenced_style_total", $context) ? $context["most_referenced_style_total"] : (function () { throw new RuntimeError('Variable "most_referenced_style_total" does not exist.', 32, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["most_referenced_style_total"]) || array_key_exists("most_referenced_style_total", $context) ? $context["most_referenced_style_total"] : (function () { throw new RuntimeError('Variable "most_referenced_style_total" does not exist.', 35, $this->source); })()), "html", null, true);
         echo " références)
                             </td>
                         </tr>
@@ -155,23 +165,28 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                             <td class=\"align-middle\">Total</td>
                             <td class=\"align-middle\">
                                 ";
-        // line 45
-        echo twig_escape_filter($this->env, (isset($context["stock"]) || array_key_exists("stock", $context) ? $context["stock"] : (function () { throw new RuntimeError('Variable "stock" does not exist.', 45, $this->source); })()), "html", null, true);
+        // line 48
+        echo twig_escape_filter($this->env, (isset($context["stock"]) || array_key_exists("stock", $context) ? $context["stock"] : (function () { throw new RuntimeError('Variable "stock" does not exist.', 48, $this->source); })()), "html", null, true);
         echo " disques en stock
                             </td>
                         </tr>
                         <tr>
                             <td class=\"align-middle\">";
-        // line 49
-        echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 49, $this->source); })())), "html", null, true);
+        // line 52
+        if (preg_match("/^\\d+\$/", twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 52, $this->source); })())))) {
+            echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 52, $this->source); })())), "html", null, true);
+        } else {
+            echo " ";
+            echo "-";
+        }
         echo " disques en rupture de stock</td>
                             <td class=\"align-middle\">
                                 ";
-        // line 51
+        // line 54
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 51, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 54, $this->source); })()));
         foreach ($context['_seq'] as $context["diskId"] => $context["diskName"]) {
-            // line 52
+            // line 55
             echo "                                    <a href=\"/disks/";
             echo twig_escape_filter($this->env, $context["diskId"], "html", null, true);
             echo "\">";
@@ -182,7 +197,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['diskId'], $context['diskName'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 54
+        // line 57
         echo "                            </td>
                         </tr>
                     </tbody>
@@ -200,7 +215,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 
     }
 
-    // line 64
+    // line 67
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -230,7 +245,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 
     public function getDebugInfo()
     {
-        return array (  204 => 64,  186 => 54,  175 => 52,  171 => 51,  166 => 49,  159 => 45,  139 => 32,  126 => 26,  113 => 20,  98 => 14,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
+        return array (  219 => 67,  201 => 57,  190 => 55,  186 => 54,  176 => 52,  169 => 48,  149 => 35,  136 => 29,  123 => 23,  108 => 17,  99 => 10,  93 => 8,  91 => 7,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -241,6 +256,9 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 
 {% block main %}
     <div>
+        {% if message|length > 0 %}
+        <div class=\"bg-danger text-white p-4 font-weight-bold h4 text-center\">{{ message }}</div>
+        {% endif %}
         <section class=\"d-flex\">
             <div class=\"p-2\">
                 <h2 class=\"ml-1\">Registre</h2>
@@ -254,7 +272,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                         <tr>
                             <td class=\"align-middle\"><u>Artiste le plus référencé</u></td>
                             <td class=\"align-middle\">
-                                <a href=\"/styles/{{ most_referenced_artist_id }}\">{{ most_referenced_artist_name }}</a> ( {{ most_referenced_artist_total }} références)
+                                <a href=\"/artists/{{ most_referenced_artist_id }}\">{{ most_referenced_artist_name }}</a> ( {{ most_referenced_artist_total }} références)
                             </td>
                         </tr>
                         <tr>
@@ -283,7 +301,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                             </td>
                         </tr>
                         <tr>
-                            <td class=\"align-middle\">{{ out_stock|length }} disques en rupture de stock</td>
+                            <td class=\"align-middle\">{% if out_stock|length matches '/^\\\\d+\$/' %}{{ out_stock|length }}{% else %} {{ \"-\" }}{% endif %} disques en rupture de stock</td>
                             <td class=\"align-middle\">
                                 {% for diskId, diskName in out_stock %}
                                     <a href=\"/disks/{{ diskId }}\">{{ diskName }}</a> |&nbsp;
@@ -299,6 +317,6 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 {% endblock %}
 
 {% block custom_scripts %}{% endblock %}
-", "home.html.twig", "/var/www/html/diskapp/templates/home.html.twig");
+", "home.html.twig", "/var/www/html/diskapp_1.0/templates/home.html.twig");
     }
 }

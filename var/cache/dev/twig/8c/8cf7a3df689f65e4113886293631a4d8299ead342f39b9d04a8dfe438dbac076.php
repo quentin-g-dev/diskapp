@@ -236,6 +236,6 @@ class __TwigTemplate_cd2c99344a87883843d1575a94b54176cf65ca57a48dd61e165d8a405d5
 {% endblock %}
 
 {% block custom_scripts %}{% endblock %}
-", "disk_solo.html.twig", "/var/www/html/diskapp/templates/disk_solo.html.twig");
+", "disk_solo.html.twig", "/var/www/html/diskapp_1.0/templates/disk_solo.html.twig");
     }
 }

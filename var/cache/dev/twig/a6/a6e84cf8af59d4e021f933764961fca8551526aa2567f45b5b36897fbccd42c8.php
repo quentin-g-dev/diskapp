@@ -65,6 +65,6 @@ class __TwigTemplate_e9b386f96e405c58b83a247f7796b573eed5d25d12a9b78e723aeb37b4c
     {
         return new Source("id=\"<?php echo \$view->escape(\$id) ?>\" name=\"<?php echo \$view->escape(\$full_name) ?>\"<?php if (\$disabled): ?> disabled=\"disabled\"<?php endif ?>
 <?php if (\$required): ?> required=\"required\"<?php endif ?>
-<?php echo \$attr ? ' '.\$view['form']->block(\$form, 'attributes') : '' ?>", "@Framework/Form/widget_attributes.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/widget_attributes.html.php");
+<?php echo \$attr ? ' '.\$view['form']->block(\$form, 'attributes') : '' ?>", "@Framework/Form/widget_attributes.html.php", "/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/Resources/views/Form/widget_attributes.html.php");
     }
 }

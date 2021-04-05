@@ -112,6 +112,6 @@ class __TwigTemplate_8f45ee8dc61fe5b24d235db39b988fe028c495df02a3f337012e87f048b
     </exception>
 {% endfor %}
 </error>
-", "@Twig/Exception/exception.xml.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/Exception/exception.xml.twig");
+", "@Twig/Exception/exception.xml.twig", "/var/www/html/diskapp_1.0/vendor/symfony/twig-bundle/Resources/views/Exception/exception.xml.twig");
     }
 }

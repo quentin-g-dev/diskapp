@@ -275,6 +275,6 @@ class __TwigTemplate_2b62f81b95f375c69af7a31da49e2cdfb546a0864cb7c3ea96fc93baba0
     </body>
 </html>
 {% block after_html %}{% endblock %}
-", "@Twig/layout.html.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/layout.html.twig");
+", "@Twig/layout.html.twig", "/var/www/html/diskapp_1.0/vendor/symfony/twig-bundle/Resources/views/layout.html.twig");
     }
 }

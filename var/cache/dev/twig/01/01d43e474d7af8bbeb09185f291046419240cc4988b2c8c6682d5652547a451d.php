@@ -253,6 +253,6 @@ class __TwigTemplate_41f11ec487dac3d68f0588c427b74b25726029940a9dee26b3e047f1da8
 
 {% block custom_scripts %}
 <script src=\"assets/js/styles.js\"></script>
-{% endblock %}", "styles.html.twig", "/var/www/html/diskapp/templates/styles.html.twig");
+{% endblock %}", "styles.html.twig", "/var/www/html/diskapp_1.0/templates/styles.html.twig");
     }
 }

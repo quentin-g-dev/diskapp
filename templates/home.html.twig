@@ -4,6 +4,9 @@
 
 {% block main %}
     <div>
+        {% if message|length > 0 %}
+        <div class="bg-danger text-white p-4 font-weight-bold h4 text-center">{{ message }}</div>
+        {% endif %}
         <section class="d-flex">
             <div class="p-2">
                 <h2 class="ml-1">Registre</h2>
@@ -46,7 +49,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-middle">{{ out_stock|length }} disques en rupture de stock</td>
+                            <td class="align-middle">{% if out_stock|length matches '/^\\d+$/' %}{{ out_stock|length }}{% else %} {{ "-" }}{% endif %} disques en rupture de stock</td>
                             <td class="align-middle">
                                 {% for diskId, diskName in out_stock %}
                                     <a href="/disks/{{ diskId }}">{{ diskName }}</a> |&nbsp;

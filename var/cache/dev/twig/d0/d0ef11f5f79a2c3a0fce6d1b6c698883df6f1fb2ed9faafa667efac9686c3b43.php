@@ -63,6 +63,6 @@ class __TwigTemplate_6b316937650e80c7e0a4455b8b477902a0b47107615ef49e80d30b13adc
     public function getSourceContext()
     {
         return new Source("<?php echo \$view['form']->block(\$form, 'widget_container_attributes') ?>
-", "@Framework/Form/container_attributes.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/container_attributes.html.php");
+", "@Framework/Form/container_attributes.html.php", "/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/Resources/views/Form/container_attributes.html.php");
     }
 }

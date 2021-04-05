@@ -153,6 +153,6 @@ class __TwigTemplate_3d3cde03386d5ca3e33e1b588f9bbf4410cbbaa5736f574358f73109cb2
 
 {% block custom_scripts %}
     <script src=\"{{ form_script }}\"></script>
-{% endblock %}", "form.html.twig", "/var/www/html/diskapp/templates/form.html.twig");
+{% endblock %}", "form.html.twig", "/var/www/html/diskapp_1.0/templates/form.html.twig");
     }
 }
