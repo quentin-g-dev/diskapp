@@ -3,8 +3,8 @@ Cette application réalisée avec Symfony 4.4 permet de gérer un registre de di
 
 <h2>Installation sur un serveur Apache</h2>
 
-Installer Composer sur le serveur de destination, si ce n'est pas déjà fait.<br>
-Vérifier si Symfony peut être exécuté sur le serveur avec la commande " symfony check:requirements " et suivre les instructions au besoin.<br>
+Installer Composer sur le serveur de destination.<br>
+Vérifier si Symfony peut être exécuté sur le serveur avec la commande <pre>symfony check:requirements</pre> et suivre les instructions au besoin.<br>
 Si la configuration du serveur pose problème, la solution est peut-être ici : https://symfony.com/doc/4.4/setup/web_server_configuration.html<br>
 Importer les fichiers du projet sur le serveur de destination.<br>
 Installer mysql, au besoin.<br>
