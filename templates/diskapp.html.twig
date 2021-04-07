@@ -12,17 +12,12 @@
 
 </head>
 
-<body>
-    <header class="d-flex">
-        <span class="h1 p-3 mb-3 d-flex justify-content-center align-items-center bg-mediumBlueGrey text-white">DISKAPP</span>
-        <div class="m-0 p-0">
-            <h1 class="text-mediumBlueGrey p-3 pl-4 m-0  d-flex  align-items-center">{{ h1 }}</h1>
-            <div class="p-2 h1bar bg-mediumBlueGrey"></div>
-        </div>
-    </header>
+<body class="d-flex">
+    
 
-    <div class="d-flex m-0">
-        <aside class="bg-mediumBlueGrey m-0 p-3">
+    <div class="w-25 d-flex flex-column m-0">
+        <a href="/" class="h1 p-3 mb-3 d-flex justify-content-center align-items-center bg-mediumBlueGrey text-lightGrey">DISKAPP</a>
+        <aside class="bg-mediumBlueGrey m-0 p-3 d-flex flex-column justify-content-between">
             <nav class="mt-2 d-flex flex-column align-items-center h-100">
                 <a class="mb-4 text-lightGrey" href="/">Accueil</a>
                 <a class="mb-4 text-lightGrey" href="/disks">Disques</a>
@@ -35,13 +30,37 @@
                 <a href="/styles/add" class="btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey">Ajouter un genre</a>
                 {# <a href="/import" class="btn font-weight-bold mb-4 border bg-darkBlueGrey border-light text-lightGrey">Import massif</a> #}
             </nav>
+            <a href="/conditions" class="text-lightGrey mb-5 mx-auto"><small>Conditions d'utilisation</small></a>
         </aside>
+    </div>
+    <div class="d-flex flex-column w-100">
+        <header class="w-100 d-flex">
+            <div class="m-0 p-0 w-100 ">
+                <div class="d-flex justify-content-between">
+                    
+                    <h1 class="text-mediumBlueGrey p-3 pl-4 m-0 ">{{ h1 }}</h1>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="d-flex">
+                            <a class="btn btn-info align-self-end my-auto mr-5" href="/user/{{ app.user.id }}">Mon compte</a>
+                            <a class="btn btn-light align-self-end my-auto mr-5" href="/logout">Déconnexion</a>
+                        </div>  
+                    {% else %}
+                        <div class="d-flex">
+                            <a class="btn btn-info align-self-end my-auto mr-5" href="/login">Connexion</a>
+                            <a class="btn btn-success align-self-end my-auto mr-5" href="/register">Inscription</a>
+                        </div>                  
+                    {% endif %}
+                </div>
+                <div class="p-2 h1bar bg-mediumBlueGrey"></div>
+            </div>
+        </header>
 
-        <main class="p-4">
+
+        <main class="p-4 w-100">
             {% block main %}{% endblock %}
         </main>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

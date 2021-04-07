@@ -1,0 +1,61 @@
+{% extends "diskapp.html.twig" %}
+
+{% block custom_styles %}{% endblock %}
+
+{% block main %}
+<div class="container m-0 w-100">
+    <div class="row">
+        <div class="mr-5 p-3 col-10 text-center">
+            <h2 class="p-1 bg-mediumBlueGrey text-light mt-3">Contributions</h2>
+             <div class="d-flex justify-content-between">
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Disques</h3>
+                    <span class="list-group">
+                        {% for disk in disks %}
+                            <span class="list-group-item">           
+                                <a href="/disks/{{ disk.id }}">
+                                    <span class="font-weight-bold">{{ disk.name }}</span>
+                                    - {{ disk.artist.name }} 
+                                </a> 
+                            </span>
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Artistes</h3>
+                    <span class="list-group">
+                        {% for artist in artists %}
+                            <span class="list-group-item">           
+                                <a href="/artists/{{ artist.id }}">{{ artist.name }}</a> 
+                            </span>
+                        {% endfor %}
+                    </span>        
+                </div>
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Genres</h3>
+                    <span class="list-group">
+                        {% for style in styles %}
+                            <span class="list-group-item">           
+                                <a href="/styles/{{ style.id }}">{{ style.name }}</a> 
+                            </span>
+                        {% endfor %}
+                    </span>                
+                </div>
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Labels</h3>
+                    <span class="list-group">
+                        {% for production in productions %}
+                            <span class="list-group-item">           
+                                <a href="/productions/{{ production.id }}">{{ production.name }}</a> 
+                            </span>
+                        {% endfor %}
+                    </span>        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+{% endblock %}

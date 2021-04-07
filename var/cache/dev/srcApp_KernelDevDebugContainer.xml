@@ -22,6 +22,8 @@
       <parameter key="TwigExtraBundle">Twig\Extra\TwigExtraBundle\TwigExtraBundle</parameter>
       <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
+      <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -75,6 +77,14 @@
       <parameter key="DoctrineFixturesBundle" type="collection">
         <parameter key="path">/var/www/html/diskapp_1.0/vendor/doctrine/doctrine-fixtures-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsResetPasswordBundle" type="collection">
+        <parameter key="path">/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\ResetPassword</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -247,7 +257,14 @@
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
     <parameter key="security.authentication.trust_resolver.anonymous_class">null</parameter>
     <parameter key="security.authentication.trust_resolver.rememberme_class">null</parameter>
-    <parameter key="security.role_hierarchy.roles" type="collection"/>
+    <parameter key="security.role_hierarchy.roles" type="collection">
+      <parameter key="ROLE_ADMIN" type="collection">
+        <parameter>ROLE_USER</parameter>
+      </parameter>
+      <parameter key="ROLE_SUPER_ADMIN" type="collection">
+        <parameter>ROLE_ADMIN</parameter>
+      </parameter>
+    </parameter>
     <parameter key="security.access.denied_url">null</parameter>
     <parameter key="security.authentication.manager.erase_credentials">true</parameter>
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
@@ -360,6 +377,13 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\ArtistController"/>
       </call>
     </service>
+    <service id="App\Controller\ConditionsController" class="App\Controller\ConditionsController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\ConditionsController"/>
+      </call>
+    </service>
     <service id="App\Controller\DiskController" class="App\Controller\DiskController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -372,6 +396,22 @@
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\ProductionController"/>
+      </call>
+    </service>
+    <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Security\EmailVerifier"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\RegistrationController"/>
+      </call>
+    </service>
+    <service id="App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="symfonycasts.reset_password.helper"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\ResetPasswordController"/>
       </call>
     </service>
     <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
@@ -395,6 +435,13 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\SumupController"/>
       </call>
     </service>
+    <service id="App\Controller\UserController" class="App\Controller\UserController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\UserController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
@@ -405,10 +452,19 @@
     <service id="App\Form\ArtistType" class="App\Form\ArtistType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\DiskType" class="App\Form\DiskType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\ProductionType" class="App\Form\ProductionType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\StyleType" class="App\Form\StyleType" autowire="true" autoconfigure="true">
@@ -426,6 +482,10 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\StyleRepository" class="App\Repository\StyleRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -434,11 +494,20 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Security\AppVoter" class="App\Security\AppVoter" autowire="true" autoconfigure="true">
+      <tag name="security.voter"/>
+    </service>
+    <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
     <service id="App\Security\LoginFormAuthenticator" class="App\Security\LoginFormAuthenticator" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="router.default"/>
       <argument type="service" id="security.csrf.token_manager"/>
       <argument type="service" id="security.user_password_encoder.generic"/>
+      <argument type="service" id="twig"/>
     </service>
     <service id=".legacy_controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
@@ -869,8 +938,11 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\ArtistType</argument>
+        <argument>App\Form\ChangePasswordFormType</argument>
         <argument>App\Form\DiskType</argument>
         <argument>App\Form\ProductionType</argument>
+        <argument>App\Form\RegistrationFormType</argument>
+        <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>App\Form\StyleType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1208,7 +1280,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.e6BpfYL"/>
+      <argument type="service" id=".service_locator.0MA6mq1"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1560,6 +1632,8 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.de.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.de.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.de.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.el.xlf</argument>
@@ -1570,11 +1644,14 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.en.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.en.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.en.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.es.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.es.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.et.xlf</argument>
@@ -1599,6 +1676,8 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.fr.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.fr.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.fr.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
@@ -1634,6 +1713,7 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.it.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.it.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.it.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.ja.xlf</argument>
@@ -1669,6 +1749,7 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.nl.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.nl.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.nl.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.nn.xlf</argument>
@@ -1684,11 +1765,14 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.pl.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.pl.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.pl.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pl.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.pt.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.pt.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.pt.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.pt_BR.xlf</argument>
@@ -1704,6 +1788,8 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.ru.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.ru.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.ru.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ru.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.sk.xlf</argument>
@@ -1754,6 +1840,8 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.uk.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.uk.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.uk.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.uk.xlf</argument>
           </argument>
           <argument key="vi" type="collection">
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations/validators.vi.xlf</argument>
@@ -1770,11 +1858,17 @@
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations/validators.zh_TW.xlf</argument>
             <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations/security.zh_TW.xlf</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sr.xlf</argument>
+            <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>/var/www/html/diskapp_1.0/vendor/symfony/validator/Resources/translations</argument>
           <argument>/var/www/html/diskapp_1.0/vendor/symfony/form/Resources/translations</argument>
           <argument>/var/www/html/diskapp_1.0/vendor/symfony/security-core/Resources/translations</argument>
+          <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
+          <argument>/var/www/html/diskapp_1.0/vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
           <argument>/var/www/html/diskapp_1.0/translations</argument>
           <argument>/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/translations</argument>
           <argument>/var/www/html/diskapp_1.0/src/Resources/FrameworkBundle/translations</argument>
@@ -1802,6 +1896,8 @@
           <argument>/var/www/html/diskapp_1.0/src/Resources/WebpackEncoreBundle/translations</argument>
           <argument>/var/www/html/diskapp_1.0/vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
           <argument>/var/www/html/diskapp_1.0/src/Resources/DoctrineFixturesBundle/translations</argument>
+          <argument>/var/www/html/diskapp_1.0/src/Resources/SymfonyCastsVerifyEmailBundle/translations</argument>
+          <argument>/var/www/html/diskapp_1.0/src/Resources/SymfonyCastsResetPasswordBundle/translations</argument>
           <argument>/var/www/html/diskapp_1.0/src/Resources/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
@@ -1809,6 +1905,8 @@
             <argument>vendor/symfony/validator/Resources/translations</argument>
             <argument>vendor/symfony/form/Resources/translations</argument>
             <argument>vendor/symfony/security-core/Resources/translations</argument>
+            <argument>vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
+            <argument>vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>src/Resources/FrameworkBundle/translations</argument>
@@ -1836,6 +1934,8 @@
             <argument>src/Resources/WebpackEncoreBundle/translations</argument>
             <argument>vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
             <argument>src/Resources/DoctrineFixturesBundle/translations</argument>
+            <argument>src/Resources/SymfonyCastsVerifyEmailBundle/translations</argument>
+            <argument>src/Resources/SymfonyCastsResetPasswordBundle/translations</argument>
             <argument>src/Resources/translations</argument>
           </argument>
         </argument>
@@ -4000,7 +4100,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.WFr0oly"/>
+      <argument type="service" id=".service_locator.XUWXWNz"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4422,14 +4522,15 @@
       <argument type="service" id="request_stack"/>
     </service>
     <service id="security.role_hierarchy" class="Symfony\Component\Security\Core\Role\RoleHierarchy" public="false">
-      <argument type="collection"/>
-    </service>
-    <service id="security.access.simple_role_voter" class="Symfony\Component\Security\Core\Authorization\Voter\RoleVoter" public="false">
-      <tag name="security.voter" priority="245"/>
+      <argument>%security.role_hierarchy.roles%</argument>
     </service>
     <service id="security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter" public="false">
       <tag name="security.voter" priority="250"/>
       <argument type="service" id="security.authentication.trust_resolver"/>
+    </service>
+    <service id="security.access.role_hierarchy_voter" class="Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter" public="false">
+      <tag name="security.voter" priority="245"/>
+      <argument type="service" id="security.role_hierarchy"/>
     </service>
     <service id="security.access.expression_voter" class="Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter" public="false">
       <tag name="security.voter" priority="245"/>
@@ -5094,6 +5195,45 @@
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory" public="false">
       <tag name="doctrine.fixtures.purger_factory" alias="default"/>
     </service>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator" public="false">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility" public="false"/>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
+    <service id="symfonycasts.reset_password.fake_request_repository" class="SymfonyCasts\Bundle\ResetPassword\Persistence\Fake\FakeResetPasswordInternalRepository" public="false"/>
+    <service id="symfonycasts.reset_password.cleaner" class="SymfonyCasts\Bundle\ResetPassword\Util\ResetPasswordCleaner" public="false">
+      <argument type="service" id="App\Repository\ResetPasswordRequestRepository"/>
+      <argument>true</argument>
+    </service>
+    <service id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" class="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand">
+      <tag name="console.command" command="reset-password:remove-expired"/>
+      <argument type="service" id="symfonycasts.reset_password.cleaner"/>
+      <call method="setName">
+        <argument>reset-password:remove-expired</argument>
+      </call>
+    </service>
+    <service id="symfonycasts.reset_password.random_generator" class="SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordRandomGenerator" public="false"/>
+    <service id="symfonycasts.reset_password.token_generator" class="SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator" public="false">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="symfonycasts.reset_password.random_generator"/>
+    </service>
+    <service id="symfonycasts.reset_password.helper" class="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper">
+      <argument type="service" id="symfonycasts.reset_password.token_generator"/>
+      <argument type="service" id="symfonycasts.reset_password.cleaner"/>
+      <argument type="service" id="App\Repository\ResetPasswordRequestRepository"/>
+      <argument>3600</argument>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.SensioLabs\Security\Command\SecurityCheckerCommand" class="SensioLabs\Security\Command\SecurityCheckerCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.SensioLabs\Security\Command\SecurityCheckerCommand" class="SensioLabs\Security\Command\SecurityCheckerCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AjaxController" class="App\Controller\AjaxController" autowire="true" abstract="true"/>
@@ -5102,12 +5242,21 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ConditionsController" class="App\Controller\ConditionsController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ConditionsController" class="App\Controller\ConditionsController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ConditionsController" class="App\Controller\ConditionsController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DiskController" class="App\Controller\DiskController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DiskController" class="App\Controller\DiskController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DiskController" class="App\Controller\DiskController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProductionController" class="App\Controller\ProductionController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProductionController" class="App\Controller\ProductionController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ProductionController" class="App\Controller\ProductionController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5117,16 +5266,25 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SumupController" class="App\Controller\SumupController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SumupController" class="App\Controller\SumupController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SumupController" class="App\Controller\SumupController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArtistType" class="App\Form\ArtistType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ArtistType" class="App\Form\ArtistType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\DiskType" class="App\Form\DiskType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\DiskType" class="App\Form\DiskType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProductionType" class="App\Form\ProductionType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ProductionType" class="App\Form\ProductionType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\StyleType" class="App\Form\StyleType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\StyleType" class="App\Form\StyleType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" abstract="true"/>
@@ -5135,10 +5293,14 @@
     <service id=".abstract.instanceof.App\Repository\DiskRepository" class="App\Repository\DiskRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProductionRepository" class="App\Repository\ProductionRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProductionRepository" class="App\Repository\ProductionRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\StyleRepository" class="App\Repository\StyleRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\StyleRepository" class="App\Repository\StyleRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Security\Core\Authorization\Voter\VoterInterface.0.App\Security\AppVoter" class="App\Security\AppVoter" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Security\AppVoter" class="App\Security\AppVoter" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.CmORmuK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5465,6 +5627,12 @@
         <argument key="diskRepository" type="service" id="App\Repository\DiskRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.1UuH9tO" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.B3SFzTS" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5537,6 +5705,27 @@
         <argument key="production" type="service" id=".errored..service_locator.L46NlyB.App\Entity\Production"/>
       </argument>
     </service>
+    <service id=".service_locator.7pBLkmK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="authenticator" type="service" id="App\Security\LoginFormAuthenticator"/>
+        <argument key="guardHandler" type="service" id="security.authentication.guard_handler"/>
+        <argument key="passwordEncoder" type="service" id="security.user_password_encoder.generic"/>
+        <argument key="securityController" type="service" id="App\Controller\SecurityController"/>
+      </argument>
+    </service>
+    <service id=".service_locator.iP8eVIx" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="mailer" type="service" id="mailer.mailer"/>
+      </argument>
+    </service>
+    <service id=".service_locator.ccM2MGC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="passwordEncoder" type="service" id="security.user_password_encoder.generic"/>
+      </argument>
+    </service>
     <service id=".service_locator.g.xob4v" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5563,7 +5752,26 @@
         <argument key="style" type="service" id=".errored..service_locator.PgqJA6K.App\Entity\Style"/>
       </argument>
     </service>
-    <service id=".service_locator.J7bs9JZ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.hiYoizP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="artistRepository" type="service" id="App\Repository\ArtistRepository"/>
+        <argument key="diskRepository" type="service" id="App\Repository\DiskRepository"/>
+        <argument key="productionRepository" type="service" id="App\Repository\ProductionRepository"/>
+        <argument key="styleRepository" type="service" id="App\Repository\StyleRepository"/>
+        <argument key="user" type="service" id=".errored..service_locator.hiYoizP.App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.raNre2I" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="session" type="service" id="session"/>
+        <argument key="tokenStorage" type="service" id="security.token_storage"/>
+        <argument key="user" type="service" id=".errored..service_locator.raNre2I.App\Entity\User"/>
+        <argument key="userRepository" type="service" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.g5JJq1t" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AjaxController::addOneArtist" type="service" id=".service_locator.qvUorZ5"/>
@@ -5573,6 +5781,7 @@
         <argument key="App\Controller\AjaxController::deleteOneDisk" type="service" id=".service_locator.ROIZaZF"/>
         <argument key="App\Controller\AjaxController::deleteOneProduction" type="service" id=".service_locator.m5EUmlp"/>
         <argument key="App\Controller\AjaxController::deleteOneStyle" type="service" id=".service_locator.pDzaBd6"/>
+        <argument key="App\Controller\AjaxController::setMyUserName" type="service" id=".service_locator.1UuH9tO"/>
         <argument key="App\Controller\ArtistController::add" type="service" id=".service_locator.B3SFzTS"/>
         <argument key="App\Controller\ArtistController::artist" type="service" id=".service_locator.U9v2XMR"/>
         <argument key="App\Controller\ArtistController::artists" type="service" id=".service_locator.qvUorZ5"/>
@@ -5585,12 +5794,18 @@
         <argument key="App\Controller\ProductionController::labels" type="service" id=".service_locator.i7MOuFW"/>
         <argument key="App\Controller\ProductionController::production" type="service" id=".service_locator.PfzUfuU"/>
         <argument key="App\Controller\ProductionController::setProduction" type="service" id=".service_locator.L46NlyB"/>
+        <argument key="App\Controller\RegistrationController::register" type="service" id=".service_locator.7pBLkmK"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service" id=".service_locator.1UuH9tO"/>
+        <argument key="App\Controller\ResetPasswordController::request" type="service" id=".service_locator.iP8eVIx"/>
+        <argument key="App\Controller\ResetPasswordController::reset" type="service" id=".service_locator.ccM2MGC"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.g.xob4v"/>
         <argument key="App\Controller\StyleController::add" type="service" id=".service_locator.cKpHXEJ"/>
         <argument key="App\Controller\StyleController::setStyle" type="service" id=".service_locator.1bgy3CE"/>
         <argument key="App\Controller\StyleController::style" type="service" id=".service_locator.PgqJA6K"/>
         <argument key="App\Controller\StyleController::styles" type="service" id=".service_locator.PmaP7U3"/>
         <argument key="App\Controller\SumupController::home" type="service" id=".service_locator.PfXr2Bm"/>
+        <argument key="App\Controller\UserController::deleteUser" type="service" id=".service_locator.raNre2I"/>
+        <argument key="App\Controller\UserController::displayUser" type="service" id=".service_locator.hiYoizP"/>
         <argument key="App\Controller\AjaxController:addOneArtist" type="service" id=".service_locator.qvUorZ5"/>
         <argument key="App\Controller\AjaxController:addOneProduction" type="service" id=".service_locator.ZO792gc"/>
         <argument key="App\Controller\AjaxController:addOneStyle" type="service" id=".service_locator.PmaP7U3"/>
@@ -5598,6 +5813,7 @@
         <argument key="App\Controller\AjaxController:deleteOneDisk" type="service" id=".service_locator.ROIZaZF"/>
         <argument key="App\Controller\AjaxController:deleteOneProduction" type="service" id=".service_locator.m5EUmlp"/>
         <argument key="App\Controller\AjaxController:deleteOneStyle" type="service" id=".service_locator.pDzaBd6"/>
+        <argument key="App\Controller\AjaxController:setMyUserName" type="service" id=".service_locator.1UuH9tO"/>
         <argument key="App\Controller\ArtistController:add" type="service" id=".service_locator.B3SFzTS"/>
         <argument key="App\Controller\ArtistController:artist" type="service" id=".service_locator.U9v2XMR"/>
         <argument key="App\Controller\ArtistController:artists" type="service" id=".service_locator.qvUorZ5"/>
@@ -5610,12 +5826,18 @@
         <argument key="App\Controller\ProductionController:labels" type="service" id=".service_locator.i7MOuFW"/>
         <argument key="App\Controller\ProductionController:production" type="service" id=".service_locator.PfzUfuU"/>
         <argument key="App\Controller\ProductionController:setProduction" type="service" id=".service_locator.L46NlyB"/>
+        <argument key="App\Controller\RegistrationController:register" type="service" id=".service_locator.7pBLkmK"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service" id=".service_locator.1UuH9tO"/>
+        <argument key="App\Controller\ResetPasswordController:request" type="service" id=".service_locator.iP8eVIx"/>
+        <argument key="App\Controller\ResetPasswordController:reset" type="service" id=".service_locator.ccM2MGC"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.g.xob4v"/>
         <argument key="App\Controller\StyleController:add" type="service" id=".service_locator.cKpHXEJ"/>
         <argument key="App\Controller\StyleController:setStyle" type="service" id=".service_locator.1bgy3CE"/>
         <argument key="App\Controller\StyleController:style" type="service" id=".service_locator.PgqJA6K"/>
         <argument key="App\Controller\StyleController:styles" type="service" id=".service_locator.PmaP7U3"/>
         <argument key="App\Controller\SumupController:home" type="service" id=".service_locator.PfXr2Bm"/>
+        <argument key="App\Controller\UserController:deleteUser" type="service" id=".service_locator.raNre2I"/>
+        <argument key="App\Controller\UserController:displayUser" type="service" id=".service_locator.hiYoizP"/>
       </argument>
     </service>
     <service id=".service_locator.Y7gDuDN" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -5677,12 +5899,15 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.e6BpfYL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.0MA6mq1" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ArtistType" type="service" id="App\Form\ArtistType"/>
+        <argument key="App\Form\ChangePasswordFormType" type="service" id="App\Form\ChangePasswordFormType"/>
         <argument key="App\Form\DiskType" type="service" id="App\Form\DiskType"/>
         <argument key="App\Form\ProductionType" type="service" id="App\Form\ProductionType"/>
+        <argument key="App\Form\RegistrationFormType" type="service" id="App\Form\RegistrationFormType"/>
+        <argument key="App\Form\ResetPasswordRequestFormType" type="service" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="App\Form\StyleType" type="service" id="App\Form\StyleType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
@@ -5849,12 +6074,13 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.WFr0oly" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.XUWXWNz" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\ArtistRepository" type="service" id="App\Repository\ArtistRepository"/>
         <argument key="App\Repository\DiskRepository" type="service" id="App\Repository\DiskRepository"/>
         <argument key="App\Repository\ProductionRepository" type="service" id="App\Repository\ProductionRepository"/>
+        <argument key="App\Repository\ResetPasswordRequestRepository" type="service" id="App\Repository\ResetPasswordRequestRepository"/>
         <argument key="App\Repository\StyleRepository" type="service" id="App\Repository\StyleRepository"/>
         <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
       </argument>
@@ -5863,12 +6089,16 @@
       <argument type="service" id="security.access.authenticated_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
-    <service id="debug.security.voter.security.access.simple_role_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
-      <argument type="service" id="security.access.simple_role_voter"/>
+    <service id="debug.security.voter.security.access.role_hierarchy_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
+      <argument type="service" id="security.access.role_hierarchy_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
     <service id="debug.security.voter.security.access.expression_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
       <argument type="service" id="security.access.expression_voter"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="debug.security.voter.App\Security\AppVoter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
+      <argument type="service" id="App\Security\AppVoter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
     <service id="security.logout.handler.csrf_token_clearing" class="Symfony\Component\Security\Http\Logout\CsrfTokenClearingLogoutHandler" public="false">
@@ -5919,6 +6149,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\ConditionsController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\ConditionsController"/>
+      <argument>App\Controller\ConditionsController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
     <service id=".service_locator.vdmMuyE.App\Controller\DiskController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\DiskController"/>
       <argument>App\Controller\DiskController</argument>
@@ -5928,6 +6164,18 @@
     <service id=".service_locator.vdmMuyE.App\Controller\ProductionController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\ProductionController"/>
       <argument>App\Controller\ProductionController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
+      <argument>App\Controller\RegistrationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\ResetPasswordController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController"/>
+      <argument>App\Controller\ResetPasswordController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>
@@ -5946,6 +6194,12 @@
     <service id=".service_locator.vdmMuyE.App\Controller\SumupController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\SumupController"/>
       <argument>App\Controller\SumupController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\UserController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\UserController"/>
+      <argument>App\Controller\UserController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>
@@ -6078,8 +6332,9 @@
     <service id="debug.security.access.decision_manager.inner" class="Symfony\Component\Security\Core\Authorization\AccessDecisionManager" public="false">
       <argument type="iterator">
         <argument type="service" id="debug.security.voter.security.access.authenticated_voter"/>
-        <argument type="service" id="debug.security.voter.security.access.simple_role_voter"/>
+        <argument type="service" id="debug.security.voter.security.access.role_hierarchy_voter"/>
         <argument type="service" id="debug.security.voter.security.access.expression_voter"/>
+        <argument type="service" id="debug.security.voter.App\Security\AppVoter"/>
       </argument>
       <argument>affirmative</argument>
       <argument>false</argument>
@@ -6092,12 +6347,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.J7bs9JZ"/>
+      <argument type="service" id=".service_locator.g5JJq1t"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.J7bs9JZ"/>
+      <argument type="service" id=".service_locator.g5JJq1t"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -6114,8 +6369,10 @@
     <service id=".errored..service_locator.L46NlyB.App\Entity\Production" class="App\Entity\Production"/>
     <service id=".errored..service_locator.1bgy3CE.App\Entity\Style" class="App\Entity\Style"/>
     <service id=".errored..service_locator.PgqJA6K.App\Entity\Style" class="App\Entity\Style"/>
+    <service id=".errored..service_locator.hiYoizP.App\Entity\User" class="App\Entity\User"/>
+    <service id=".errored..service_locator.raNre2I.App\Entity\User" class="App\Entity\User"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id=".service_locator..xWFiEd"/>
+      <argument type="service" id=".service_locator.VT9CFBf"/>
       <argument type="collection">
         <argument key="security:check">SensioLabs\Security\Command\SecurityCheckerCommand</argument>
         <argument key="about">console.command.about</argument>
@@ -6184,6 +6441,7 @@
         <argument key="doctrine:migrations:version">doctrine_migrations.version_command</argument>
         <argument key="security:encode-password">security.command.user_password_encoder</argument>
         <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
+        <argument key="reset-password:remove-expired">SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:controller">maker.auto_command.make_controller</argument>
@@ -6209,11 +6467,12 @@
         <argument key="make:migration">maker.auto_command.make_migration</argument>
       </argument>
     </service>
-    <service id=".service_locator..xWFiEd" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.VT9CFBf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" type="service" id="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand"/>
         <argument key="SensioLabs\Security\Command\SecurityCheckerCommand" type="service" id="SensioLabs\Security\Command\SecurityCheckerCommand"/>
+        <argument key="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" type="service" id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand"/>
         <argument key="console.command.about" type="service" id="console.command.about"/>
         <argument key="console.command.assets_install" type="service" id="console.command.assets_install"/>
         <argument key="console.command.cache_clear" type="service" id="console.command.cache_clear"/>
@@ -6509,9 +6768,11 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection" public="false"/>
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
+    <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.J7bs9JZ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.g5JJq1t"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

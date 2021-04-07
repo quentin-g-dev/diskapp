@@ -33,6 +33,12 @@ class Artist
      */
     private $disks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="artists")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $curator;
+
     public function __construct () {
         $this->disks = new ArrayCollection();
     }
@@ -59,5 +65,17 @@ class Artist
     public function getDisks() : Collection
     {
         return $this->disks;
+    }
+
+    public function getCurator(): ?User
+    {
+        return $this->curator;
+    }
+
+    public function setCurator(?User $curator): self
+    {
+        $this->curator = $curator;
+
+        return $this;
     }
 }

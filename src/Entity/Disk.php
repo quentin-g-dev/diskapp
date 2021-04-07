@@ -84,6 +84,12 @@ class Disk
      */
     private $barcode;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="disks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $curator;
+
 
     public function __construct()
     {
@@ -191,6 +197,18 @@ class Disk
     public function setBarcode(string $barcode): self
     {
         $this->barcode = $barcode;
+        return $this;
+    }
+
+    public function getCurator(): ?User
+    {
+        return $this->curator;
+    }
+
+    public function setCurator(?User $curator): self
+    {
+        $this->curator = $curator;
+
         return $this;
     }
 }

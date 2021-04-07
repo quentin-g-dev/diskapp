@@ -15,3 +15,15 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> symfony/security_checker ###
+/config/packages/security_checker.yaml
+###< symfony/security_checker ###
+
+###> symfony/security ###
+/config/packages/security.yaml
+###< symfony/security ###
+
+###> symfony/mailer ###
+/config/packages/mailer.yaml
+###< symfony/mailer ###

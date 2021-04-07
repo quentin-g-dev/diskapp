@@ -5,8 +5,14 @@
 {% block main %}
  <div>
     <h2 class="ml-3">{{ style.name }}</h2>
-     <a href="/styles/set/{{ style.id }}" class="btn btn-info text-white ml-3">Modifier</a>
-    <button  class="btn btn-danger text-white ml-3" onclick="deleteStyle({{ style.id }}); setTimeout(function(){ window.location.href='/styles'; }, 50);">Supprimer</button>   
+    <small class="ml-3 mb-5">
+    Ajouté par
+        <a href="/user/{{style.curator.id}}">{{ style.curator.username }}</a>
+    </small>
+    {% if mine == true %}
+        <a href="/styles/set/{{ style.id }}" class="btn btn-info text-white ml-3">Modifier</a>
+        <button  class="btn btn-danger text-white ml-3" onclick="deleteStyle({{ style.id }}); setTimeout(function(){ window.location.href='/styles'; }, 50);">Supprimer</button>   
+    {% endif %}
     <br>
     <h3 class="ml-3">Disques :</h3>
     <table class="table table-striped table-hover  w-100" id="disksTable">
@@ -27,7 +33,7 @@
                 <td class="align-middle text-center"><img src="{{ disk.img }}" alt="Cover" height="75px"></td>
                 <td class="align-middle text-center"><a href="/disks/{{ disk.id }}">{{ disk.name }}</a></td>
                 <td class="align-middle text-center"><a href="/artists/{{ disk.artist.id }}">{{ disk.artist.name }}</a></td>
-                <td class="align-middle text-center"><a href="/production/{{ disk.production.id }}">{{ disk.production.name }}</a></td>
+                <td class="align-middle text-center"><a href="/productions/{{ disk.production.id }}">{{ disk.production.name }}</a></td>
                 <td class="align-middle text-center">{{ disk.published|date("d-m-Y") }}</td>
                 <td class="align-middle text-center">{{ disk.stock }}</td>
                 <td class="align-middle text-center">{{ disk.barcode }}</td>

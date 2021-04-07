@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -33,6 +37,45 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Disk::class, mappedBy="curator", orphanRemoval=true)
+     */
+    private $disks;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Artist::class, mappedBy="curator", orphanRemoval=true)
+     */
+    private $artists;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Style::class, mappedBy="curator", orphanRemoval=true)
+     */
+    private $styles;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Production::class, mappedBy="curator", orphanRemoval=true)
+     */
+    private $productions;
+
+
+    public function __construct()
+    {
+        $this->disks = new ArrayCollection();
+        $this->artists = new ArrayCollection();
+        $this->styles = new ArrayCollection();
+        $this->productions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -109,4 +152,149 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Disk[]
+     */
+    public function getDisks(): Collection
+    {
+        return $this->disks;
+    }
+
+    public function addDisk(Disk $disk): self
+    {
+        if (!$this->disks->contains($disk)) {
+            $this->disks[] = $disk;
+            $disk->setCurator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDisk(Disk $disk): self
+    {
+        if ($this->disks->removeElement($disk)) {
+            // set the owning side to null (unless already changed)
+            if ($disk->getCurator() === $this) {
+                $disk->setCurator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Artist[]
+     */
+    public function getArtists(): Collection
+    {
+        return $this->artists;
+    }
+
+    public function addArtist(Artist $artist): self
+    {
+        if (!$this->artists->contains($artist)) {
+            $this->artists[] = $artist;
+            $artist->setCurator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtist(Artist $artist): self
+    {
+        if ($this->artists->removeElement($artist)) {
+            // set the owning side to null (unless already changed)
+            if ($artist->getCurator() === $this) {
+                $artist->setCurator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Style[]
+     */
+    public function getStyles(): Collection
+    {
+        return $this->styles;
+    }
+
+    public function addStyle(Style $style): self
+    {
+        if (!$this->styles->contains($style)) {
+            $this->styles[] = $style;
+            $style->setCurator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStyle(Style $style): self
+    {
+        if ($this->styles->removeElement($style)) {
+            // set the owning side to null (unless already changed)
+            if ($style->getCurator() === $this) {
+                $style->setCurator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Production[]
+     */
+    public function getProductions(): Collection
+    {
+        return $this->productions;
+    }
+
+    public function addProduction(Production $production): self
+    {
+        if (!$this->productions->contains($production)) {
+            $this->productions[] = $production;
+            $production->setCurator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduction(Production $production): self
+    {
+        if ($this->productions->removeElement($production)) {
+            // set the owning side to null (unless already changed)
+            if ($production->getCurator() === $this) {
+                $production->setCurator(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

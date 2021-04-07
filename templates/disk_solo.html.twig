@@ -4,8 +4,6 @@
 
 {% block main %}
  <div>
-    <h2 class="ml-3">{{ disk.name }}</h2>
-    <h3 class="ml-3">{{ disk.artist.name }}</h3>
     <section class="d-flex">
         <img src="{{ disk.img }}" alt="cover" height="200px" class="mx-3">
         <div class="mx-3 d-flex flex-column">
@@ -17,6 +15,7 @@
             <span>En stock :</span>
             <span>Code barre :</span>
             <span>Enregistré le:</span>
+            <span>Par :</span>
 
         </div>
         <div class="mx-3 d-flex flex-column">
@@ -28,8 +27,15 @@
             <span class="text-right">{{ disk.stock }}</span>
             <span class="text-right">{{ disk.barcode }}</span>
             <span class="text-right">{{ disk.registered|date('d-m-Y') }}</span>
+            <span class="text-right"><a href="/user/{{disk.curator.id}}">{{ disk.curator.username }}</a></span>
 
         </div>
+        {% if mine == true %}
+        <div class="d-flex flex-column">
+            <a href="/disks/set/{{ disk.id }}" class="btn btn-info text-white my-2 ml-3">Modifier</a>
+            <button  class="btn btn-danger text-white my-2 ml-3" onclick="deleteDisk({{ disk.id }}); setTimeout(function(){ window.location.href='/disks'; }, 50);">Supprimer</button>   
+        </div>
+    {% endif %}
         
     </section>
     

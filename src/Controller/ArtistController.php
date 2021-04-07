@@ -36,20 +36,20 @@ class ArtistController extends AbstractController
     */
     public function add(Request $request,ValidatorInterface $validator, ArtistRepository $artistRepository):  Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $artist = new Artist();
         $form = $this->createForm(ArtistType::class, $artist);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $artist = $form->getData();
+            $artist->setCurator($this->getUser());
             if ($artistRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
-
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($artist);
                 $entityManager->flush();
                 return $this->redirect('/artists');
             else :
                 return $this->redirect("/artists/".$artistRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
-
             endif;
         }
         return $this->render('form.html.twig', [
@@ -64,12 +64,17 @@ class ArtistController extends AbstractController
     */
     public function artist(Artist $artist,  DiskRepository $diskRepository) : Response
     {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY') && $artist->getCurator()->getId() === $this->getUser()->getId()) :
+            $mine= true; 
+        else :
+            $mine = false;       
+        endif; 
         return $this->render('artist_solo.html.twig', [
             'h1' => 'Artiste : '.$artist->getName(),
             'artist' => $artist,
             'disks' => $artist->getDisks(),
-            'script' => '/assets/js/artists.js'
-
+            'script' => '/assets/js/artists.js',
+            'mine'=>$mine
         ]);
     }
 
@@ -78,6 +83,7 @@ class ArtistController extends AbstractController
      */
     public function setArtist(Artist $artist, Request $request): Response
     {    
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(ArtistType::class, $artist);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

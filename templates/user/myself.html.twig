@@ -1,0 +1,96 @@
+{% extends "diskapp.html.twig" %}
+
+{% block custom_styles %}{% endblock %}
+
+{% block main %}
+<div class=" m-0 w-100">
+    <div class=" d-flex justify-content-between align-items-baseline">
+        <div class="mr-5 p-3 text-center">
+            <span class="d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light">
+                <h2 class="h6">Nom d'utilisateur</h2>
+                <button class="mx-3 btn btn-light px-1 py-0" onclick="setMyUsername()">
+                    <small>Modifier</small>
+                </button>
+            </span>
+            <span id="my_username">{{ user.username }}</span>
+        </div>
+        <div class="mr-5 p-3 text-center">
+            <span class="d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light">
+                <h2 class="h6">E-mail</h2>
+                <button class="disabled mx-3 btn btn-light px-1 py-0">
+                    <small>Modifier</small>
+                </button>
+            </span>
+            <span>{{ user.email }}</span>
+        </div> 
+        <div class="mr-5 p-3 text-center">
+            <span class="d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light">
+                <h2 class="h6">Mot de passe</h2>
+                <a class="mx-3 btn btn-light px-1 py-0" href="{{ path('app_forgot_password_request') }}">
+                    <small>Modifier</small>
+                </a>
+            </span>
+            <span>***********</span>
+        </div>
+        <div class="mr-5 p-3 text-center">
+            <button class="btn btn-light" onclick="if(confirm('Vous êtes sur le point de supprimer votre compte : cette action est irréversible. Confirmer ?')){window.location.href='{{ path('delete_user', {id: user.id}) }}'};">Supprimer mon compte</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mr-5 p-3 col-10 text-center">
+            <h2 class="p-1 bg-mediumBlueGrey text-light mt-3">Contributions</h2>
+             <div class="d-flex justify-content-between">
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Disques</h3>
+                    <span class="list-group">
+                        {% for disk in disks %}
+                            <span class="list-group-item">           
+                                <a href="/disks/{{ disk.id }}">
+                                    <span class="font-weight-bold">{{ disk.name }}</span>
+                                    - {{ disk.artist.name }} 
+                                </a> 
+                            </span>
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Artistes</h3>
+                    <span class="list-group">
+                        {% for artist in artists %}
+                            <span class="list-group-item">           
+                                <a href="/artists/{{ artist.id }}">{{ artist.name }}</a> 
+                            </span>
+                        {% endfor %}
+                    </span>        
+                </div>
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Genres</h3>
+                    <span class="list-group">
+                        {% for style in styles %}
+                            <span class="list-group-item">           
+                                <a href="/styles/{{ style.id }}">{{ style.name }}</a> 
+                            </span>
+                        {% endfor %}
+                    </span>                
+                </div>
+                <div class="mr-5 w-100 p-3 text-center">
+                    <h3 class="h5 p-1 text-mediumBlueGrey font-weight-bold">Labels</h3>
+                    <span class="list-group">
+                        {% for production in productions %}
+                            <span class="list-group-item">           
+                                <a href="/productions/{{ production.id }}">{{ production.name }}</a> 
+                            </span>
+                        {% endfor %}
+                    </span>        
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+    
+{% endblock %}
+
+{% block custom_scripts %}
+    <script src="/assets/js/myself.js"></script>
+{% endblock %}

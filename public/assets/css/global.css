@@ -35,18 +35,19 @@ h1, span.h1 {
     height:5rem;
 }
 
-aside  {
-    min-height:calc(99vh - 5.4rem);
+aside {
+    min-height:calc(100vh - 5rem);
+    flex-shrink: 0;
 }
 
-span.h1, aside {
-    width:300px !important;
-}
-
-h1, .h1bar, main {
-    min-width:calc(100vw - 300px) !important;
+a.h1:hover{
+    text-decoration:none;
 }
 
 aside a {
     font-size:1.3rem !important;
+}
+
+nav .conditions{
+    justify-self: end !important;
 }

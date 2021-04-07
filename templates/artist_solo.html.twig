@@ -5,10 +5,19 @@
 {% block main %}
  <div>
     <h2 class="ml-3">{{ artist.name }}</h2>
-    <a href="/artists/set/{{ artist.id }}" class="btn btn-info text-white ml-3">Modifier</a>
-    <button  class="btn btn-danger text-white ml-3" onclick="deleteArtist({{ artist.id }}); setTimeout(function(){ window.location.href='/artists'; }, 50);">Supprimer</button>   
+    
+    
+    
+    <small class="ml-3 mb-5">
+    Ajouté par
+        <a href="/user/{{artist.curator.id}}">{{ artist.curator.username }}</a>
+    </small>
+    {% if mine == true %}
+        <a href="/artists/set/{{ artist.id }}" class="btn btn-info text-white ml-3">Modifier</a>
+        <button  class="btn btn-danger text-white ml-3" onclick="deleteArtist({{ artist.id }}); setTimeout(function(){ window.location.href='/artists'; }, 50);">Supprimer</button>   
+    {% endif %}
     <br>
-    <h3 class="ml-3">Disques :</h3>
+    <h3 class="ml-3 mt-5">Disques :</h3>
     <table class="table table-striped table-hover  w-100" id="disksTable">
         <thead>
             <tr>
@@ -31,6 +40,7 @@
                 <td class="align-middle text-center"><a href="/styles/{{ disk.style.id }}">{{ disk.style.name }}</a></td>
                 <td class="align-middle text-center">{{ disk.stock }}</td>
                 <td class="align-middle text-center">{{ disk.barcode }}</td>
+
             </tr>
     {% endfor %}
         </tbody>

@@ -92,60 +92,85 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
         echo " labels référencés</small>
 
     <section>
-        <div class=\"p-3 d-flex justify-content-center\">
-            <button class=\"m-2 btn btn-danger text-white disabled\" onclick=\"deleteSelectedProductions();\" id=\"deleteSelected\">Supprimer la sélection</button>
-            <a href=\"/productions/add\" class=\"m-2 btn btn-success text-white\">Ajouter un label</a>
-        </div>
+        <div class=\"d-flex\">
+            ";
+        // line 11
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 12
+            echo "                <button class=\"m-2 btn btn-danger text-white disabled\" onclick=\"deleteSelectedProductions();\" id=\"deleteSelected\">Supprimer la sélection</button>
+            ";
+        }
+        // line 14
+        echo "            ";
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) {
+            // line 15
+            echo "                <a href=\"/productions/add\" class=\"my-2 btn btn-success text-white\">Ajouter un label</a>
+            ";
+        }
+        // line 17
+        echo "        </div>
     </section>
 
     <table class=\"table table-striped table-hover  w-100\" id=\"productionsTable\">
         <thead>
             <tr>
-                <th scope=\"col\" class=\"align-bottom\">
-                    <input  type=\"checkbox\" name=\"selectAll\" id=\"selectAll\" onclick=\"toggleGroupSelect(this.checked);enableGroupDelete();\">
-                </th>
-                <th class=\"align-middle\" scope=\"col\">Nom</th>
-                <th class=\"align-middle\" scope=\"col\"></th>
-            </tr>
+                ";
+        // line 23
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 24
+            echo "                    <th scope=\"col\" class=\"align-bottom\">
+                        <input  type=\"checkbox\" name=\"selectAll\" id=\"selectAll\" onclick=\"toggleGroupSelect(this.checked);enableGroupDelete();\">
+                    </th>
+                ";
+        }
+        // line 28
+        echo "                <th class=\"align-middle\" scope=\"col\">Nom</th>
+                <th class=\"align-middle\" scope=\"col\">Enregistré par</th>
+                ";
+        // line 31
+        echo "            </tr>
         </thead>
         <tbody>
             <!--Items-->
             ";
-        // line 28
+        // line 35
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["labels"]) || array_key_exists("labels", $context) ? $context["labels"] : (function () { throw new RuntimeError('Variable "labels" does not exist.', 28, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["labels"]) || array_key_exists("labels", $context) ? $context["labels"] : (function () { throw new RuntimeError('Variable "labels" does not exist.', 35, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["production"]) {
-            // line 29
+            // line 36
             echo "                <tr>
-                    <td class=\"align-middle\"><input  type=\"checkbox\" name=\"";
-            // line 30
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 30), "html", null, true);
-            echo "\" id=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 30), "html", null, true);
-            echo "\" onclick=\"enableGroupDelete();\"></td>
-                    <td class=\"align-middle\"><a href=\"/productions/";
-            // line 31
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 31), "html", null, true);
+                    ";
+            // line 37
+            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+                // line 38
+                echo "                        <td class=\"align-middle\"><input  type=\"checkbox\" name=\"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 38), "html", null, true);
+                echo "\" id=\"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 38), "html", null, true);
+                echo "\" onclick=\"enableGroupDelete();\"></td>
+                    ";
+            }
+            // line 40
+            echo "                    <td class=\"align-middle\"><a href=\"/productions/";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 40), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "name", [], "any", false, false, false, 31), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "name", [], "any", false, false, false, 40), "html", null, true);
             echo "</a></td>
-                    <td class=\"align-middle text-center\">
-                        <a href=\"/productions/set/";
-            // line 33
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 33), "html", null, true);
-            echo "\" class=\"btn btn-info text-white\">Modifier</a>
-                        <a href=\"\" class=\"btn btn-danger text-white\" onclick=\"if(confirm('Attention : confirmer ?')) {deleteProduction(";
-            // line 34
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 34), "html", null, true);
-            echo ")}\">Supprimer</a>
-                    </td>
-                </tr>
+                    <td class=\"align-middle\"><a href=\"/user/";
+            // line 41
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["production"], "curator", [], "any", false, false, false, 41), "id", [], "any", false, false, false, 41), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["production"], "curator", [], "any", false, false, false, 41), "username", [], "any", false, false, false, 41), "html", null, true);
+            echo "</a></td>
+                    ";
+            // line 46
+            echo "                </tr>
             ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 38
+            // line 48
             echo "                <tr>
                     <td colspan=\"2\"><i>Nothing to show...</i></td>
                 </tr>
@@ -154,7 +179,7 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['production'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
+        // line 52
         echo "        </tbody>
     </table>
 </div>
@@ -167,7 +192,7 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
 
     }
 
-    // line 47
+    // line 57
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -177,7 +202,7 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "custom_scripts"));
 
-        // line 48
+        // line 58
         echo "<script src=\"assets/js/productions.js\"></script>
 ";
         
@@ -200,7 +225,7 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
 
     public function getDebugInfo()
     {
-        return array (  181 => 48,  171 => 47,  158 => 42,  149 => 38,  140 => 34,  136 => 33,  129 => 31,  123 => 30,  120 => 29,  115 => 28,  91 => 7,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
+        return array (  206 => 58,  196 => 57,  183 => 52,  174 => 48,  168 => 46,  162 => 41,  155 => 40,  147 => 38,  145 => 37,  142 => 36,  137 => 35,  131 => 31,  127 => 28,  121 => 24,  119 => 23,  111 => 17,  107 => 15,  104 => 14,  100 => 12,  98 => 11,  91 => 7,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -214,32 +239,42 @@ class __TwigTemplate_6073244a75bcd885942da666b8323aa6b2fcc8f4cc5706303ebdcff7601
     <small>{{ labels|length }} labels référencés</small>
 
     <section>
-        <div class=\"p-3 d-flex justify-content-center\">
-            <button class=\"m-2 btn btn-danger text-white disabled\" onclick=\"deleteSelectedProductions();\" id=\"deleteSelected\">Supprimer la sélection</button>
-            <a href=\"/productions/add\" class=\"m-2 btn btn-success text-white\">Ajouter un label</a>
+        <div class=\"d-flex\">
+            {% if is_granted('ROLE_ADMIN') %}
+                <button class=\"m-2 btn btn-danger text-white disabled\" onclick=\"deleteSelectedProductions();\" id=\"deleteSelected\">Supprimer la sélection</button>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href=\"/productions/add\" class=\"my-2 btn btn-success text-white\">Ajouter un label</a>
+            {% endif %}
         </div>
     </section>
 
     <table class=\"table table-striped table-hover  w-100\" id=\"productionsTable\">
         <thead>
             <tr>
-                <th scope=\"col\" class=\"align-bottom\">
-                    <input  type=\"checkbox\" name=\"selectAll\" id=\"selectAll\" onclick=\"toggleGroupSelect(this.checked);enableGroupDelete();\">
-                </th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th scope=\"col\" class=\"align-bottom\">
+                        <input  type=\"checkbox\" name=\"selectAll\" id=\"selectAll\" onclick=\"toggleGroupSelect(this.checked);enableGroupDelete();\">
+                    </th>
+                {% endif %}
                 <th class=\"align-middle\" scope=\"col\">Nom</th>
-                <th class=\"align-middle\" scope=\"col\"></th>
+                <th class=\"align-middle\" scope=\"col\">Enregistré par</th>
+                {#<<th class=\"align-middle\" scope=\"col\"></th>#}
             </tr>
         </thead>
         <tbody>
             <!--Items-->
             {% for production in labels %}
                 <tr>
-                    <td class=\"align-middle\"><input  type=\"checkbox\" name=\"{{ production.id }}\" id=\"{{ production.id }}\" onclick=\"enableGroupDelete();\"></td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td class=\"align-middle\"><input  type=\"checkbox\" name=\"{{ production.id }}\" id=\"{{ production.id }}\" onclick=\"enableGroupDelete();\"></td>
+                    {% endif %}
                     <td class=\"align-middle\"><a href=\"/productions/{{ production.id }}\">{{ production.name }}</a></td>
-                    <td class=\"align-middle text-center\">
+                    <td class=\"align-middle\"><a href=\"/user/{{ production.curator.id }}\">{{ production.curator.username }}</a></td>
+                    {#<td class=\"align-middle text-center\">
                         <a href=\"/productions/set/{{ production.id }}\" class=\"btn btn-info text-white\">Modifier</a>
                         <a href=\"\" class=\"btn btn-danger text-white\" onclick=\"if(confirm('Attention : confirmer ?')) {deleteProduction({{ production.id }})}\">Supprimer</a>
-                    </td>
+                    </td>#}
                 </tr>
             {% else %}
                 <tr>

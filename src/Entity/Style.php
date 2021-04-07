@@ -34,6 +34,12 @@ class Style
      */
     private $disks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="styles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $curator;
+
     public function __construct () {
         $this->disks = new ArrayCollection();
     }
@@ -61,6 +67,18 @@ class Style
     public function getDisks() : Collection
     {
         return $this->disks;
+    }
+
+    public function getCurator(): ?User
+    {
+        return $this->curator;
+    }
+
+    public function setCurator(?User $curator): self
+    {
+        $this->curator = $curator;
+
+        return $this;
     }
 
 }

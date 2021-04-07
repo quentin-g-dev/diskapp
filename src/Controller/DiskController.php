@@ -49,6 +49,7 @@ class DiskController extends AbstractController
     */
     public function add(Request $request, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository):  Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $disk = new Disk();
         $disk->setRegistered(new \DateTime('now'));
         $form = $this->createForm(DiskType::class, $disk);
@@ -65,6 +66,7 @@ class DiskController extends AbstractController
             $disk->setPublished($form['published']->getData());
             $style = $styleRepository->find($form->getData()->getStyle()->getId());
             $disk->setStyle($style);
+            $disk->setCurator($this->getUser());
             if (is_null($form['img']->getData())) :
                 $disk->setImg('/assets/img/diskapp_cd.png');
             else :
@@ -101,6 +103,11 @@ class DiskController extends AbstractController
     */
     public function disk(Disk $disk, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository) : Response
     {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY') && $disk->getCurator()->getId() === $this->getUser()->getId()) :
+            $mine= true; 
+        else :
+            $mine = false;       
+        endif; 
         $artist = $artistRepository->find($disk->getArtist());
         $artist->setName($artist->getName());
         $disk->setArtist($artist);
@@ -113,7 +120,8 @@ class DiskController extends AbstractController
         return $this->render('disk_solo.html.twig', [
             'h1' => $disk->getName().' - '.$disk->getArtist()->getName(),
             'controller_name' => 'DiskController',
-            'disk' => $disk
+            'disk' => $disk,
+            'mine'=>$mine
         ]);
     }
 
@@ -122,6 +130,7 @@ class DiskController extends AbstractController
      */
     public function setDisk(Disk $disk, Request $request,  ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository): Response
     {    
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(DiskType::class, $disk);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

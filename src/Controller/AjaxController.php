@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Repository\UserRepository;
+use App\Entity\User;
+use App\Controller\UserController;
 use App\Repository\ArtistRepository;
 use App\Controller\ArtistController;
 use App\Entity\Artist;
@@ -27,6 +30,7 @@ class AjaxController extends AbstractController
      */
     public function addOneArtist(Request $request, ArtistRepository $artistRepository) :JsonResponse
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -49,6 +53,7 @@ class AjaxController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $artist = new Artist();
                 $artist->setName($artistName);
+                $artist->setCurator($this->getUser());
                 $entityManager->persist($artist);
                 $entityManager->flush();
                 return new JsonResponse([
@@ -74,6 +79,7 @@ class AjaxController extends AbstractController
      */
     public function deleteOneArtist(Request $request, ArtistRepository $artistRepository, DiskRepository $diskRepository) :JsonResponse 
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -118,6 +124,7 @@ class AjaxController extends AbstractController
      */
     public function addOneProduction(Request $request, ProductionRepository $productionRepository) :JsonResponse
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -140,6 +147,7 @@ class AjaxController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $production = new Production();
                 $production->setName($productionName);
+                $production->setCurator($this->getUser());
                 $entityManager->persist($production);
                 $entityManager->flush();
                 return new JsonResponse([
@@ -165,6 +173,7 @@ class AjaxController extends AbstractController
      */
     public function deleteOneProduction(Request $request, ProductionRepository $productionRepository, DiskRepository $diskRepository) :JsonResponse 
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -209,6 +218,7 @@ class AjaxController extends AbstractController
      */
     public function addOneStyle(Request $request, StyleRepository $styleRepository) :JsonResponse
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -231,6 +241,7 @@ class AjaxController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $style = new Style();
                 $style->setName($styleName);
+                $style->setCurator($this->getUser());
                 $entityManager->persist($style);
                 $entityManager->flush();
                 return new JsonResponse([
@@ -256,6 +267,7 @@ class AjaxController extends AbstractController
      */
     public function deleteOneStyle(Request $request, StyleRepository $styleRepository, DiskRepository $diskRepository) :JsonResponse 
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -301,6 +313,7 @@ class AjaxController extends AbstractController
      */
     public function deleteOneDisk(Request $request, DiskRepository $diskRepository) :JsonResponse 
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // Dedicating to ajax calls exclusively
         if (!$request->isXmlHttpRequest()) :
             return new JsonResponse([
@@ -333,4 +346,51 @@ class AjaxController extends AbstractController
         ],400);
     }
 
+     /**
+     * @Route("/ajax_set_my_username")
+     */
+    public function setMyUserName(Request $request, UserRepository $userRepository) :JsonResponse
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // Dedicating to ajax calls exclusively
+        if (!$request->isXmlHttpRequest()) :
+            return new JsonResponse([
+                'status' => 'Error',
+                'message' => 'Error'
+            ], 400);
+        endif;
+        if(isset($request->request)) :
+            // Getting data from ajax
+            $newUserName = htmlspecialchars($request->request->get('newUserName'));
+            // Returning an error if user submitted a blank or blank spaced string
+            if (trim($newUserName) === '') :
+                return new JsonResponse([
+                    'status' => 'Error',
+                    'message' => 'Error'
+                ], 400);
+            endif;
+            // Checking if the user name already exists
+            if ($userRepository->findOneBy(['username'=>$newUserName]) === null) :
+                $entityManager = $this->getDoctrine()->getManager();
+                $user = $userRepository->find($this->getUser());
+                $user->setUsername($newUserName);
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return new JsonResponse([
+                    'status' => 'Updated',
+                    'message' => $user->getId()
+                ], 200);
+            else :
+                return new JsonResponse([
+                    'status' => 'Known',
+                    'message' => $userRepository->findOneBy(['username'=>$newUserName])->getId()
+                ], 200);
+            endif;
+        endif;
+        // In case something went wrong
+        return new JsonResponse([
+            'status' => 'Error',
+            'message' => 'Error'
+        ],400);
+    }
 }

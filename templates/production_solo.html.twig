@@ -5,10 +5,16 @@
 {% block main %}
  <div>
     <h2 class="ml-3">{{ production.name }}</h2>
-    <a href="/productions/set/{{ production.id }}" class="btn btn-info text-white ml-3">Modifier</a>
-    <button  class="btn btn-danger text-white ml-3" onclick="deleteProduction({{ production.id }}); setTimeout(function(){ window.location.href='/productions'; }, 50);">Supprimer</button>   
+    <small class="ml-3 mb-5">
+        Ajouté par
+        <a href="/user/{{production.curator.id}}">{{ production.curator.username }}</a>
+    </small>
+    {% if mine == true %}
+        <a href="/productions/set/{{ production.id }}" class="btn btn-info text-white ml-3">Modifier</a>
+        <button  class="btn btn-danger text-white ml-3" onclick="deleteProduction({{ production.id }}); setTimeout(function(){ window.location.href='/productions'; }, 50);">Supprimer</button>   
+    {% endif %}
     <br>    
-    <h3 class="ml-3">Disques :</h3>
+    <h3 class="ml-3 mt-5">Disques :</h3>
     <table class="table table-striped table-hover  w-100" id="disksTable">
         <thead>
             <tr>

@@ -23,7 +23,7 @@ class ProductionController extends AbstractController
         $requestedProductions = $labelRepository->findAll();
         return $this->render(
             'productions.html.twig', [
-                'h1' => 'Productions',
+                'h1' => 'Labels',
                 'labels' => $requestedProductions
             ]
         );
@@ -34,11 +34,13 @@ class ProductionController extends AbstractController
     */
     public function add(Request $request,ValidatorInterface $validator, ProductionRepository $productionRepository):  Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $production = new Production();
         $form = $this->createForm(ProductionType::class, $production);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $production = $form->getData();
+            $production->setCurator($this->getUser());
             if ($productionRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($production);
@@ -60,11 +62,17 @@ class ProductionController extends AbstractController
     */
     public function production(Production $production,  DiskRepository $diskRepository) : Response
     {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY') && $production->getCurator()->getId() === $this->getUser()->getId()) :
+            $mine= true; 
+        else :
+            $mine = false;       
+        endif; 
         return $this->render('production_solo.html.twig', [
             'h1' => 'Label : '.$production->getName(),
             'production' => $production,
             'disks' => $production->getDisks(),
-            'script' => '/assets/js/productions.js'
+            'script' => '/assets/js/productions.js',
+            'mine' =>$mine
         ]);
     }
 
@@ -73,6 +81,7 @@ class ProductionController extends AbstractController
      */
     public function setProduction(Production $production, Request $request): Response
     {    
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(ProductionType::class, $production);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

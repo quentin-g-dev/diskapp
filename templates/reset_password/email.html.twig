@@ -1,0 +1,16 @@
+<h1>Bonjour !</h1>
+
+<p>
+    Une demande de réinitialisation de mot de passe a été faite sur <a href="https://www.diskapp.quentin-g.com" target="blank">https://www.diskapp.quentin-g.com</a><br>
+    Ceci est un message automatique : si vous n'êtes pas à l'origine de la demande de réinitialisation du mot de passe, il peut être ignoré.<br>
+    Pour réinitialiser votre mot de passe, merci de cliquer sur le lien suivant :
+</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>Ce lien a un délai d'expiration de {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>
+    Bien cordialement,<br>
+    <a target="blank" href="https://www.quentin-g.com">Quentin G</a>
+</p>

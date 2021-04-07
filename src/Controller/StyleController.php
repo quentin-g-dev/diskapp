@@ -37,11 +37,13 @@ class StyleController extends AbstractController
     */
     public function add(Request $request,ValidatorInterface $validator, StyleRepository $styleRepository):  Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $style = new Style();
         $form = $this->createForm(StyleType::class, $style);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $style = $form->getData();
+            $style->setCurator($this->getUser());
             if ($styleRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($style);
@@ -63,6 +65,7 @@ class StyleController extends AbstractController
      */
     public function setStyle(Style $style, Request $request): Response
     {    
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(StyleType::class, $style);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,11 +87,17 @@ class StyleController extends AbstractController
     */
     public function style(Style $style,  DiskRepository $diskRepository) : Response
     {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY') && $style->getCurator()->getId() === $this->getUser()->getId()) :
+            $mine= true; 
+        else :
+            $mine = false;       
+        endif; 
         return $this->render('style_solo.html.twig', [
             'h1' => 'Genre : '.$style->getName(),
             'style' => $style,
             'disks' => $style->getDisks(),
-            'script' => '/assets/js/styles.js'
+            'script' => '/assets/js/styles.js',
+            'mine'=>$mine
         ]);
     }
 }

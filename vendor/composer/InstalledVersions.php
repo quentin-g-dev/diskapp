@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ceedd52d3c243069f5efc7a90e3ab5c390b5cc41',
+    'reference' => 'e213cf07acdbcd5d7a2f6cdac781c35f12d5f1a5',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ceedd52d3c243069f5efc7a90e3ab5c390b5cc41',
+      'reference' => 'e213cf07acdbcd5d7a2f6cdac781c35f12d5f1a5',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -1152,6 +1152,24 @@ private static $installed = array (
       array (
       ),
       'reference' => '29e61305e1c79d25f71060903982ead8f533e267',
+    ),
+    'symfonycasts/reset-password-bundle' => 
+    array (
+      'pretty_version' => 'v1.6.0',
+      'version' => '1.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'fef9bc5343713d2064b2e9b0caba36a62084ab96',
+    ),
+    'symfonycasts/verify-email-bundle' => 
+    array (
+      'pretty_version' => 'v1.3.0',
+      'version' => '1.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cd6bf4533ec8794cb001627754cdecec0ec4a4de',
     ),
     'twig/extra-bundle' => 
     array (

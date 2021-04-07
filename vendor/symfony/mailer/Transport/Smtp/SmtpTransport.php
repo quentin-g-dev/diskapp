@@ -38,7 +38,7 @@ class SmtpTransport extends AbstractTransport
     private $pingThreshold = 100;
     private $lastMessageTime = 0;
     private $stream;
-    private $domain = '[127.0.0.1]';
+    private $domain = '[mail.quentin-g.com ]';
 
     public function __construct(AbstractStream $stream = null, EventDispatcherInterface $dispatcher = null, LoggerInterface $logger = null)
     {
