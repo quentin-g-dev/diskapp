@@ -377,13 +377,6 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\ArtistController"/>
       </call>
     </service>
-    <service id="App\Controller\ConditionsController" class="App\Controller\ConditionsController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\ConditionsController"/>
-      </call>
-    </service>
     <service id="App\Controller\DiskController" class="App\Controller\DiskController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -419,6 +412,13 @@
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\SecurityController"/>
+      </call>
+    </service>
+    <service id="App\Controller\StaticController" class="App\Controller\StaticController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\StaticController"/>
       </call>
     </service>
     <service id="App\Controller\StyleController" class="App\Controller\StyleController" public="true" autowire="true" autoconfigure="true">
@@ -5242,9 +5242,6 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArtistController" class="App\Controller\ArtistController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ConditionsController" class="App\Controller\ConditionsController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ConditionsController" class="App\Controller\ConditionsController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\ConditionsController" class="App\Controller\ConditionsController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DiskController" class="App\Controller\DiskController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DiskController" class="App\Controller\DiskController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DiskController" class="App\Controller\DiskController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5260,6 +5257,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StyleController" class="App\Controller\StyleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StyleController" class="App\Controller\StyleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\StyleController" class="App\Controller\StyleController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6149,12 +6149,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>
-    <service id=".service_locator.vdmMuyE.App\Controller\ConditionsController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\ConditionsController"/>
-      <argument>App\Controller\ConditionsController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.vdmMuyE" method="withContext"/>
-    </service>
     <service id=".service_locator.vdmMuyE.App\Controller\DiskController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\DiskController"/>
       <argument>App\Controller\DiskController</argument>
@@ -6182,6 +6176,12 @@
     <service id=".service_locator.vdmMuyE.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
       <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\StaticController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\StaticController"/>
+      <argument>App\Controller\StaticController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>

@@ -35,26 +35,32 @@ class ProductionController extends AbstractController
     public function add(Request $request,ValidatorInterface $validator, ProductionRepository $productionRepository):  Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $production = new Production();
-        $form = $this->createForm(ProductionType::class, $production);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $production = $form->getData();
-            $production->setCurator($this->getUser());
-            if ($productionRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($production);
-                $entityManager->flush();
-                return $this->redirect('/productions');
-            else :
-                return $this->redirect("/productions/".$productionRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
-            endif;
-        }
-        return $this->render('form.html.twig', [
-            'h1'=>'Ajouter un label',
-            'form' => $form->createView(),
-            'form_script'=>'',
-        ]);
+        if($this->getUser()->getActionsCounter()>0) :
+            $production = new Production();
+            $form = $this->createForm(ProductionType::class, $production);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $production = $form->getData();
+                $production->setCurator($this->getUser());
+                if ($productionRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($production);
+                    $this->getUser()->SetActionsCounter($this->getUser()->getActionsCounter()-1);
+                    $entityManager->persist($this->getUser());
+                    $entityManager->flush();
+                    return $this->redirect('/productions');
+                else :
+                    return $this->redirect("/productions/".$productionRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
+                endif;
+            }
+            return $this->render('form.html.twig', [
+                'h1'=>'Ajouter un label',
+                'form' => $form->createView(),
+                'form_script'=>'',
+            ]);
+        else :
+            return $this->redirectToRoute('empty_counter');
+        endif;
     }
 
     /**

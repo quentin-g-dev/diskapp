@@ -86,7 +86,17 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        $result=false;
+        if ($this->passwordEncoder->isPasswordValid($user, $credentials['password'])):
+            $result=true;
+            if($user->getLastConnected() !==  date("y-m-d")) :
+                $user->setLastConnected(new \DateTime('now'));
+                $user->setActionsCounter(10);
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+            endif;
+        endif;
+        return $result;
     }
 
     /**
@@ -102,6 +112,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
+       
         return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 

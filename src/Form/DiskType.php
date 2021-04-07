@@ -37,7 +37,8 @@ class DiskType extends AbstractType
                 ]
             ])
             ->add('img', FileType::class, [
-                'label' => 'Image (.JPEG, .JPG, .PNG)',
+                'label' => 'Image',
+                'help' => 'Formats acceptés : .jpeg, .jpg, .png',
                 'required'=>false,
                 'empty_data'=>null,
                 'attr' => [

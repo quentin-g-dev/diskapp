@@ -1,5 +1,5 @@
 function setMyUsername() {
-    if(prompted = prompt('Nouvel nom d\'utilisateur : ')){
+    if(prompted = prompt('Nouveau nom d\'utilisateur : ')){
         $.ajax({
             type: "POST",
             url: "/ajax_set_my_username",

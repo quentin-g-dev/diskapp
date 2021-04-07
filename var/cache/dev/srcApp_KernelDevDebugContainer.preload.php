@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/Container3RxfvUr/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerWoGgDzw/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -38,7 +38,6 @@ $classes[] = 'Symfony\Component\HttpFoundation\RequestMatcher';
 $classes[] = 'Symfony\Component\DependencyInjection\ServiceLocator';
 $classes[] = 'App\Controller\AjaxController';
 $classes[] = 'App\Controller\ArtistController';
-$classes[] = 'App\Controller\ConditionsController';
 $classes[] = 'App\Controller\DiskController';
 $classes[] = 'App\Controller\ProductionController';
 $classes[] = 'App\Controller\RegistrationController';
@@ -52,6 +51,7 @@ $classes[] = 'SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper';
 $classes[] = 'SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator';
 $classes[] = 'SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordRandomGenerator';
 $classes[] = 'App\Controller\SecurityController';
+$classes[] = 'App\Controller\StaticController';
 $classes[] = 'App\Controller\StyleController';
 $classes[] = 'App\Controller\SumupController';
 $classes[] = 'App\Controller\UserController';

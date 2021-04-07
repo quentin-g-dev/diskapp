@@ -11,7 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"username"}, message="Merci de saisir un autre nom d'utilisateur")
+ * @UniqueEntity(fields={"email"}, message="Merci de saisir une autre adresse e-mail")
  */
 class User implements UserInterface
 {
@@ -39,7 +40,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -67,6 +68,17 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Production::class, mappedBy="curator", orphanRemoval=true)
      */
     private $productions;
+
+    /**
+     * @ORM\Column(type="date")
+     * @var string A "d-m-Y" formatted value
+     */
+    private $last_connected;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $actions_counter;
 
 
     public function __construct()
@@ -293,6 +305,30 @@ class User implements UserInterface
                 $production->setCurator(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastConnected(): ?\DateTimeInterface
+    {
+        return $this->last_connected;
+    }
+
+    public function setLastConnected(\DateTimeInterface $last_connected): self
+    {
+        $this->last_connected = $last_connected;
+
+        return $this;
+    }
+
+    public function getActionsCounter(): ?int
+    {
+        return $this->actions_counter;
+    }
+
+    public function setActionsCounter(int $actions_counter): self
+    {
+        $this->actions_counter = $actions_counter;
 
         return $this;
     }

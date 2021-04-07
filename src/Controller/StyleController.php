@@ -38,26 +38,32 @@ class StyleController extends AbstractController
     public function add(Request $request,ValidatorInterface $validator, StyleRepository $styleRepository):  Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $style = new Style();
-        $form = $this->createForm(StyleType::class, $style);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $style = $form->getData();
-            $style->setCurator($this->getUser());
-            if ($styleRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($style);
-                $entityManager->flush();
-                return $this->redirect('/styles');
-            else :
-                return $this->redirect("/styles/".$styleRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
-            endif;
-        }
-        return $this->render('form.html.twig', [
-            'h1'=>'Ajouter un genre',
-            'form' => $form->createView(),
-            'form_script'=>''
-        ]);
+        if($this->getUser()->getActionsCounter()>0) :
+            $style = new Style();
+            $form = $this->createForm(StyleType::class, $style);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $style = $form->getData();
+                $style->setCurator($this->getUser());
+                if ($styleRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($style);
+                    $this->getUser()->SetActionsCounter($this->getUser()->getActionsCounter()-1);
+                    $entityManager->persist($this->getUser());
+                    $entityManager->flush();
+                    return $this->redirect('/styles');
+                else :
+                    return $this->redirect("/styles/".$styleRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
+                endif;
+            }
+            return $this->render('form.html.twig', [
+                'h1'=>'Ajouter un genre',
+                'form' => $form->createView(),
+                'form_script'=>''
+            ]);
+        else :
+            return $this->redirectToRoute('empty_counter');
+        endif;
     }
 
    /**

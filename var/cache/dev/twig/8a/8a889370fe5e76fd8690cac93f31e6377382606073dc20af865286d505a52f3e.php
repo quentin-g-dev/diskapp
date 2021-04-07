@@ -85,7 +85,7 @@ class __TwigTemplate_e5b53e122feba390a236a326363499d5225fcf015678bd250465b2bd63c
 
         // line 6
         echo "    <p>
-        Si votre adresse email est associée à un compte, un message vous a été envoyé : il contient un lien URL qui vous permettra de réinitialiser votre mot de passe.<br>
+        Si votre adresse email est bien associée à un compte, un message vous a été envoyé : il contient un lien URL qui vous permettra de réinitialiser votre mot de passe.<br>
         Délai d'expiration du lien :  ";
         // line 8
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["resetToken"]) || array_key_exists("resetToken", $context) ? $context["resetToken"] : (function () { throw new RuntimeError('Variable "resetToken" does not exist.', 8, $this->source); })()), "expirationMessageKey", [], "any", false, false, false, 8), twig_get_attribute($this->env, $this->source, (isset($context["resetToken"]) || array_key_exists("resetToken", $context) ? $context["resetToken"] : (function () { throw new RuntimeError('Variable "resetToken" does not exist.', 8, $this->source); })()), "expirationMessageData", [], "any", false, false, false, 8), "ResetPasswordBundle"), "html", null, true);
@@ -135,7 +135,7 @@ class __TwigTemplate_e5b53e122feba390a236a326363499d5225fcf015678bd250465b2bd63c
 
 {% block main %}
     <p>
-        Si votre adresse email est associée à un compte, un message vous a été envoyé : il contient un lien URL qui vous permettra de réinitialiser votre mot de passe.<br>
+        Si votre adresse email est bien associée à un compte, un message vous a été envoyé : il contient un lien URL qui vous permettra de réinitialiser votre mot de passe.<br>
         Délai d'expiration du lien :  {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
     </p>
     <p>

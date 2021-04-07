@@ -37,26 +37,34 @@ class ArtistController extends AbstractController
     public function add(Request $request,ValidatorInterface $validator, ArtistRepository $artistRepository):  Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $artist = new Artist();
-        $form = $this->createForm(ArtistType::class, $artist);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $artist = $form->getData();
-            $artist->setCurator($this->getUser());
-            if ($artistRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($artist);
-                $entityManager->flush();
-                return $this->redirect('/artists');
-            else :
-                return $this->redirect("/artists/".$artistRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
-            endif;
-        }
-        return $this->render('form.html.twig', [
-            'h1'=>'Ajouter un artiste',
-            'form' => $form->createView(),
-            'form_script' => '',
-        ]);
+        if($this->getUser()->getActionsCounter()>0) :
+            $artist = new Artist();
+            $form = $this->createForm(ArtistType::class, $artist);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $artist = $form->getData();
+                $artist->setCurator($this->getUser());
+                if ($artistRepository->findOneBy(['name'=>$form['name']->getData()]) === null) :
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($artist);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $this->getUser()->SetActionsCounter($this->getUser()->getActionsCounter()-1);
+                    $entityManager->persist($this->getUser());
+                    $entityManager->flush();
+                    
+                    return $this->redirect('/artists');
+                else :
+                    return $this->redirect("/artists/".$artistRepository->findOneBy(['name'=>$form['name']->getData()])->getId());
+                endif;
+            }
+            return $this->render('form.html.twig', [
+                'h1'=>'Ajouter un artiste',
+                'form' => $form->createView(),
+                'form_script' => '',
+            ]);
+        else :
+            return $this->redirectToRoute('empty_counter');
+        endif;
     }
 
     /**

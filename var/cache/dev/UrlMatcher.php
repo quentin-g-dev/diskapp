@@ -23,7 +23,6 @@ return [
         '/ajax_set_my_username' => [[['_route' => 'app_ajax_setmyusername', '_controller' => 'App\\Controller\\AjaxController::setMyUserName'], null, null, null, false, false, null]],
         '/artists' => [[['_route' => 'artists', '_controller' => 'App\\Controller\\ArtistController::artists'], null, null, null, false, false, null]],
         '/artists/add' => [[['_route' => 'add_artist', '_controller' => 'App\\Controller\\ArtistController::add'], null, null, null, false, false, null]],
-        '/conditions' => [[['_route' => 'conditions', '_controller' => 'App\\Controller\\ConditionsController::index'], null, null, null, false, false, null]],
         '/disks' => [[['_route' => 'disks', '_controller' => 'App\\Controller\\DiskController::disks'], null, null, null, false, false, null]],
         '/disks/add' => [[['_route' => 'add_disk', '_controller' => 'App\\Controller\\DiskController::add'], null, null, null, false, false, null]],
         '/productions' => [[['_route' => 'productions', '_controller' => 'App\\Controller\\ProductionController::labels'], null, null, null, false, false, null]],
@@ -35,10 +34,14 @@ return [
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/conditions' => [[['_route' => 'conditions', '_controller' => 'App\\Controller\\StaticController::conditions'], null, null, null, false, false, null]],
+        '/privacy' => [[['_route' => 'privacy', '_controller' => 'App\\Controller\\StaticController::privacy'], null, null, null, false, false, null]],
+        '/legal' => [[['_route' => 'legal', '_controller' => 'App\\Controller\\StaticController::legal'], null, null, null, false, false, null]],
         '/styles' => [[['_route' => 'styles', '_controller' => 'App\\Controller\\StyleController::styles'], null, null, null, false, false, null]],
         '/styles/add' => [[['_route' => 'add_style', '_controller' => 'App\\Controller\\StyleController::add'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\SumupController::home'], null, null, null, false, false, null]],
         '/import' => [[['_route' => 'import', '_controller' => 'App\\Controller\\SumupController::import'], null, null, null, false, false, null]],
+        '/empty_counter' => [[['_route' => 'empty_counter', '_controller' => 'App\\Controller\\UserController::emptyCounter'], null, ['GET' => 0], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

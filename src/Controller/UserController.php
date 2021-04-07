@@ -66,4 +66,13 @@ class UserController extends AbstractController
         endif;
         return $this->redirectToRoute('home');  
     }
+
+    /**
+     * @Route("/empty_counter", methods={"GET"}, name="empty_counter")
+     */
+    public function emptyCounter() {
+        return $this->render('user/empty_counter.html.twig',[
+            'h1'=>'Limite atteinte ...'
+        ]);
+    }
 }

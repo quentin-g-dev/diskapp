@@ -65,8 +65,6 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
 </head>
 
 <body class=\"d-flex\">
-    
-
     <div class=\"w-25 d-flex flex-column m-0\">
         <a href=\"/\" class=\"h1 p-3 mb-3 d-flex justify-content-center align-items-center bg-mediumBlueGrey text-lightGrey\">DISKAPP</a>
         <aside class=\"bg-mediumBlueGrey m-0 p-3 d-flex flex-column justify-content-between\">
@@ -81,9 +79,13 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
                 <a href=\"/productions/add\" class=\"btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey\">Ajouter un label</a>
                 <a href=\"/styles/add\" class=\"btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey\">Ajouter un genre</a>
                 ";
-        // line 32
+        // line 30
         echo "            </nav>
-            <a href=\"/conditions\" class=\"text-lightGrey mb-5 mx-auto\"><small>Conditions d'utilisation</small></a>
+            <a href=\"/conditions\" class=\"text-lightGrey mx-auto w-auto\"><small>Conditions d'utilisation</small></a>
+            <a href=\"/legal\" class=\"text-lightGrey mx-auto\"><small>Informations légales</small></a>
+            <div class=\"mx-auto mt-2 d-flex flex-column justify-content-center\">
+                <a class=\"btn btn-transparent border border-light text-lightGrey mb-5 \" href=\"https://www.quentin-g.com\"><small>Application réalisée par <b>Quentin G</b></small></a>
+            </div>
         </aside>
     </div>
     <div class=\"d-flex flex-column w-100\">
@@ -92,30 +94,30 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
                 <div class=\"d-flex justify-content-between\">
                     
                     <h1 class=\"text-mediumBlueGrey p-3 pl-4 m-0 \">";
-        // line 41
-        echo twig_escape_filter($this->env, (isset($context["h1"]) || array_key_exists("h1", $context) ? $context["h1"] : (function () { throw new RuntimeError('Variable "h1" does not exist.', 41, $this->source); })()), "html", null, true);
+        // line 43
+        echo twig_escape_filter($this->env, (isset($context["h1"]) || array_key_exists("h1", $context) ? $context["h1"] : (function () { throw new RuntimeError('Variable "h1" does not exist.', 43, $this->source); })()), "html", null, true);
         echo "</h1>
                     ";
-        // line 42
+        // line 44
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 43
+            // line 45
             echo "                        <div class=\"d-flex\">
                             <a class=\"btn btn-info align-self-end my-auto mr-5\" href=\"/user/";
-            // line 44
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "user", [], "any", false, false, false, 44), "id", [], "any", false, false, false, 44), "html", null, true);
+            // line 46
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 46, $this->source); })()), "user", [], "any", false, false, false, 46), "id", [], "any", false, false, false, 46), "html", null, true);
             echo "\">Mon compte</a>
                             <a class=\"btn btn-light align-self-end my-auto mr-5\" href=\"/logout\">Déconnexion</a>
                         </div>  
                     ";
         } else {
-            // line 48
+            // line 50
             echo "                        <div class=\"d-flex\">
                             <a class=\"btn btn-info align-self-end my-auto mr-5\" href=\"/login\">Connexion</a>
                             <a class=\"btn btn-success align-self-end my-auto mr-5\" href=\"/register\">Inscription</a>
                         </div>                  
                     ";
         }
-        // line 53
+        // line 55
         echo "                </div>
                 <div class=\"p-2 h1bar bg-mediumBlueGrey\"></div>
             </div>
@@ -124,9 +126,9 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
 
         <main class=\"p-4 w-100\">
             ";
-        // line 60
+        // line 62
         $this->displayBlock('main', $context, $blocks);
-        // line 61
+        // line 63
         echo "        </main>
     </div>
 
@@ -135,9 +137,9 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
     <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\" integrity=\"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6\" crossorigin=\"anonymous\"></script>
     <script src=\"/assets/js/main.js\"></script>
     ";
-        // line 68
+        // line 70
         $this->displayBlock('custom_scripts', $context, $blocks);
-        // line 69
+        // line 71
         echo "</body>
 </html>
 
@@ -188,7 +190,7 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
 
     }
 
-    // line 60
+    // line 62
     public function block_main($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -206,7 +208,7 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
 
     }
 
-    // line 68
+    // line 70
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -236,7 +238,7 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
 
     public function getDebugInfo()
     {
-        return array (  210 => 68,  192 => 60,  174 => 11,  155 => 8,  141 => 69,  139 => 68,  130 => 61,  128 => 60,  119 => 53,  112 => 48,  105 => 44,  102 => 43,  100 => 42,  96 => 41,  85 => 32,  64 => 12,  62 => 11,  56 => 8,  47 => 1,);
+        return array (  212 => 70,  194 => 62,  176 => 11,  157 => 8,  143 => 71,  141 => 70,  132 => 63,  130 => 62,  121 => 55,  114 => 50,  107 => 46,  104 => 45,  102 => 44,  98 => 43,  83 => 30,  64 => 12,  62 => 11,  56 => 8,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -256,8 +258,6 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
 </head>
 
 <body class=\"d-flex\">
-    
-
     <div class=\"w-25 d-flex flex-column m-0\">
         <a href=\"/\" class=\"h1 p-3 mb-3 d-flex justify-content-center align-items-center bg-mediumBlueGrey text-lightGrey\">DISKAPP</a>
         <aside class=\"bg-mediumBlueGrey m-0 p-3 d-flex flex-column justify-content-between\">
@@ -273,7 +273,11 @@ class __TwigTemplate_31230094ff43091a1fe27ad0984e3934ee03f0aa35f67fc9ecdde7782df
                 <a href=\"/styles/add\" class=\"btn font-weight-bold mb-4 bg-lightGrey text-mediumBlueGrey\">Ajouter un genre</a>
                 {# <a href=\"/import\" class=\"btn font-weight-bold mb-4 border bg-darkBlueGrey border-light text-lightGrey\">Import massif</a> #}
             </nav>
-            <a href=\"/conditions\" class=\"text-lightGrey mb-5 mx-auto\"><small>Conditions d'utilisation</small></a>
+            <a href=\"/conditions\" class=\"text-lightGrey mx-auto w-auto\"><small>Conditions d'utilisation</small></a>
+            <a href=\"/legal\" class=\"text-lightGrey mx-auto\"><small>Informations légales</small></a>
+            <div class=\"mx-auto mt-2 d-flex flex-column justify-content-center\">
+                <a class=\"btn btn-transparent border border-light text-lightGrey mb-5 \" href=\"https://www.quentin-g.com\"><small>Application réalisée par <b>Quentin G</b></small></a>
+            </div>
         </aside>
     </div>
     <div class=\"d-flex flex-column w-100\">

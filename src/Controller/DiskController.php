@@ -50,52 +50,58 @@ class DiskController extends AbstractController
     public function add(Request $request, ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository):  Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $disk = new Disk();
-        $disk->setRegistered(new \DateTime('now'));
-        $form = $this->createForm(DiskType::class, $disk);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form['artist']=== '0') :
-                $disk->setArtist($artistRepository->find(23));
-            else :
-                $artist = $artistRepository->find($form->getData()->getArtist()->getId());
-                $disk->setArtist($artist);
-            endif;
-            $production = $productionRepository->find($form->getData()->getProduction()->getId());
-            $disk->setProduction($production);
-            $disk->setPublished($form['published']->getData());
-            $style = $styleRepository->find($form->getData()->getStyle()->getId());
-            $disk->setStyle($style);
-            $disk->setCurator($this->getUser());
-            if (is_null($form['img']->getData())) :
-                $disk->setImg('/assets/img/diskapp_cd.png');
-            else :
-                $file = $form['img']->getData();
-                if($file->guessExtension() === 'jpg' || $file->guessExtension() === 'jpeg' || $file->guessExtension() == 'png') :
-                    $directory = '.'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload';
-                    $fileName = $disk->getName().'_'.$disk->getId().'_'.preg_replace('/s/', '', $disk->getArtist()->getName()).'.'.$file->getExtension();
-                    $file->move($directory, $fileName);
-                    $disk->setImg('/assets/img/upload/'.$fileName.DIRECTORY_SEPARATOR.$file->getExtension());
-                else : 
-                    $disk->setImg('/assets/img/diskapp_cd.png');
+        if($this->getUser()->getActionsCounter()>0) :
+            $disk = new Disk();
+            $disk->setRegistered(new \DateTime('now'));
+            $form = $this->createForm(DiskType::class, $disk);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                if ($form['artist'] === '0') :
+                    $disk->setArtist($artistRepository->find(23));
+                else :
+                    $artist = $artistRepository->find($form->getData()->getArtist()->getId());
+                    $disk->setArtist($artist);
                 endif;
-            endif;
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($disk);
-            $entityManager->persist($artist);
-            $entityManager->persist($production);
-            $entityManager->persist($style);
-            $entityManager->flush();
-            
-            /* return $this->render('debug.html.twig', ['h1'=>'DEBUG', 'debug' => $disk ]);*/ // Debug line
-            return $this->redirect('/disks');
-        }
+                $production = $productionRepository->find($form->getData()->getProduction()->getId());
+                $disk->setProduction($production);
+                $disk->setPublished($form['published']->getData());
+                $style = $styleRepository->find($form->getData()->getStyle()->getId());
+                $disk->setStyle($style);
+                $disk->setCurator($this->getUser());
+                if (is_null($form['img']->getData())) :
+                    $disk->setImg('/assets/img/diskapp_cd.png');
+                else :
+                    $file = $form['img']->getData();
+                    if($file->guessExtension() === 'jpg' || $file->guessExtension() === 'jpeg' || $file->guessExtension() == 'png') :
+                        $directory = '.'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload';
+                        $fileName = $disk->getName().'_'.$disk->getId().'_'.preg_replace('/s/', '', $disk->getArtist()->getName()).'.'.$file->getExtension();
+                        $file->move($directory, $fileName);
+                        $disk->setImg('/assets/img/upload/'.$fileName.DIRECTORY_SEPARATOR.$file->getExtension());
+                    else : 
+                        $disk->setImg('/assets/img/diskapp_cd.png');
+                    endif;
+                endif;
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($disk);
+                $entityManager->persist($artist);
+                $entityManager->persist($production);
+                $entityManager->persist($style);
+                $this->getUser()->SetActionsCounter($this->getUser()->getActionsCounter()-1);
+                $entityManager->persist($this->getUser());
+                $entityManager->flush();
+                
+                /* return $this->render('debug.html.twig', ['h1'=>'DEBUG', 'debug' => $disk ]);*/ // Debug line
+                return $this->redirect('/disks');
+            }
 
-        return $this->render('form.html.twig', [
-            'h1'=>'Ajouter un disque',
-            'form' => $form->createView(),
-            'form_script'=>'/assets/js/new_disk_form.js'
-        ]);
+            return $this->render('form.html.twig', [
+                'h1'=>'Ajouter un disque',
+                'form' => $form->createView(),
+                'form_script'=>'/assets/js/new_disk_form.js'
+            ]);
+        else : 
+            return $this->redirectToRoute('empty_counter');
+        endif;
     }
 
     /**
