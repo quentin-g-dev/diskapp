@@ -14,4 +14,5 @@ Installer la base de données à l'aide des fichiers .sql présents à la racine
 Créer un utilisateur doté d'un accès privilégié à cette nouvelle base de données, et reporter les références dans le fichier .env <br>
 Toujours dans le fichier .env, configurer un serveur SMTP pour l'envoi d'e-mails (inscriptions, renouvellements de mots de passe...).
 Sur un serveur local : depuis le répertoire racine du projet, exécuter la commande <pre>symfony server:start</pre>  et suivre le lien généré.
-L'application s'exécute à partir du répertoire /public/
+L'application s'exécute à partir du répertoire /public/<br>
+Pour passer en mode production, exécuter la commande : <pre> APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear</pre>
