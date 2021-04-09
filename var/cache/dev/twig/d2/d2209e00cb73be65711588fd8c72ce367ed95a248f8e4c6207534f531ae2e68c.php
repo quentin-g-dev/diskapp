@@ -86,11 +86,11 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
 
         // line 6
         echo "<div class=\"container m-0 w-100\">
-    <div class=\"row\">
-        <div class=\"mr-5 p-3 col-10 text-center\">
+   <div class=\"md-row\">
+        <div class=\"mr-md-5 p-3 col-md-10 text-center\">
             <h2 class=\"p-1 bg-mediumBlueGrey text-light mt-3\">Contributions</h2>
-             <div class=\"d-flex justify-content-between\">
-                <div class=\"mr-5 w-100 p-3 text-center\">
+             <div class=\"d-flex flex-column flex-md-row justify-content-between\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Disques</h3>
                     <span class=\"list-group\">
                         ";
@@ -122,7 +122,7 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
         // line 22
         echo "                    </span>
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Artistes</h3>
                     <span class=\"list-group\">
                         ";
@@ -147,7 +147,7 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
         // line 32
         echo "                    </span>        
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Genres</h3>
                     <span class=\"list-group\">
                         ";
@@ -172,7 +172,7 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
         // line 42
         echo "                    </span>                
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Labels</h3>
                     <span class=\"list-group\">
                         ";
@@ -251,11 +251,11 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
 
 {% block main %}
 <div class=\"container m-0 w-100\">
-    <div class=\"row\">
-        <div class=\"mr-5 p-3 col-10 text-center\">
+   <div class=\"md-row\">
+        <div class=\"mr-md-5 p-3 col-md-10 text-center\">
             <h2 class=\"p-1 bg-mediumBlueGrey text-light mt-3\">Contributions</h2>
-             <div class=\"d-flex justify-content-between\">
-                <div class=\"mr-5 w-100 p-3 text-center\">
+             <div class=\"d-flex flex-column flex-md-row justify-content-between\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Disques</h3>
                     <span class=\"list-group\">
                         {% for disk in disks %}
@@ -268,7 +268,7 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
                         {% endfor %}
                     </span>
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Artistes</h3>
                     <span class=\"list-group\">
                         {% for artist in artists %}
@@ -278,7 +278,7 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
                         {% endfor %}
                     </span>        
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Genres</h3>
                     <span class=\"list-group\">
                         {% for style in styles %}
@@ -288,7 +288,7 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
                         {% endfor %}
                     </span>                
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Labels</h3>
                     <span class=\"list-group\">
                         {% for production in productions %}
@@ -305,6 +305,6 @@ class __TwigTemplate_bf6c6581c55d798135d858dbf2c904a3c7ee6b52611df2daa5ab2f7e325
 {% endblock %}
 
 {% block custom_scripts %}
-{% endblock %}", "user/user.html.twig", "/var/www/html/diskapp_1.0/templates/user/user.html.twig");
+{% endblock %}", "user/user.html.twig", "/var/www/html/disk2/templates/user/user.html.twig");
     }
 }

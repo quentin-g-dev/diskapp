@@ -115,7 +115,7 @@ class __TwigTemplate_b9d73edc00324bb4e128b1792a918c105ca2f738823dea9e59dec280502
         // line 16
         echo "    <br>    
     <h3 class=\"ml-3 mt-5\">Disques :</h3>
-    <table class=\"table table-striped table-hover  w-100\" id=\"disksTable\">
+    <table class=\"table table-striped table-hover table-responsive w-100\" id=\"disksTable\">
         <thead>
             <tr>
                 <th class=\"align-middle text-center\" scope=\"col\">Cover</th>
@@ -242,7 +242,7 @@ class __TwigTemplate_b9d73edc00324bb4e128b1792a918c105ca2f738823dea9e59dec280502
     {% endif %}
     <br>    
     <h3 class=\"ml-3 mt-5\">Disques :</h3>
-    <table class=\"table table-striped table-hover  w-100\" id=\"disksTable\">
+    <table class=\"table table-striped table-hover table-responsive w-100\" id=\"disksTable\">
         <thead>
             <tr>
                 <th class=\"align-middle text-center\" scope=\"col\">Cover</th>
@@ -271,6 +271,6 @@ class __TwigTemplate_b9d73edc00324bb4e128b1792a918c105ca2f738823dea9e59dec280502
 {% endblock %}
 
 {% block custom_scripts %}<script src=\"{{ script }}\"></script>{% endblock %}
-", "production_solo.html.twig", "/var/www/html/diskapp_1.0/templates/production_solo.html.twig");
+", "production_solo.html.twig", "/var/www/html/disk2/templates/production_solo.html.twig");
     }
 }

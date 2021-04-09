@@ -96,10 +96,10 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
         ";
         }
         // line 10
-        echo "        <section class=\"d-flex\">
-            <div class=\"p-2\">
-                <h2 class=\"ml-1\">Registre</h2>
-                <table class=\"table table-striped table-hover mt-4 table-responsive w-100\" id=\"sumUpTable\">
+        echo "        <section class=\"d-flex flex-column flex-md-row\">
+            <div class=\"p-md-2 my-2\">
+                <h2 class=\"ml-1 font-weight-bold text-mediumBlueGrey\">Registre</h2>
+                <table class=\"table table-striped table-responsive table-hover mt-4 table-responsive w-100\" id=\"sumUpTable\">
                     <tbody>
                         <tr>
                             <td colspan =\"2\" class=\"align-middle\">
@@ -157,24 +157,25 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                     </tbody>
                 </table>
             </div>
-            <div class=\"p-2\">
-                <h2 class=\"ml-1\">Stock</h2>
+            <hr class=\"w-100 d-md-none\">
+            <div class=\"p-md-2 my-2\">
+                <h2 class=\"ml-1 font-weight-bold text-mediumBlueGrey\">Stock</h2>
                 <table class=\"table table-striped table-hover mt-4 w-100\">
                     <tbody>
                         <tr>
                             <td class=\"align-middle\">Total</td>
                             <td class=\"align-middle\">
                                 ";
-        // line 48
-        echo twig_escape_filter($this->env, (isset($context["stock"]) || array_key_exists("stock", $context) ? $context["stock"] : (function () { throw new RuntimeError('Variable "stock" does not exist.', 48, $this->source); })()), "html", null, true);
+        // line 49
+        echo twig_escape_filter($this->env, (isset($context["stock"]) || array_key_exists("stock", $context) ? $context["stock"] : (function () { throw new RuntimeError('Variable "stock" does not exist.', 49, $this->source); })()), "html", null, true);
         echo " disques en stock
                             </td>
                         </tr>
                         <tr>
                             <td class=\"align-middle\">";
-        // line 52
-        if (preg_match("/^\\d+\$/", twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 52, $this->source); })())))) {
-            echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 52, $this->source); })())), "html", null, true);
+        // line 53
+        if (preg_match("/^\\d+\$/", twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 53, $this->source); })())))) {
+            echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 53, $this->source); })())), "html", null, true);
         } else {
             echo " ";
             echo "-";
@@ -182,11 +183,11 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
         echo " disques en rupture de stock</td>
                             <td class=\"align-middle\">
                                 ";
-        // line 54
+        // line 55
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 54, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["out_stock"]) || array_key_exists("out_stock", $context) ? $context["out_stock"] : (function () { throw new RuntimeError('Variable "out_stock" does not exist.', 55, $this->source); })()));
         foreach ($context['_seq'] as $context["diskId"] => $context["diskName"]) {
-            // line 55
+            // line 56
             echo "                                    <a href=\"/disks/";
             echo twig_escape_filter($this->env, $context["diskId"], "html", null, true);
             echo "\">";
@@ -197,7 +198,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['diskId'], $context['diskName'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 57
+        // line 58
         echo "                            </td>
                         </tr>
                     </tbody>
@@ -215,7 +216,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 
     }
 
-    // line 67
+    // line 68
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -245,7 +246,7 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 
     public function getDebugInfo()
     {
-        return array (  219 => 67,  201 => 57,  190 => 55,  186 => 54,  176 => 52,  169 => 48,  149 => 35,  136 => 29,  123 => 23,  108 => 17,  99 => 10,  93 => 8,  91 => 7,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
+        return array (  220 => 68,  202 => 58,  191 => 56,  187 => 55,  177 => 53,  170 => 49,  149 => 35,  136 => 29,  123 => 23,  108 => 17,  99 => 10,  93 => 8,  91 => 7,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -259,10 +260,10 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
         {% if message|length > 0 %}
         <div class=\"bg-danger text-white p-4 font-weight-bold h4 text-center\">{{ message }}</div>
         {% endif %}
-        <section class=\"d-flex\">
-            <div class=\"p-2\">
-                <h2 class=\"ml-1\">Registre</h2>
-                <table class=\"table table-striped table-hover mt-4 table-responsive w-100\" id=\"sumUpTable\">
+        <section class=\"d-flex flex-column flex-md-row\">
+            <div class=\"p-md-2 my-2\">
+                <h2 class=\"ml-1 font-weight-bold text-mediumBlueGrey\">Registre</h2>
+                <table class=\"table table-striped table-responsive table-hover mt-4 table-responsive w-100\" id=\"sumUpTable\">
                     <tbody>
                         <tr>
                             <td colspan =\"2\" class=\"align-middle\">
@@ -290,8 +291,9 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
                     </tbody>
                 </table>
             </div>
-            <div class=\"p-2\">
-                <h2 class=\"ml-1\">Stock</h2>
+            <hr class=\"w-100 d-md-none\">
+            <div class=\"p-md-2 my-2\">
+                <h2 class=\"ml-1 font-weight-bold text-mediumBlueGrey\">Stock</h2>
                 <table class=\"table table-striped table-hover mt-4 w-100\">
                     <tbody>
                         <tr>
@@ -317,6 +319,6 @@ class __TwigTemplate_4e77e0f96ef259ff04d6a2601d6fe978c9ba8ac310e595f3ecc6b2f0d2e
 {% endblock %}
 
 {% block custom_scripts %}{% endblock %}
-", "home.html.twig", "/var/www/html/diskapp_1.0/templates/home.html.twig");
+", "home.html.twig", "/var/www/html/disk2/templates/home.html.twig");
     }
 }

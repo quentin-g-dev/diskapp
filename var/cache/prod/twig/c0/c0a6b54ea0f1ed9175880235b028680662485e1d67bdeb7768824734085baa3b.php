@@ -51,6 +51,6 @@ class __TwigTemplate_22a9212097958ec15331b1cb19cb12b3ee9f839401909e7eab7ae1dc27f
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/percent_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/percent_widget.html.php");
+        return new Source("", "@Framework/Form/percent_widget.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/percent_widget.html.php");
     }
 }

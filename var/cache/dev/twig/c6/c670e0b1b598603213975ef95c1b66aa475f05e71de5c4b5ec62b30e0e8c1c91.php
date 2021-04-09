@@ -63,6 +63,6 @@ class __TwigTemplate_7bec69a9e1e3cb334ac0495018a73c91be7614dc4dc9676939e367c647a
     public function getSourceContext()
     {
         return new Source("<?php echo \$view['form']->block(\$form, 'form_widget_simple', ['type' => \$type ?? 'email']) ?>
-", "@Framework/Form/email_widget.html.php", "/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/Resources/views/Form/email_widget.html.php");
+", "@Framework/Form/email_widget.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/email_widget.html.php");
     }
 }

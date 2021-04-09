@@ -86,9 +86,9 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
 
         // line 6
         echo "<div class=\" m-0 w-100\">
-    <div class=\" d-flex justify-content-between align-items-baseline\">
-        <div class=\"mr-5 p-3 text-center\">
-            <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light\">
+    <div class=\" d-flex flex-column flex-md-row justify-content-center align-items-center justify-content-md-between align-items-md-baseline\">
+        <div class=\"mr-md-5 p-3 text-center\">
+            <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light w-100 w-md-auto\">
                 <h2 class=\"h6\">Nom d'utilisateur</h2>
                 <button class=\"mx-3 btn btn-light px-1 py-0\" onclick=\"setMyUsername()\">
                     <small>Modifier</small>
@@ -99,7 +99,9 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 15, $this->source); })()), "username", [], "any", false, false, false, 15), "html", null, true);
         echo "</span>
         </div>
-        <div class=\"mr-5 p-3 text-center\">
+        <hr class=\"w-100 d-md-none m-0\">
+
+        <div class=\"mr-md-5 p-3 text-center\">
             <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light\">
                 <h2 class=\"h6\">E-mail</h2>
                 <button class=\"disabled mx-3 btn btn-light px-1 py-0\">
@@ -107,15 +109,17 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
                 </button>
             </span>
             <span>";
-        // line 24
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 24, $this->source); })()), "email", [], "any", false, false, false, 24), "html", null, true);
+        // line 26
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 26, $this->source); })()), "email", [], "any", false, false, false, 26), "html", null, true);
         echo "</span>
         </div> 
-        <div class=\"mr-5 p-3 text-center\">
+        <hr class=\"w-100 d-md-none m-0\">
+
+        <div class=\"mr-md-5 p-3 text-center\">
             <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light\">
                 <h2 class=\"h6\">Mot de passe</h2>
                 <a class=\"mx-3 btn btn-light px-1 py-0\" href=\"";
-        // line 29
+        // line 33
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_forgot_password_request");
         echo "\">
                     <small>Modifier</small>
@@ -123,38 +127,41 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
             </span>
             <span>***********</span>
         </div>
-        <div class=\"mr-5 p-3 text-center\">
+        <hr class=\"w-100 d-md-none m-0\">
+
+        <div class=\"mr-md-5 p-3 text-center\">
             <button class=\"btn btn-light\" onclick=\"if(confirm('Vous êtes sur le point de supprimer votre compte : cette action est irréversible. Confirmer ?')){window.location.href='";
-        // line 36
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("delete_user", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 36, $this->source); })()), "id", [], "any", false, false, false, 36)]), "html", null, true);
+        // line 42
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("delete_user", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 42, $this->source); })()), "id", [], "any", false, false, false, 42)]), "html", null, true);
         echo "'};\">Supprimer mon compte</a>
         </div>
+
     </div>
-    <div class=\"row\">
-        <div class=\"mr-5 p-3 col-10 text-center\">
+    <div class=\"md-row\">
+        <div class=\"mr-md-5 p-3 col-md-10 text-center\">
             <h2 class=\"p-1 bg-mediumBlueGrey text-light mt-3\">Contributions</h2>
-             <div class=\"d-flex justify-content-between\">
-                <div class=\"mr-5 w-100 p-3 text-center\">
+             <div class=\"d-flex flex-column flex-md-row justify-content-between\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Disques</h3>
                     <span class=\"list-group\">
                         ";
-        // line 46
+        // line 53
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["disks"]) || array_key_exists("disks", $context) ? $context["disks"] : (function () { throw new RuntimeError('Variable "disks" does not exist.', 46, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["disks"]) || array_key_exists("disks", $context) ? $context["disks"] : (function () { throw new RuntimeError('Variable "disks" does not exist.', 53, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["disk"]) {
-            // line 47
+            // line 54
             echo "                            <span class=\"list-group-item\">           
                                 <a href=\"/disks/";
-            // line 48
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "id", [], "any", false, false, false, 48), "html", null, true);
+            // line 55
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "id", [], "any", false, false, false, 55), "html", null, true);
             echo "\">
                                     <span class=\"font-weight-bold\">";
-            // line 49
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "name", [], "any", false, false, false, 49), "html", null, true);
+            // line 56
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "name", [], "any", false, false, false, 56), "html", null, true);
             echo "</span>
                                     - ";
-            // line 50
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "artist", [], "any", false, false, false, 50), "name", [], "any", false, false, false, 50), "html", null, true);
+            // line 57
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "artist", [], "any", false, false, false, 57), "name", [], "any", false, false, false, 57), "html", null, true);
             echo " 
                                 </a> 
                             </span>
@@ -163,24 +170,24 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['disk'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 54
+        // line 61
         echo "                    </span>
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Artistes</h3>
                     <span class=\"list-group\">
                         ";
-        // line 59
+        // line 66
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["artists"]) || array_key_exists("artists", $context) ? $context["artists"] : (function () { throw new RuntimeError('Variable "artists" does not exist.', 59, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["artists"]) || array_key_exists("artists", $context) ? $context["artists"] : (function () { throw new RuntimeError('Variable "artists" does not exist.', 66, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["artist"]) {
-            // line 60
+            // line 67
             echo "                            <span class=\"list-group-item\">           
                                 <a href=\"/artists/";
-            // line 61
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 61), "html", null, true);
+            // line 68
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 68), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "name", [], "any", false, false, false, 61), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "name", [], "any", false, false, false, 68), "html", null, true);
             echo "</a> 
                             </span>
                         ";
@@ -188,24 +195,24 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['artist'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 64
+        // line 71
         echo "                    </span>        
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Genres</h3>
                     <span class=\"list-group\">
                         ";
-        // line 69
+        // line 76
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["styles"]) || array_key_exists("styles", $context) ? $context["styles"] : (function () { throw new RuntimeError('Variable "styles" does not exist.', 69, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["styles"]) || array_key_exists("styles", $context) ? $context["styles"] : (function () { throw new RuntimeError('Variable "styles" does not exist.', 76, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["style"]) {
-            // line 70
+            // line 77
             echo "                            <span class=\"list-group-item\">           
                                 <a href=\"/styles/";
-            // line 71
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["style"], "id", [], "any", false, false, false, 71), "html", null, true);
+            // line 78
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["style"], "id", [], "any", false, false, false, 78), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["style"], "name", [], "any", false, false, false, 71), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["style"], "name", [], "any", false, false, false, 78), "html", null, true);
             echo "</a> 
                             </span>
                         ";
@@ -213,24 +220,24 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['style'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 74
+        // line 81
         echo "                    </span>                
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Labels</h3>
                     <span class=\"list-group\">
                         ";
-        // line 79
+        // line 86
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["productions"]) || array_key_exists("productions", $context) ? $context["productions"] : (function () { throw new RuntimeError('Variable "productions" does not exist.', 79, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["productions"]) || array_key_exists("productions", $context) ? $context["productions"] : (function () { throw new RuntimeError('Variable "productions" does not exist.', 86, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["production"]) {
-            // line 80
+            // line 87
             echo "                            <span class=\"list-group-item\">           
                                 <a href=\"/productions/";
-            // line 81
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 81), "html", null, true);
+            // line 88
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "id", [], "any", false, false, false, 88), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "name", [], "any", false, false, false, 81), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["production"], "name", [], "any", false, false, false, 88), "html", null, true);
             echo "</a> 
                             </span>
                         ";
@@ -238,7 +245,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['production'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 84
+        // line 91
         echo "                    </span>        
                 </div>
             </div>
@@ -256,7 +263,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
 
     }
 
-    // line 94
+    // line 101
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -266,7 +273,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "custom_scripts"));
 
-        // line 95
+        // line 102
         echo "    <script src=\"/assets/js/myself.js\"></script>
 ";
         
@@ -289,7 +296,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
 
     public function getDebugInfo()
     {
-        return array (  270 => 95,  260 => 94,  242 => 84,  231 => 81,  228 => 80,  224 => 79,  217 => 74,  206 => 71,  203 => 70,  199 => 69,  192 => 64,  181 => 61,  178 => 60,  174 => 59,  167 => 54,  157 => 50,  153 => 49,  149 => 48,  146 => 47,  142 => 46,  129 => 36,  119 => 29,  111 => 24,  99 => 15,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
+        return array (  277 => 102,  267 => 101,  249 => 91,  238 => 88,  235 => 87,  231 => 86,  224 => 81,  213 => 78,  210 => 77,  206 => 76,  199 => 71,  188 => 68,  185 => 67,  181 => 66,  174 => 61,  164 => 57,  160 => 56,  156 => 55,  153 => 54,  149 => 53,  135 => 42,  123 => 33,  113 => 26,  99 => 15,  88 => 6,  78 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -300,9 +307,9 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
 
 {% block main %}
 <div class=\" m-0 w-100\">
-    <div class=\" d-flex justify-content-between align-items-baseline\">
-        <div class=\"mr-5 p-3 text-center\">
-            <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light\">
+    <div class=\" d-flex flex-column flex-md-row justify-content-center align-items-center justify-content-md-between align-items-md-baseline\">
+        <div class=\"mr-md-5 p-3 text-center\">
+            <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light w-100 w-md-auto\">
                 <h2 class=\"h6\">Nom d'utilisateur</h2>
                 <button class=\"mx-3 btn btn-light px-1 py-0\" onclick=\"setMyUsername()\">
                     <small>Modifier</small>
@@ -310,7 +317,9 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
             </span>
             <span id=\"my_username\">{{ user.username }}</span>
         </div>
-        <div class=\"mr-5 p-3 text-center\">
+        <hr class=\"w-100 d-md-none m-0\">
+
+        <div class=\"mr-md-5 p-3 text-center\">
             <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light\">
                 <h2 class=\"h6\">E-mail</h2>
                 <button class=\"disabled mx-3 btn btn-light px-1 py-0\">
@@ -319,7 +328,9 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
             </span>
             <span>{{ user.email }}</span>
         </div> 
-        <div class=\"mr-5 p-3 text-center\">
+        <hr class=\"w-100 d-md-none m-0\">
+
+        <div class=\"mr-md-5 p-3 text-center\">
             <span class=\"d-flex justify-content-center align-items-baseline p-3 mb-2 bg-mediumBlueGrey text-light\">
                 <h2 class=\"h6\">Mot de passe</h2>
                 <a class=\"mx-3 btn btn-light px-1 py-0\" href=\"{{ path('app_forgot_password_request') }}\">
@@ -328,15 +339,18 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
             </span>
             <span>***********</span>
         </div>
-        <div class=\"mr-5 p-3 text-center\">
+        <hr class=\"w-100 d-md-none m-0\">
+
+        <div class=\"mr-md-5 p-3 text-center\">
             <button class=\"btn btn-light\" onclick=\"if(confirm('Vous êtes sur le point de supprimer votre compte : cette action est irréversible. Confirmer ?')){window.location.href='{{ path('delete_user', {id: user.id}) }}'};\">Supprimer mon compte</a>
         </div>
+
     </div>
-    <div class=\"row\">
-        <div class=\"mr-5 p-3 col-10 text-center\">
+    <div class=\"md-row\">
+        <div class=\"mr-md-5 p-3 col-md-10 text-center\">
             <h2 class=\"p-1 bg-mediumBlueGrey text-light mt-3\">Contributions</h2>
-             <div class=\"d-flex justify-content-between\">
-                <div class=\"mr-5 w-100 p-3 text-center\">
+             <div class=\"d-flex flex-column flex-md-row justify-content-between\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Disques</h3>
                     <span class=\"list-group\">
                         {% for disk in disks %}
@@ -349,7 +363,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
                         {% endfor %}
                     </span>
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Artistes</h3>
                     <span class=\"list-group\">
                         {% for artist in artists %}
@@ -359,7 +373,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
                         {% endfor %}
                     </span>        
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Genres</h3>
                     <span class=\"list-group\">
                         {% for style in styles %}
@@ -369,7 +383,7 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
                         {% endfor %}
                     </span>                
                 </div>
-                <div class=\"mr-5 w-100 p-3 text-center\">
+                <div class=\"mr-md-5 w-100 p-3 text-center\">
                     <h3 class=\"h5 p-1 text-mediumBlueGrey font-weight-bold\">Labels</h3>
                     <span class=\"list-group\">
                         {% for production in productions %}
@@ -389,6 +403,6 @@ class __TwigTemplate_a9c46bb9ef7595b6d2286cb3c778ebf15d4bba0feadd485ef28fa4e2240
 
 {% block custom_scripts %}
     <script src=\"/assets/js/myself.js\"></script>
-{% endblock %}", "user/myself.html.twig", "/var/www/html/diskapp_1.0/templates/user/myself.html.twig");
+{% endblock %}", "user/myself.html.twig", "/var/www/html/disk2/templates/user/myself.html.twig");
     }
 }

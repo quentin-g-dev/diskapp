@@ -113,7 +113,7 @@ class __TwigTemplate_f450657b800199c628b142499bbce838d3196d78072559df82e63dc7eae
     ";
         }
         // line 22
-        echo "    <table class=\"table table-striped table-hover  w-100\" id=\"disksTable\">
+        echo "    <table class=\"table table-striped table-hover  table-responsive w-100\" id=\"disksTable\">
         <thead>
             <tr>
                 ";
@@ -305,7 +305,7 @@ class __TwigTemplate_f450657b800199c628b142499bbce838d3196d78072559df82e63dc7eae
             </div>
         </section>
     {% endif %}
-    <table class=\"table table-striped table-hover  w-100\" id=\"disksTable\">
+    <table class=\"table table-striped table-hover  table-responsive w-100\" id=\"disksTable\">
         <thead>
             <tr>
                 {% if is_granted('ROLE_ADMIN') %}
@@ -364,6 +364,6 @@ class __TwigTemplate_f450657b800199c628b142499bbce838d3196d78072559df82e63dc7eae
 {% block custom_scripts %}
 <script src=\"assets/js/disks.js\"></script>
 {% endblock %}
-", "disks.html.twig", "/var/www/html/diskapp_1.0/templates/disks.html.twig");
+", "disks.html.twig", "/var/www/html/disk2/templates/disks.html.twig");
     }
 }

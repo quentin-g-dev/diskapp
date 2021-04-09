@@ -50,6 +50,6 @@ class __TwigTemplate_f95edecdad275af9f58e28fcf158b507895fbdf11b1bd68b3fa58b8d3d5
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/money_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/money_widget.html.php");
+        return new Source("", "@Framework/Form/money_widget.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/money_widget.html.php");
     }
 }

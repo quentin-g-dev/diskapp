@@ -92,7 +92,7 @@ class __TwigTemplate_4fdac5ac212df36ebc242d3732f1182f7d86f7add4ac62997c7ce9de953
     Depuis son espace personnel, l'utilisateur inscrit peut modifier son nom d'utilisateur ainsi que son mot de passe. Il lui est également possible de supprimer son compte grâce au bouton dédié (toutes les contributions de l'utilisateur seront alors également supprimées).<br>
     Des informations sont disponibles sur la page <a href=\"/privacy\">Collecte et traitement des données</a>.<br>
 
-    <h2 class=\"h4 mt-3\">Limites d'utlisation</h2>
+    <h2 class=\"h4 mt-3\">Limites d'utilisation</h2>
     Le présent service autorise l'ajout d'éléments (disques, artistes, styles, labels) dans la base de données. Il est configuré de façon à ce que les ajouts soient limités à 10 par session et par utilisateur.<br>
     <h2 class=\"h4 mt-3\">Modération</h2>
     Le gestionnaire de ce service se réserve le droit de supprimer sans préavis tout contenu jugé non conforme à l'utilisation du service. Toute action illicite d'un utilisateur expose ce dernier à la mise sous séquestre de son compte et de poursuites devant les juridictions compétentes.<br>
@@ -157,7 +157,7 @@ class __TwigTemplate_4fdac5ac212df36ebc242d3732f1182f7d86f7add4ac62997c7ce9de953
     Depuis son espace personnel, l'utilisateur inscrit peut modifier son nom d'utilisateur ainsi que son mot de passe. Il lui est également possible de supprimer son compte grâce au bouton dédié (toutes les contributions de l'utilisateur seront alors également supprimées).<br>
     Des informations sont disponibles sur la page <a href=\"/privacy\">Collecte et traitement des données</a>.<br>
 
-    <h2 class=\"h4 mt-3\">Limites d'utlisation</h2>
+    <h2 class=\"h4 mt-3\">Limites d'utilisation</h2>
     Le présent service autorise l'ajout d'éléments (disques, artistes, styles, labels) dans la base de données. Il est configuré de façon à ce que les ajouts soient limités à 10 par session et par utilisateur.<br>
     <h2 class=\"h4 mt-3\">Modération</h2>
     Le gestionnaire de ce service se réserve le droit de supprimer sans préavis tout contenu jugé non conforme à l'utilisation du service. Toute action illicite d'un utilisateur expose ce dernier à la mise sous séquestre de son compte et de poursuites devant les juridictions compétentes.<br>
@@ -169,6 +169,6 @@ class __TwigTemplate_4fdac5ac212df36ebc242d3732f1182f7d86f7add4ac62997c7ce9de953
 {% endblock %}
     
 {% block custom_scripts %}{% endblock %}
-", "static/conditions.html.twig", "/var/www/html/diskapp_1.0/templates/static/conditions.html.twig");
+", "static/conditions.html.twig", "/var/www/html/disk2/templates/static/conditions.html.twig");
     }
 }

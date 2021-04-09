@@ -50,6 +50,6 @@ class __TwigTemplate_be03558f9b48ce2f8b69842a708c87e842e7fa6660c47433a21b3902aa3
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/color_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/color_widget.html.php");
+        return new Source("", "@Framework/Form/color_widget.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/color_widget.html.php");
     }
 }

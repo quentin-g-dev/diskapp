@@ -66,10 +66,10 @@ class Style extends \App\Entity\Style implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'disks'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'disks', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'curator'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'disks'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'disks', '' . "\0" . 'App\\Entity\\Style' . "\0" . 'curator'];
     }
 
     /**
@@ -222,6 +222,28 @@ class Style extends \App\Entity\Style implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDisks', []);
 
         return parent::getDisks();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCurator(): ?\App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCurator', []);
+
+        return parent::getCurator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCurator(?\App\Entity\User $curator): \App\Entity\Style
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCurator', [$curator]);
+
+        return parent::setCurator($curator);
     }
 
 }

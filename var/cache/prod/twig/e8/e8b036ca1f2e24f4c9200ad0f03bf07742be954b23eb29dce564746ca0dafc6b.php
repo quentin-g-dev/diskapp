@@ -51,6 +51,6 @@ class __TwigTemplate_22bbee3e362715907e48dc12c8dac5bfe4ccf3d6af0388f839d681dc35d
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/widget_attributes.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/widget_attributes.html.php");
+        return new Source("", "@Framework/Form/widget_attributes.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/widget_attributes.html.php");
     }
 }

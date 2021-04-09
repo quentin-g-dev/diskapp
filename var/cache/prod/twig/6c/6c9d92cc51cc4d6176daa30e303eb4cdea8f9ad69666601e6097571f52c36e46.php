@@ -62,60 +62,86 @@ class __TwigTemplate_c5e5ea2a4867bcaecf9129d7d5e05527dcd8a74b7ad2ae10eda4fe17427
         echo " artistes référencés</small>
 
     <section>
-        <div class=\"p-3 d-flex justify-content-center\">
-            <button class=\"m-2 btn btn-danger text-white disabled\" onclick=\"deleteSelectedArtists();\" id=\"deleteSelected\">Supprimer la sélection</button>
-            <a href=\"/artists/add\" class=\"m-2 btn btn-success text-white\">Ajouter un artiste</a>
-        </div>
+        <div class=\"d-flex\">
+            ";
+        // line 11
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 12
+            echo "                <button class=\"m-2 btn btn-danger text-white disabled\" onclick=\"deleteSelectedArtists();\" id=\"deleteSelected\">Supprimer la sélection</button>
+            ";
+        }
+        // line 14
+        echo "            ";
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) {
+            // line 15
+            echo "                <a href=\"/artists/add\" class=\"my-2 btn btn-success text-white\">Ajouter un artiste</a>
+            ";
+        }
+        // line 17
+        echo "        </div>
     </section>
 
     <table class=\"table table-striped table-hover  w-100\" id=\"artistsTable\">
         <thead>
             <tr>
-                <th scope=\"col\" class=\"align-bottom\">
-                    <input  type=\"checkbox\" name=\"selectAll\" id=\"selectAll\" onclick=\"toggleGroupSelect(this.checked);enableGroupDelete();\">
-                </th>
-                <th class=\"align-middle\" scope=\"col\">Nom</th>
-                <th class=\"align-middle\" scope=\"col\"></th>
-            </tr>
+                ";
+        // line 23
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 24
+            echo "                    <th scope=\"col\" class=\"align-bottom\">
+                        <input  type=\"checkbox\" name=\"selectAll\" id=\"selectAll\" onclick=\"toggleGroupSelect(this.checked);enableGroupDelete();\">
+                    </th>
+                ";
+        }
+        // line 28
+        echo "                <th class=\"align-middle\" scope=\"col\">Nom</th>
+                <th class=\"align-middle\" scope=\"col\">Ajouté par</th>
+                ";
+        // line 31
+        echo "            </tr>
         </thead>
         <tbody>
             <!--Items-->
             ";
-        // line 28
+        // line 35
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["artists"] ?? null));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["artist"]) {
-            // line 29
+            // line 36
             echo "                <tr>
-                    <td class=\"align-middle\"><input  type=\"checkbox\" name=\"";
-            // line 30
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 30), "html", null, true);
-            echo "\" id=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 30), "html", null, true);
-            echo "\" onclick=\"enableGroupDelete();\"></td>
-                    <td class=\"align-middle\"><a href=\"/artists/";
-            // line 31
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 31), "html", null, true);
+                    ";
+            // line 37
+            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+                // line 38
+                echo "                        <td class=\"align-middle\"><input  type=\"checkbox\" name=\"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 38), "html", null, true);
+                echo "\" id=\"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 38), "html", null, true);
+                echo "\" onclick=\"enableGroupDelete();\"></td>
+                    ";
+            }
+            // line 40
+            echo "                    <td class=\"align-middle\"><a href=\"/artists/";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 40), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "name", [], "any", false, false, false, 31), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "name", [], "any", false, false, false, 40), "html", null, true);
             echo "</a></td>
-                    <td class=\"align-middle text-center\">
-                        <a href=\"/artists/set/";
-            // line 33
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 33), "html", null, true);
-            echo "\" class=\"btn btn-info text-white\">Modifier</a>
-                        <button  class=\"btn btn-danger text-white\" onclick=\"if(confirm('Attention : confirmer ?')) {deleteArtist(";
-            // line 34
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["artist"], "id", [], "any", false, false, false, 34), "html", null, true);
-            echo ")}\">Supprimer</button>
-                    </td>
-                </tr>
+                    <td class=\"align-middle\"><a href=\"/user/";
+            // line 41
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["artist"], "curator", [], "any", false, false, false, 41), "id", [], "any", false, false, false, 41), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["artist"], "curator", [], "any", false, false, false, 41), "username", [], "any", false, false, false, 41), "html", null, true);
+            echo "</a></td>
+
+                    ";
+            // line 47
+            echo "                </tr>
             ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 38
+            // line 49
             echo "                <tr>
                     <td colspan=\"2\"><i>Nothing to show...</i></td>
                 </tr>
@@ -124,18 +150,18 @@ class __TwigTemplate_c5e5ea2a4867bcaecf9129d7d5e05527dcd8a74b7ad2ae10eda4fe17427
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['artist'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
+        // line 53
         echo "        </tbody>
     </table>
 </div>
 ";
     }
 
-    // line 47
+    // line 58
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 48
+        // line 59
         echo "<script src=\"assets/js/artists.js\"></script>
 ";
     }
@@ -152,11 +178,11 @@ class __TwigTemplate_c5e5ea2a4867bcaecf9129d7d5e05527dcd8a74b7ad2ae10eda4fe17427
 
     public function getDebugInfo()
     {
-        return array (  139 => 48,  135 => 47,  128 => 42,  119 => 38,  110 => 34,  106 => 33,  99 => 31,  93 => 30,  90 => 29,  85 => 28,  61 => 7,  58 => 6,  54 => 5,  48 => 3,  37 => 1,);
+        return array (  165 => 59,  161 => 58,  154 => 53,  145 => 49,  139 => 47,  132 => 41,  125 => 40,  117 => 38,  115 => 37,  112 => 36,  107 => 35,  101 => 31,  97 => 28,  91 => 24,  89 => 23,  81 => 17,  77 => 15,  74 => 14,  70 => 12,  68 => 11,  61 => 7,  58 => 6,  54 => 5,  48 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "artists.html.twig", "/var/www/html/diskapp/templates/artists.html.twig");
+        return new Source("", "artists.html.twig", "/var/www/html/disk2/templates/artists.html.twig");
     }
 }

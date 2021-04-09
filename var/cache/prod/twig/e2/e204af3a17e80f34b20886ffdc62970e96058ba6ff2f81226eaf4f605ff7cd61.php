@@ -50,6 +50,6 @@ class __TwigTemplate_0ffd2a5fc26b26cba64db7e433e3bb712b336fd2a15562953756abb3445
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/password_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/password_widget.html.php");
+        return new Source("", "@Framework/Form/password_widget.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/password_widget.html.php");
     }
 }

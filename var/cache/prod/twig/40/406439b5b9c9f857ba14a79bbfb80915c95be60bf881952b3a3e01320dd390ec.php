@@ -160,6 +160,6 @@ class __TwigTemplate_a3c96ca3032baacf83dd87fc87730f3f189c74c029dfc83686ea1e15242
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/Exception/logs.html.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/Exception/logs.html.twig");
+        return new Source("", "@Twig/Exception/logs.html.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/Exception/logs.html.twig");
     }
 }

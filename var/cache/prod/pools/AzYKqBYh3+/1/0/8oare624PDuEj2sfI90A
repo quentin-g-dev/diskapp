@@ -1,0 +1,288 @@
+<?php //%255BApp%255CEntity%255CDisk%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Disk',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\Disk',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\DiskRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'name' => [
+                        'fieldName' => 'name',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'name',
+                    ],
+                    'published' => [
+                        'fieldName' => 'published',
+                        'type' => 'date',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'published',
+                    ],
+                    'stock' => [
+                        'fieldName' => 'stock',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'stock',
+                    ],
+                    'registered' => [
+                        'fieldName' => 'registered',
+                        'type' => 'date',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'registered',
+                    ],
+                    'img' => [
+                        'fieldName' => 'img',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'img',
+                    ],
+                    'barcode' => [
+                        'fieldName' => 'barcode',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'barcode',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'name' => 'name',
+                    'published' => 'published',
+                    'stock' => 'stock',
+                    'registered' => 'registered',
+                    'img' => 'img',
+                    'barcode' => 'barcode',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'name' => 'name',
+                    'published' => 'published',
+                    'stock' => 'stock',
+                    'registered' => 'registered',
+                    'img' => 'img',
+                    'barcode' => 'barcode',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'disk',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'artist' => [
+                        'fieldName' => 'artist',
+                        'joinColumns' => [
+                            [
+                                'name' => 'artist',
+                                'unique' => false,
+                                'nullable' => true,
+                                'onDelete' => 'CASCADE',
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'disks',
+                        'targetEntity' => 'App\\Entity\\Artist',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Disk',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'artist' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'artist' => 'artist',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'artist',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'production' => [
+                        'fieldName' => 'production',
+                        'joinColumns' => [
+                            [
+                                'name' => 'production',
+                                'unique' => false,
+                                'nullable' => true,
+                                'onDelete' => 'CASCADE',
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'disks',
+                        'targetEntity' => 'App\\Entity\\Production',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Disk',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'production' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'production' => 'production',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'production',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'style' => [
+                        'fieldName' => 'style',
+                        'joinColumns' => [
+                            [
+                                'name' => 'style',
+                                'unique' => false,
+                                'nullable' => true,
+                                'onDelete' => 'CASCADE',
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'disks',
+                        'targetEntity' => 'App\\Entity\\Style',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Disk',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'style' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'style' => 'style',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'style',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'curator' => [
+                        'fieldName' => 'curator',
+                        'joinColumns' => [
+                            [
+                                'name' => 'curator_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'disks',
+                        'targetEntity' => 'App\\Entity\\User',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\Disk',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'curator_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'curator_id' => 'curator_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'curator_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

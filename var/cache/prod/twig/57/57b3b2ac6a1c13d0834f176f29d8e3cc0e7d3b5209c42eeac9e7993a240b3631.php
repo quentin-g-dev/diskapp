@@ -50,6 +50,6 @@ class __TwigTemplate_2eb9e0a346206929888e11f07dd9d86d885bdd4a6fe99f71b2002346713
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/images/favicon.png.base64", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/images/favicon.png.base64");
+        return new Source("", "@Twig/images/favicon.png.base64", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/images/favicon.png.base64");
     }
 }

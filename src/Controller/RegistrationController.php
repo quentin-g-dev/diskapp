@@ -89,7 +89,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/verify/email", name="app_verify_email")
      */
-    public function verifyUserEmail(Request $request, UserRepository $userRepository): Response
+    public function verifyUserEmail(Request $request, UserRepository $userRepository, GuardAuthenticatorHandler $guardHandler): Response
     {
         $id = $request->get('id');
 
@@ -115,6 +115,7 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre adresse e-mail a été vérifiée, merci.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_login');
+
     }
 }

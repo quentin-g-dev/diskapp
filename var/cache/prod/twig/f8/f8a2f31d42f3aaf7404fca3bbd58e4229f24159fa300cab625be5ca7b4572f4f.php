@@ -119,6 +119,6 @@ class __TwigTemplate_2984b01024c626ee1f1d1f033c4d39ec4e739560addc81450a13ea33603
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/Exception/traces_text.html.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/Exception/traces_text.html.twig");
+        return new Source("", "@Twig/Exception/traces_text.html.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/Exception/traces_text.html.twig");
     }
 }

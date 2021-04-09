@@ -100,6 +100,6 @@ class __TwigTemplate_4958d8fe6e0e005a77084d0879ca3f0eeace7a73fff5e3f4b3cda0c1da9
    <p>
         Un message de vérification vous a été envoyé par e-mail : vous avez 1 heure pour cliquer sur le lien qu'il contient afin de confirmer votre inscription.
     </p>
-{% endblock %}", "registration/confirm_email.html.twig", "/var/www/html/diskapp_1.0/templates/registration/confirm_email.html.twig");
+{% endblock %}", "registration/confirm_email.html.twig", "/var/www/html/disk2/templates/registration/confirm_email.html.twig");
     }
 }

@@ -66,10 +66,10 @@ class Disk extends \App\Entity\Disk implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'artist', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'production', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'published', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'style', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'stock', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'registered', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'img', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'barcode'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'artist', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'production', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'published', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'style', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'stock', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'registered', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'img', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'barcode', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'curator'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'artist', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'production', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'published', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'style', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'stock', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'registered', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'img', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'barcode'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'artist', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'production', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'published', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'style', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'stock', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'registered', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'img', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'barcode', '' . "\0" . 'App\\Entity\\Disk' . "\0" . 'curator'];
     }
 
     /**
@@ -387,6 +387,28 @@ class Disk extends \App\Entity\Disk implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBarcode', [$barcode]);
 
         return parent::setBarcode($barcode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCurator(): ?\App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCurator', []);
+
+        return parent::getCurator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCurator(?\App\Entity\User $curator): \App\Entity\Disk
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCurator', [$curator]);
+
+        return parent::setCurator($curator);
     }
 
 }

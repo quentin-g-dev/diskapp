@@ -56,7 +56,7 @@ class __TwigTemplate_e4a39e9cf40d25710968362f8089bec0c26aabe2fae321dbe62a8cf47e5
 </p>
 
 <p>
-    Bie cordialement,
+    Bien cordialement,
     <a href=\"https://www.quentin-g.com\" target=\"blank\">Quentin G</a>
 </p>
 ";
@@ -95,9 +95,9 @@ class __TwigTemplate_e4a39e9cf40d25710968362f8089bec0c26aabe2fae321dbe62a8cf47e5
 </p>
 
 <p>
-    Bie cordialement,
+    Bien cordialement,
     <a href=\"https://www.quentin-g.com\" target=\"blank\">Quentin G</a>
 </p>
-", "registration/confirmation_email.html.twig", "/var/www/html/diskapp_1.0/templates/registration/confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "/var/www/html/disk2/templates/registration/confirmation_email.html.twig");
     }
 }

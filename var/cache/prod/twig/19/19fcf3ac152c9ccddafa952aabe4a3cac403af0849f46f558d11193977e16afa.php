@@ -67,6 +67,6 @@ class __TwigTemplate_c117be1875eeb6e6c0129da5b4ff6e868c610f2a3852765059ab3485ba8
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/choice_widget_collapsed.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/choice_widget_collapsed.html.php");
+        return new Source("", "@Framework/Form/choice_widget_collapsed.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/choice_widget_collapsed.html.php");
     }
 }

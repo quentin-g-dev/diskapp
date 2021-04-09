@@ -376,6 +376,6 @@ class __TwigTemplate_a24a79f4a2a24ae237d7b1d08ad3680b19c8a96a4b286421ff9fce32250
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/Exception/exception.html.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/Exception/exception.html.twig");
+        return new Source("", "@Twig/Exception/exception.html.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/Exception/exception.html.twig");
     }
 }

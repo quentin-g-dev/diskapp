@@ -343,6 +343,6 @@ class __TwigTemplate_680bc17dc6f4f3d875cd6fc9ac22612c1428d8e34676bb3d9711b33888f
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/base_js.html.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/base_js.html.twig");
+        return new Source("", "@Twig/base_js.html.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/base_js.html.twig");
     }
 }

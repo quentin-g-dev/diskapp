@@ -154,6 +154,6 @@ class __TwigTemplate_a86745ce9ed66c907d0ca871dc4b0b04d7bfd352a0b9922cda9b58acdd5
     </ul>
 </div>
 {% endblock %}
-", "user/index.html.twig", "/var/www/html/diskapp_1.0/templates/user/index.html.twig");
+", "user/index.html.twig", "/var/www/html/disk2/templates/user/index.html.twig");
     }
 }

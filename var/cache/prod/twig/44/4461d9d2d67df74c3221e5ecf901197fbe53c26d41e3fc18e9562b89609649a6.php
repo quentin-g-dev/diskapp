@@ -50,6 +50,6 @@ class __TwigTemplate_9cec6205399c2846ec418fb2edf8c8a9b793fa79b919357c167b0aa8a43
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/images/icon-plus-square.svg", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/images/icon-plus-square.svg");
+        return new Source("", "@Twig/images/icon-plus-square.svg", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/images/icon-plus-square.svg");
     }
 }

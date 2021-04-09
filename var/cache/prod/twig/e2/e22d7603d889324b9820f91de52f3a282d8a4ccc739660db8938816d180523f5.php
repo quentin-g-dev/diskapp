@@ -68,6 +68,6 @@ class __TwigTemplate_01d2bbc14821a46c424bb626da599c32452ec782180246e9118b6aaaad7
 
     public function getSourceContext()
     {
-        return new Source("", "@email/zurb_2/notification/local.css", "/var/www/html/diskapp/vendor/symfony/twig-bridge/Resources/views/Email/zurb_2/notification/local.css");
+        return new Source("", "@email/zurb_2/notification/local.css", "/var/www/html/disk2/vendor/symfony/twig-bridge/Resources/views/Email/zurb_2/notification/local.css");
     }
 }

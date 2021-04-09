@@ -50,6 +50,6 @@ class __TwigTemplate_a4087437e65380bd442eee30bf5d3c6943ecb8960efdf3708fc52c49238
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/images/chevron-right.svg", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/images/chevron-right.svg");
+        return new Source("", "@Twig/images/chevron-right.svg", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/images/chevron-right.svg");
     }
 }

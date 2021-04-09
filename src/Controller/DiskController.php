@@ -71,12 +71,17 @@ class DiskController extends AbstractController
                 if (is_null($form['img']->getData())) :
                     $disk->setImg('/assets/img/diskapp_cd.png');
                 else :
-                    $file = $form['img']->getData();
-                    if($file->guessExtension() === 'jpg' || $file->guessExtension() === 'jpeg' || $file->guessExtension() == 'png') :
-                        $directory = '.'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload';
-                        $fileName = $disk->getName().'_'.$disk->getId().'_'.preg_replace('/s/', '', $disk->getArtist()->getName()).'.'.$file->getExtension();
-                        $file->move($directory, $fileName);
-                        $disk->setImg('/assets/img/upload/'.$fileName.DIRECTORY_SEPARATOR.$file->getExtension());
+                    $userFile = $form['img']->getData();
+                    $originalName = $userFile->getClientOriginalName();
+                    $extension = $userFile->guessExtension();
+                    if($extension === 'jpg' || $extension === 'jpeg' || $extension == 'png') :
+                        if($extension === 'jpeg') :
+                            $extension = 'jpg';
+                        endif;
+                        $directory = DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR;
+                        $newFileName = 'diskapp_disk_'.$disk->getId().'.'.$extension;
+                        $userFile->move('.'.$directory, $newFileName);
+                        $disk->setImg($directory.$newFileName);
                     else : 
                         $disk->setImg('/assets/img/diskapp_cd.png');
                     endif;
@@ -91,7 +96,7 @@ class DiskController extends AbstractController
                 $entityManager->flush();
                 
                 /* return $this->render('debug.html.twig', ['h1'=>'DEBUG', 'debug' => $disk ]);*/ // Debug line
-                return $this->redirect('/disks');
+                return $this->redirect('/disks/'.$disk->getId());
             }
 
             return $this->render('form.html.twig', [
@@ -134,44 +139,60 @@ class DiskController extends AbstractController
     /**
      * @Route("/disks/set/{id}", methods={"GET", "POST"}, name="set_disk")
      */
-    public function setDisk(Disk $disk, Request $request,  ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository): Response
+    public function setDisk(Disk $disk, Request $request , ArtistRepository $artistRepository, ProductionRepository $productionRepository, StyleRepository $styleRepository): Response
     {    
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(DiskType::class, $disk);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $artist = $artistRepository->find($form->getData()->getArtist()->getId());
-            $disk->setArtist($artist);
+            if ($form['artist'] === '0') :
+                $disk->setArtist($artistRepository->find(23));
+            else :
+                $artist = $artistRepository->find($form->getData()->getArtist()->getId());
+                $disk->setArtist($artist);
+            endif;
             $production = $productionRepository->find($form->getData()->getProduction()->getId());
             $disk->setProduction($production);
+            $disk->setPublished($form['published']->getData());
             $style = $styleRepository->find($form->getData()->getStyle()->getId());
             $disk->setStyle($style);
-            $file = $form['img']->getData();
-            $directory = '.'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload';
-            $fileName = $disk->getName().'_'.$disk->getId().'_'.preg_replace('/s/', '', $disk->getArtist()->getName()).'.'.$file->guessExtension();
-            $file->move($directory, $fileName);
-            $disk->setImg('/assets/img/upload/'.$fileName.DIRECTORY_SEPARATOR.$file->getExtension());
+            $disk->setCurator($this->getUser());
+            if (is_null($form['img']->getData())) :
+                $disk->setImg('/assets/img/diskapp_cd.png');
+            else :
+                $userFile = $form['img']->getData();
+                $originalName = $userFile->getClientOriginalName();
+                $extension = $userFile->guessExtension();
+                if($extension === 'jpg' || $extension === 'jpeg' || $extension == 'png') :
+                    if($extension === 'jpeg') :
+                        $extension = 'jpg';
+                    endif;
+                    $directory = DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR;
+                    $newFileName = 'diskapp_disk_'.$disk->getId().'.'.$extension;
+                    $userFile->move('.'.$directory, $newFileName);
+                    $disk->setImg($directory.$newFileName);
+                else : 
+                    $disk->setImg('/assets/img/diskapp_cd.png');
+                endif;
+            endif;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($disk);
             $entityManager->persist($artist);
             $entityManager->persist($production);
             $entityManager->persist($style);
+            $this->getUser()->SetActionsCounter($this->getUser()->getActionsCounter()-1);
+            $entityManager->persist($this->getUser());
             $entityManager->flush();
-            
-            /* return $this->render('debug.html.twig', ['h1'=>'DEBUG', 'debug' => $disk ]);*/ // Debug line
-            return $this->redirect('/disks');
+            return $this->redirect('/disks/'.$disk->getId());
         }
-
         return $this->render('form.html.twig', [
-            'h1'=>'Modification d\'un disque',
-            'form' => $form->createView(),
-            'form_script'=>'/assets/js/new_disk_form.js'
-        ]);
+            'h1'=>'Modification du disque',
+            'controller_name' => 'DiskController',
 
-        $disk->setName('New product name!');
-        $entityManager->flush();
-        return $this->redirectToRoute('product_show', [
-            'id' => $product->getId()
+            'form' => $form->createView(),
+            'form_script' => '',
         ]);
     }
+
+    
 }

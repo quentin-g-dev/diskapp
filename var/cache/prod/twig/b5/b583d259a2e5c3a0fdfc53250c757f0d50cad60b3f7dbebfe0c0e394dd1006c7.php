@@ -164,6 +164,6 @@ class __TwigTemplate_971ee20dde62bce8cfe1fe20080191e3279c5fec7155ce69ad918168dd8
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/layout.html.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/layout.html.twig");
+        return new Source("", "@Twig/layout.html.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/layout.html.twig");
     }
 }

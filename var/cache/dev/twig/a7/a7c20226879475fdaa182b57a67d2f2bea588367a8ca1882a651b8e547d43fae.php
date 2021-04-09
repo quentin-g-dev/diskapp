@@ -175,6 +175,6 @@ class __TwigTemplate_415282b4af7ea6fbb38211dc8294cf61adf653bb4828056d5b18effdec4
 {% endblock %}
     
 {% block custom_scripts %}{% endblock %}
-", "static/privacy.html.twig", "/var/www/html/diskapp_1.0/templates/static/privacy.html.twig");
+", "static/privacy.html.twig", "/var/www/html/disk2/templates/static/privacy.html.twig");
     }
 }

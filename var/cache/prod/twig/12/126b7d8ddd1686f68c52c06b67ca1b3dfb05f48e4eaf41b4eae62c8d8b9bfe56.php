@@ -60,16 +60,31 @@ class __TwigTemplate_10cb91b680f64fe508959bf4395cc8e88abb2a331174f9dd87e6d566a6d
         // line 7
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "name", [], "any", false, false, false, 7), "html", null, true);
         echo "</h2>
-    <a href=\"/productions/set/";
-        // line 8
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "id", [], "any", false, false, false, 8), "html", null, true);
-        echo "\" class=\"btn btn-info text-white ml-3\">Modifier</a>
-    <button  class=\"btn btn-danger text-white ml-3\" onclick=\"deleteProduction(";
-        // line 9
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "id", [], "any", false, false, false, 9), "html", null, true);
-        echo "); setTimeout(function(){ window.location.href='/productions'; }, 50);\">Supprimer</button>   
-    <br>    
-    <h3 class=\"ml-3\">Disques :</h3>
+    <small class=\"ml-3 mb-5\">
+        Ajouté par
+        <a href=\"/user/";
+        // line 10
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "curator", [], "any", false, false, false, 10), "id", [], "any", false, false, false, 10), "html", null, true);
+        echo "\">";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "curator", [], "any", false, false, false, 10), "username", [], "any", false, false, false, 10), "html", null, true);
+        echo "</a>
+    </small>
+    ";
+        // line 12
+        if ((0 === twig_compare(($context["mine"] ?? null), true))) {
+            // line 13
+            echo "        <a href=\"/productions/set/";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "id", [], "any", false, false, false, 13), "html", null, true);
+            echo "\" class=\"btn btn-info text-white ml-3\">Modifier</a>
+        <button  class=\"btn btn-danger text-white ml-3\" onclick=\"deleteProduction(";
+            // line 14
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["production"] ?? null), "id", [], "any", false, false, false, 14), "html", null, true);
+            echo "); setTimeout(function(){ window.location.href='/productions'; }, 50);\">Supprimer</button>   
+    ";
+        }
+        // line 16
+        echo "    <br>    
+    <h3 class=\"ml-3 mt-5\">Disques :</h3>
     <table class=\"table table-striped table-hover  w-100\" id=\"disksTable\">
         <thead>
             <tr>
@@ -84,45 +99,45 @@ class __TwigTemplate_10cb91b680f64fe508959bf4395cc8e88abb2a331174f9dd87e6d566a6d
         </thead>
         <tbody>
     ";
-        // line 25
+        // line 31
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["disks"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["disk"]) {
-            // line 26
+            // line 32
             echo "            <tr>
                 <td class=\"align-middle text-center\"><img src=\"";
-            // line 27
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "img", [], "any", false, false, false, 27), "html", null, true);
+            // line 33
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "img", [], "any", false, false, false, 33), "html", null, true);
             echo "\" alt=\"Cover\" height=\"75px\"></td>
                 <td class=\"align-middle text-center\"><a href=\"/disks/";
-            // line 28
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "id", [], "any", false, false, false, 28), "html", null, true);
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "id", [], "any", false, false, false, 34), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "name", [], "any", false, false, false, 28), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "name", [], "any", false, false, false, 34), "html", null, true);
             echo "</a></td>
                 <td class=\"align-middle text-center\"><a href=\"/artists/";
-            // line 29
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "artist", [], "any", false, false, false, 29), "id", [], "any", false, false, false, 29), "html", null, true);
+            // line 35
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "artist", [], "any", false, false, false, 35), "id", [], "any", false, false, false, 35), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "artist", [], "any", false, false, false, 29), "name", [], "any", false, false, false, 29), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "artist", [], "any", false, false, false, 35), "name", [], "any", false, false, false, 35), "html", null, true);
             echo "</a></td>
                 <td class=\"align-middle text-center\">";
-            // line 30
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "published", [], "any", false, false, false, 30), "d-m-Y"), "html", null, true);
+            // line 36
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "published", [], "any", false, false, false, 36), "d-m-Y"), "html", null, true);
             echo "</td>
                 <td class=\"align-middle text-center\"><a href=\"/styles/";
-            // line 31
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "style", [], "any", false, false, false, 31), "id", [], "any", false, false, false, 31), "html", null, true);
+            // line 37
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "style", [], "any", false, false, false, 37), "id", [], "any", false, false, false, 37), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "style", [], "any", false, false, false, 31), "name", [], "any", false, false, false, 31), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["disk"], "style", [], "any", false, false, false, 37), "name", [], "any", false, false, false, 37), "html", null, true);
             echo "</a></td>
                 <td class=\"align-middle text-center\">";
-            // line 32
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "stock", [], "any", false, false, false, 32), "html", null, true);
+            // line 38
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "stock", [], "any", false, false, false, 38), "html", null, true);
             echo "</td>
                 <td class=\"align-middle text-center\">";
-            // line 33
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "barcode", [], "any", false, false, false, 33), "html", null, true);
+            // line 39
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["disk"], "barcode", [], "any", false, false, false, 39), "html", null, true);
             echo "</td>
             </tr>
     ";
@@ -130,13 +145,13 @@ class __TwigTemplate_10cb91b680f64fe508959bf4395cc8e88abb2a331174f9dd87e6d566a6d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['disk'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 36
+        // line 42
         echo "        </tbody>
     </table>
 ";
     }
 
-    // line 40
+    // line 46
     public function block_custom_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -157,11 +172,11 @@ class __TwigTemplate_10cb91b680f64fe508959bf4395cc8e88abb2a331174f9dd87e6d566a6d
 
     public function getDebugInfo()
     {
-        return array (  140 => 40,  134 => 36,  125 => 33,  121 => 32,  115 => 31,  111 => 30,  105 => 29,  99 => 28,  95 => 27,  92 => 26,  88 => 25,  69 => 9,  65 => 8,  61 => 7,  58 => 6,  54 => 5,  48 => 3,  37 => 1,);
+        return array (  155 => 46,  149 => 42,  140 => 39,  136 => 38,  130 => 37,  126 => 36,  120 => 35,  114 => 34,  110 => 33,  107 => 32,  103 => 31,  86 => 16,  81 => 14,  76 => 13,  74 => 12,  67 => 10,  61 => 7,  58 => 6,  54 => 5,  48 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "production_solo.html.twig", "/var/www/html/diskapp/templates/production_solo.html.twig");
+        return new Source("", "production_solo.html.twig", "/var/www/html/disk2/templates/production_solo.html.twig");
     }
 }

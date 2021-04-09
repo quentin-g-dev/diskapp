@@ -160,6 +160,6 @@ class __TwigTemplate_af898673b04f4a20d241703faeb940e12d6c3238a5774e85fc897837cc5
 
     <div class=\"w-100 justify-content-end my-3 d-flex align-items-baseline\">Vous avez déjà un compte ?<a class=\"btn btn-info mx-3\" href=\"/login\">Connexion</a></div> 
 {% endblock %}
-", "registration/register.html.twig", "/var/www/html/diskapp_1.0/templates/registration/register.html.twig");
+", "registration/register.html.twig", "/var/www/html/disk2/templates/registration/register.html.twig");
     }
 }

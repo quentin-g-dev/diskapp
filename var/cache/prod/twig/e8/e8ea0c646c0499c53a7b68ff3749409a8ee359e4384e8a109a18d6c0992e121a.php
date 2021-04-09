@@ -53,6 +53,6 @@ class __TwigTemplate_d043044e272b3f033f68c18556559784b6694a9b488eb47927fe182a107
 
     public function getSourceContext()
     {
-        return new Source("", "@Doctrine/Collector/icon.svg", "/var/www/html/diskapp/vendor/doctrine/doctrine-bundle/Resources/views/Collector/icon.svg");
+        return new Source("", "@Doctrine/Collector/icon.svg", "/var/www/html/disk2/vendor/doctrine/doctrine-bundle/Resources/views/Collector/icon.svg");
     }
 }

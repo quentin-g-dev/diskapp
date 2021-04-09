@@ -290,6 +290,6 @@ class __TwigTemplate_3e3f49b44ecb338b592ce6c3f8a42a569d3c7677b681e200f9f612a468d
 
 {% block custom_scripts %}
 <script src=\"assets/js/artists.js\"></script>
-{% endblock %}", "artists.html.twig", "/var/www/html/diskapp_1.0/templates/artists.html.twig");
+{% endblock %}", "artists.html.twig", "/var/www/html/disk2/templates/artists.html.twig");
     }
 }

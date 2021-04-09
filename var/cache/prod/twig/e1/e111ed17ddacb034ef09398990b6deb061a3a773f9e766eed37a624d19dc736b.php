@@ -264,6 +264,6 @@ header .container { display: flex; justify-content: space-between; }
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/exception.css.twig", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/exception.css.twig");
+        return new Source("", "@Twig/exception.css.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/exception.css.twig");
     }
 }

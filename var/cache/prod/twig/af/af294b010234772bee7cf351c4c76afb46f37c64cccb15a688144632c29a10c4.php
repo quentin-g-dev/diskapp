@@ -50,6 +50,6 @@ class __TwigTemplate_912cad52d56c2679d705c0219347b4a4f11604fc3a4e951d03fe0e6f47e
 
     public function getSourceContext()
     {
-        return new Source("", "@Twig/images/symfony-ghost.svg", "/var/www/html/diskapp/vendor/symfony/twig-bundle/Resources/views/images/symfony-ghost.svg");
+        return new Source("", "@Twig/images/symfony-ghost.svg", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/images/symfony-ghost.svg");
     }
 }

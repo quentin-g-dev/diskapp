@@ -65,6 +65,6 @@ class __TwigTemplate_49cd9fa18b0b7431e2ba201f8e5b2b837e998a606ee7d13edddb67b8fe4
     {
         return new Source("id=\"<?php echo \$view->escape(\$id) ?>\" name=\"<?php echo \$view->escape(\$full_name) ?>\"<?php if (\$disabled): ?> disabled=\"disabled\"<?php endif ?>
 <?php echo \$attr ? ' '.\$view['form']->block(\$form, 'attributes') : '' ?>
-", "@Framework/Form/button_attributes.html.php", "/var/www/html/diskapp_1.0/vendor/symfony/framework-bundle/Resources/views/Form/button_attributes.html.php");
+", "@Framework/Form/button_attributes.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/button_attributes.html.php");
     }
 }

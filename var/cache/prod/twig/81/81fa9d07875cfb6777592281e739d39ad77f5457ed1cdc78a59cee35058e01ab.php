@@ -54,6 +54,6 @@ class __TwigTemplate_71a65b50807eb7691dc8186824476d6ec50e644bdd74a817a91e3706049
 
     public function getSourceContext()
     {
-        return new Source("", "@Framework/Form/radio_widget.html.php", "/var/www/html/diskapp/vendor/symfony/framework-bundle/Resources/views/Form/radio_widget.html.php");
+        return new Source("", "@Framework/Form/radio_widget.html.php", "/var/www/html/disk2/vendor/symfony/framework-bundle/Resources/views/Form/radio_widget.html.php");
     }
 }

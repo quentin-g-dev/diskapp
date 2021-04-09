@@ -83,6 +83,6 @@ class __TwigTemplate_6629fef75099388493e5ffb8a8646e2383e9e9e0749ed513f4b76c7ce2d
 {{ status_code }} {{ status_text }}
 
 */
-", "@Twig/Exception/error.css.twig", "/var/www/html/diskapp_1.0/vendor/symfony/twig-bundle/Resources/views/Exception/error.css.twig");
+", "@Twig/Exception/error.css.twig", "/var/www/html/disk2/vendor/symfony/twig-bundle/Resources/views/Exception/error.css.twig");
     }
 }

@@ -1,4 +1,3 @@
-
 .text-darkBlueGrey{
     color: #2E3244 !important;
 }
@@ -31,8 +30,13 @@
     background-color: #516079 !important;
 }
 
+
 h1, span.h1 {
     height:5rem;
+}
+
+.h1bar {
+    width:calc(100vw - 23%);
 }
 
 aside {
